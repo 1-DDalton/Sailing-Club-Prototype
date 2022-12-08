@@ -42,6 +42,11 @@ public class SignUp extends javax.swing.JFrame {
 
         usernameFld.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         usernameFld.setText("Username");
+        usernameFld.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                usernameFldMouseClicked(evt);
+            }
+        });
         usernameFld.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 usernameFldActionPerformed(evt);
@@ -50,6 +55,11 @@ public class SignUp extends javax.swing.JFrame {
 
         passwordFld.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
         passwordFld.setText("Password");
+        passwordFld.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                passwordFldMouseClicked(evt);
+            }
+        });
         passwordFld.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 passwordFldActionPerformed(evt);
@@ -100,6 +110,16 @@ public class SignUp extends javax.swing.JFrame {
     private void passwordFldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_passwordFldActionPerformed
+
+    private void usernameFldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usernameFldMouseClicked
+        // TODO add your handling code here:
+        usernameFld.setText("");
+    }//GEN-LAST:event_usernameFldMouseClicked
+
+    private void passwordFldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passwordFldMouseClicked
+        // TODO add your handling code here:
+        passwordFld.setText("");
+    }//GEN-LAST:event_passwordFldMouseClicked
 
     /**
      * @param args the command line arguments

@@ -72,6 +72,7 @@
         <Property name="text" type="java.lang.String" value="Username"/>
       </Properties>
       <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="usernameFldMouseClicked"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="usernameFldActionPerformed"/>
       </Events>
     </Component>
@@ -83,6 +84,7 @@
         <Property name="text" type="java.lang.String" value="Password"/>
       </Properties>
       <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="passwordFldMouseClicked"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="passwordFldActionPerformed"/>
       </Events>
     </Component>
