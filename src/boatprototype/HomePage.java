@@ -76,7 +76,7 @@ public class HomePage extends javax.swing.JFrame {
 
         jButton1.setText("OOD");
 
-        adminLbl.setText("Locker");
+        adminLbl.setText("Admin");
         adminLbl.setIconTextGap(0);
         adminLbl.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -173,6 +173,8 @@ public class HomePage extends javax.swing.JFrame {
 
     private void adminLblActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminLblActionPerformed
         // TODO add your handling code here:
+        new SignIn().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_adminLblActionPerformed
 
     /**

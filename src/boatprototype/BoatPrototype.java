@@ -16,7 +16,7 @@ public class BoatPrototype {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        new SignUp().setVisible( true);
+        new SignIn().setVisible( true);
     }
     
 }
