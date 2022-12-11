@@ -5,6 +5,12 @@
  */
 package boatprototype;
 
+
+import java.sql.Statement;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
 /**
  *
  * @author danka
@@ -29,7 +35,23 @@ public class Events extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     
     
-        
+    private void table_update() throws SQLException, ClassNotFoundException{
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            conn = DriverManager.getconnection("jdbc:mysql://computing.gfmat.org:3306/DDalton_SailingClub?user=DDalton&useSSL=true", "DDalton", "7r66JBe3A8");
+            statement = conn.prepareStatement("SELECT * FROM Events");
+            ResultSet rs = statement.executeQuery();
+            
+            
+            
+            
+            
+            
+        } catch (SQLException ex) {
+            System.out.println("errorMessage"+ ex);
+        }
+        }
+    }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -142,6 +164,11 @@ public class Events extends javax.swing.JFrame {
         });
 
         deleteBtn.setText("Delete");
+        deleteBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteBtnActionPerformed(evt);
+            }
+        });
 
         eventsTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -244,6 +271,7 @@ public class Events extends javax.swing.JFrame {
         String eventName = eventNameTxt.getText();
         String eventDate = eventDateTxt.getText();
         String eventStartTime = eventStartTimeTxt.getText();
+        DataManipulation.addEvents(eventName, eventDate, eventStartTime, 1);
     }//GEN-LAST:event_addBtnActionPerformed
 
     private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
@@ -259,6 +287,14 @@ public class Events extends javax.swing.JFrame {
         new HomePage().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_homeBtnActionPerformed
+
+    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
+        // TODO add your handling code here:
+        String eventName = eventNameTxt.getText();
+        String eventDate = eventDateTxt.getText();
+        String eventStartTime = eventStartTimeTxt.getText();
+        DataManipulation.deleteEvents(eventName, eventDate, eventStartTime, 1);    
+    }//GEN-LAST:event_deleteBtnActionPerformed
 
     /**
      * @param args the command line arguments

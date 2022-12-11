@@ -21,6 +21,33 @@ public class DataManipulation {
         } catch (SQLException ex) {
             System.out.println("errorMessage"+ ex);
         }
-
     }
+    public static void addEvents(String eventName, String eventDate, String eventStartTime, int eventID){
+        try( Connection conn = DriverManager.getConnection("jdbc:mysql://computing.gfmat.org:3306/DDalton_SailingClub?user=DDalton&useSSL=true", "DDalton", "7r66JBe3A8")){
+            Statement statement = conn.createStatement();
+            statement.execute("INSERT INTO Events Values(NULL,'"+eventName+"','"+eventDate+"','"+eventStartTime+"')");
+        } catch (SQLException ex) {
+            System.out.println("errorMessage"+ ex);
+        }
+        
+    }    
+    public static void deleteEvents(String eventName, String eventDate, String eventStartTime, int eventID){
+        try( Connection conn = DriverManager.getConnection("jdbc:mysql://computing.gfmat.org:3306/DDalton_SailingClub?user=DDalton&useSSL=true", "DDalton", "7r66JBe3A8")){
+            Statement statement = conn.createStatement();
+            statement.execute("DELETE FROM Events WHERE Event_ID = " + eventID);
+        } catch (SQLException ex) {
+            System.out.println("errorMessage"+ ex);
+    }
+    }
+    /*
+    public static void updateEventsTable(String eventName, String eventDate, String eventStartTime, int eventID){
+        try( Connection conn = DriverManager.getConnection("jdbc:mysql://computing.gfmat.org:3306/DDalton_SailingClub?user=DDalton&useSSL=true", "DDalton", "7r66JBe3A8")){
+            Statement statement = conn.createStatement();
+            statement.execute("SELECT * FROM Events");
+        } catch (SQLException ex) {
+            System.out.println("errorMessage"+ ex);
+        }
+        
+    } 
+    */
 }
