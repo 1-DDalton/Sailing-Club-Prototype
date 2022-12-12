@@ -29,12 +29,13 @@ public class Admin extends javax.swing.JFrame {
 
         memberAdminBtn = new javax.swing.JButton();
         memberReport = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        boatAdminBtn = new javax.swing.JButton();
+        boatParkReportBtn = new javax.swing.JButton();
+        eventManagementBtn = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        boatDetailsReportBtn = new javax.swing.JButton();
+        lockerAdminBtn = new javax.swing.JButton();
+        HomeBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -47,17 +48,34 @@ public class Admin extends javax.swing.JFrame {
 
         memberReport.setText("Membership Report ");
 
-        jButton3.setText("jButton3");
+        boatAdminBtn.setText("Boat Admin");
+        boatAdminBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boatAdminBtnActionPerformed(evt);
+            }
+        });
 
-        jButton4.setText("jButton4");
+        boatParkReportBtn.setText("BoatPark Report");
+        boatParkReportBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boatParkReportBtnActionPerformed(evt);
+            }
+        });
 
-        jButton5.setText("jButton5");
+        eventManagementBtn.setText("Event Management");
 
-        jButton6.setText("jButton6");
+        jButton6.setText("Boat Space Admin");
 
-        jButton7.setText("jButton7");
+        boatDetailsReportBtn.setText("Boat Details Report");
 
-        jButton8.setText("jButton8");
+        lockerAdminBtn.setText("Locker Admin");
+
+        HomeBtn.setText("Back To Home");
+        HomeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HomeBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -68,19 +86,31 @@ public class Admin extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(38, 38, 38)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton4)
-                            .addComponent(jButton3)
-                            .addComponent(memberAdminBtn)))
+                            .addComponent(memberAdminBtn)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(8, 8, 8)
+                                .addComponent(boatAdminBtn))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(23, 23, 23)
-                        .addComponent(memberReport)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 118, Short.MAX_VALUE)
+                        .addComponent(memberReport))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(boatParkReportBtn)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton5)
-                    .addComponent(jButton6)
-                    .addComponent(jButton7)
-                    .addComponent(jButton8))
-                .addGap(57, 57, 57))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(eventManagementBtn)
+                            .addComponent(jButton6)
+                            .addComponent(boatDetailsReportBtn))
+                        .addGap(57, 57, 57))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lockerAdminBtn)
+                        .addGap(69, 69, 69))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(HomeBtn)
+                .addGap(69, 69, 69))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -90,21 +120,23 @@ public class Admin extends javax.swing.JFrame {
                         .addGap(40, 40, 40)
                         .addComponent(jButton6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton7)
+                        .addComponent(boatDetailsReportBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton8)
+                        .addComponent(lockerAdminBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton5))
+                        .addComponent(eventManagementBtn))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(29, 29, 29)
                         .addComponent(memberAdminBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(memberReport)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
-                .addComponent(jButton3)
+                        .addComponent(memberReport)
+                        .addGap(18, 18, 18)
+                        .addComponent(boatAdminBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(boatParkReportBtn)))
                 .addGap(18, 18, 18)
-                .addComponent(jButton4)
-                .addGap(43, 43, 43))
+                .addComponent(HomeBtn)
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
@@ -113,6 +145,20 @@ public class Admin extends javax.swing.JFrame {
     private void memberAdminBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_memberAdminBtnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_memberAdminBtnActionPerformed
+
+    private void boatAdminBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boatAdminBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_boatAdminBtnActionPerformed
+
+    private void boatParkReportBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boatParkReportBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_boatParkReportBtnActionPerformed
+
+    private void HomeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeBtnActionPerformed
+        // TODO add your handling code here:
+        new HomePage().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_HomeBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -150,12 +196,13 @@ public class Admin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton HomeBtn;
+    private javax.swing.JButton boatAdminBtn;
+    private javax.swing.JButton boatDetailsReportBtn;
+    private javax.swing.JButton boatParkReportBtn;
+    private javax.swing.JButton eventManagementBtn;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
+    private javax.swing.JButton lockerAdminBtn;
     private javax.swing.JButton memberAdminBtn;
     private javax.swing.JButton memberReport;
     // End of variables declaration//GEN-END:variables
