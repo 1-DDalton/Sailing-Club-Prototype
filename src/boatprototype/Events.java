@@ -9,7 +9,14 @@ package boatprototype;
 import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -20,13 +27,64 @@ import java.sql.SQLException;
 
 public class Events extends javax.swing.JFrame {
 
+
+    
+
+    
     /**
      * Creates new form Events
      */
     public Events() {
         initComponents();
+        try {
+            table_update();
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(Events.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
+    
+    public class Event {
+        //JON: Create a Boat class to help with transferring data database to jTable
+        private String event_id;
+        private String event_name;
+        private String event_date;
+        private String event_start_time;
+
+        public String getEventId() {
+            return event_id;
+        }
+
+        public void setEventId(String eventId) {
+            this.event_id = eventId;
+        }
+
+        public String getEventName() {
+            return event_name;
+        }
+
+        public void setEventName(String eventName) {
+            this.event_name = eventName;
+        }
+
+        public String getEventDate() {
+            return event_date;
+        }
+
+        public void setEventDate(String eventDate) {
+            this.event_date = eventDate;
+        }
+
+        public String getEventStartTime() {
+            return event_start_time;
+        }
+
+        public void setEventStartTime(String eventStartTime) {
+            this.event_start_time = eventStartTime;
+        }
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -34,14 +92,43 @@ public class Events extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     
+    Connection conn;
+    PreparedStatement statement;    
     
     private void table_update() throws SQLException, ClassNotFoundException{
         try{
-            Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getconnection("jdbc:mysql://computing.gfmat.org:3306/DDalton_SailingClub?user=DDalton&useSSL=true", "DDalton", "7r66JBe3A8");
-            statement = conn.prepareStatement("SELECT * FROM Events");
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://computing.gfmat.org:3306/DDalton_SailingClub?user=DDalton&useSSL=true", "DDalton", "7r66JBe3A8");
+            statement = conn.prepareStatement("SELECT * FROM Events ORDER BY event_date asc");
             ResultSet rs = statement.executeQuery();
-            
+                
+                ArrayList<Event> list = new ArrayList();
+                while(rs.next()){         
+                    //JON: Create a boat object using the Boat Class
+                    Event event = new Event();
+                    //JON: Add data to the boat object from the ResultSet
+                    event.setEventId(rs.getString("event_id"));
+                    event.setEventName(rs.getString("event_name"));
+                    event.setEventDate(rs.getString("event_date"));
+                    event.setEventStartTime(rs.getString("event_start_time"));                        
+                    //JON: Add the data from the boat object to the next row of the list object
+                    list.add(event);
+                } 
+
+                //JON: Add data from array of Boat objects to eventsTbl
+                DefaultTableModel model = (DefaultTableModel)eventsTbl.getModel();   
+                model.setRowCount(0);    
+                //JON: Create a 2 dimensional array with 3 elements
+                Object rowData[] = new Object[4];  
+                //JON: Fill up the array with the the next row of data from the list
+                for(int i = 0; i <list.size(); i++){                        
+                        rowData[0] = list.get(i).event_id;
+                        rowData[1] = list.get(i).event_name;
+                        rowData[2] = list.get(i).event_date;
+                        rowData[3] = list.get(i).event_start_time;                        
+                        //Add the data from thew array into the next row in eventsTbl via the model
+                        model.addRow(rowData);
+                    }
             
             
             
@@ -50,7 +137,7 @@ public class Events extends javax.swing.JFrame {
         } catch (SQLException ex) {
             System.out.println("errorMessage"+ ex);
         }
-        }
+        
     }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -64,6 +151,8 @@ public class Events extends javax.swing.JFrame {
         eventStartTimeLbl = new javax.swing.JLabel();
         eventNameTxt = new javax.swing.JTextField();
         eventDateTxt = new javax.swing.JTextField();
+        eventIdTxt = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
         addBtn = new javax.swing.JButton();
         updateBtn = new javax.swing.JButton();
         deleteBtn = new javax.swing.JButton();
@@ -114,6 +203,14 @@ public class Events extends javax.swing.JFrame {
             }
         });
 
+        eventIdTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eventIdTxtActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Event ID");
+
         javax.swing.GroupLayout creatEventPnlLayout = new javax.swing.GroupLayout(creatEventPnl);
         creatEventPnl.setLayout(creatEventPnlLayout);
         creatEventPnlLayout.setHorizontalGroup(
@@ -123,29 +220,35 @@ public class Events extends javax.swing.JFrame {
                 .addGroup(creatEventPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(eventStartTimeLbl)
                     .addComponent(eventDateLbl)
-                    .addComponent(eventNameLbl))
+                    .addComponent(eventNameLbl)
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(creatEventPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(eventNameTxt)
-                    .addComponent(eventStartTimeTxt)
-                    .addComponent(eventDateTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(creatEventPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(eventIdTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                    .addGroup(creatEventPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(eventNameTxt)
+                        .addComponent(eventStartTimeTxt)
+                        .addComponent(eventDateTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         creatEventPnlLayout.setVerticalGroup(
             creatEventPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(creatEventPnlLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(creatEventPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(eventNameLbl)
-                    .addComponent(eventNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(eventIdTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(creatEventPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(eventNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(eventNameLbl))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(creatEventPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(eventDateLbl)
-                    .addComponent(eventDateTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(eventDateTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(eventDateLbl))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(creatEventPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(eventStartTimeLbl)
-                    .addComponent(eventStartTimeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(eventStartTimeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(eventStartTimeLbl))
                 .addContainerGap())
         );
 
@@ -172,33 +275,38 @@ public class Events extends javax.swing.JFrame {
 
         eventsTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Name", "Date", "Start Time"
+                "Event ID", "Name", "Date", "Start Time"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+        });
+        eventsTbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                eventsTblMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(eventsTbl);
@@ -216,19 +324,21 @@ public class Events extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(creatEventPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(122, 122, 122))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(homeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
+                                        .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(updateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(deleteBtn)))
@@ -240,19 +350,21 @@ public class Events extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(49, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(creatEventPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(addBtn)
+                            .addComponent(deleteBtn)
                             .addComponent(updateBtn)
-                            .addComponent(deleteBtn))
-                        .addGap(41, 41, 41)
-                        .addComponent(homeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(37, Short.MAX_VALUE))
+                            .addComponent(addBtn))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(homeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(59, 59, 59))))
         );
 
         pack();
@@ -268,18 +380,48 @@ public class Events extends javax.swing.JFrame {
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         // Add record to events table: 
+        String eventId = eventIdTxt.getText();
         String eventName = eventNameTxt.getText();
         String eventDate = eventDateTxt.getText();
         String eventStartTime = eventStartTimeTxt.getText();
-        DataManipulation.addEvents(eventName, eventDate, eventStartTime, 1);
+        DataManipulation.addEvents(eventId, eventName, eventDate, eventStartTime);
+        
+        JOptionPane.showMessageDialog(this, "Record Added"); 
+        try {
+            table_update();
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(Events.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        //Empty fields for next action
+        eventIdTxt.setText("");
+        eventNameTxt.setText("");
+        eventDateTxt.setText("");
+        eventStartTimeTxt.setText("");
+        eventIdTxt.requestFocus();
     }//GEN-LAST:event_addBtnActionPerformed
 
     private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
         // TODO add your handling code here:
+        String eventId = eventIdTxt.getText();
         String eventName = eventNameTxt.getText();
         String eventDate = eventDateTxt.getText();
         String eventStartTime = eventStartTimeTxt.getText();
-        DataManipulation.updateEvents(eventName, eventDate, eventStartTime, 1);
+        DataManipulation.updateEvents(eventId, eventName, eventDate, eventStartTime);
+        
+        JOptionPane.showMessageDialog(this, "Record Updated"); 
+        try {
+            table_update();
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(Events.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        //Empty fields for next action
+        eventIdTxt.setText("");
+        eventNameTxt.setText("");
+        eventDateTxt.setText("");
+        eventStartTimeTxt.setText("");
+        eventIdTxt.requestFocus();
     }//GEN-LAST:event_updateBtnActionPerformed
 
     private void homeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBtnActionPerformed
@@ -290,11 +432,41 @@ public class Events extends javax.swing.JFrame {
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
         // TODO add your handling code here:
+        String eventId = eventIdTxt.getText();
         String eventName = eventNameTxt.getText();
         String eventDate = eventDateTxt.getText();
         String eventStartTime = eventStartTimeTxt.getText();
-        DataManipulation.deleteEvents(eventName, eventDate, eventStartTime, 1);    
+        DataManipulation.deleteEvents(eventId, eventName, eventDate, eventStartTime);   
+        
+        JOptionPane.showMessageDialog(this, "Record Deleted"); 
+        try {
+            table_update();
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(Events.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        //Empty fields for next action
+        eventIdTxt.setText("");
+        eventNameTxt.setText("");
+        eventDateTxt.setText("");
+        eventStartTimeTxt.setText("");
+        eventIdTxt.requestFocus();
     }//GEN-LAST:event_deleteBtnActionPerformed
+
+    private void eventsTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eventsTblMouseClicked
+        // TODO add your handling code here:
+        DefaultTableModel Df = (DefaultTableModel)eventsTbl.getModel();
+        int selectedIndex = eventsTbl.getSelectedRow();
+        
+        eventIdTxt.setText(Df.getValueAt(selectedIndex, 0).toString());
+        eventNameTxt.setText(Df.getValueAt(selectedIndex, 1).toString());
+        eventDateTxt.setText(Df.getValueAt(selectedIndex, 2).toString());
+        eventStartTimeTxt.setText(Df.getValueAt(selectedIndex, 3).toString());
+    }//GEN-LAST:event_eventsTblMouseClicked
+
+    private void eventIdTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eventIdTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_eventIdTxtActionPerformed
 
     /**
      * @param args the command line arguments
@@ -338,12 +510,14 @@ public class Events extends javax.swing.JFrame {
     private javax.swing.JLabel dutySignIn;
     private javax.swing.JLabel eventDateLbl;
     private javax.swing.JTextField eventDateTxt;
+    private javax.swing.JTextField eventIdTxt;
     private javax.swing.JLabel eventNameLbl;
     private javax.swing.JTextField eventNameTxt;
     private javax.swing.JLabel eventStartTimeLbl;
     private javax.swing.JTextField eventStartTimeTxt;
     private javax.swing.JTable eventsTbl;
     private javax.swing.JButton homeBtn;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton updateBtn;
