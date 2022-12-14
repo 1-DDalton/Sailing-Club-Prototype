@@ -12,6 +12,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -45,7 +47,7 @@ public class Events extends javax.swing.JFrame {
 
     
     public class Event {
-        //JON: Create a Boat class to help with transferring data database to jTable
+        //Create a Boat class to help with transferring data database to jTable
         private String event_id;
         private String event_name;
         private String event_date;
@@ -104,23 +106,23 @@ public class Events extends javax.swing.JFrame {
                 
                 ArrayList<Event> list = new ArrayList();
                 while(rs.next()){         
-                    //JON: Create a boat object using the Boat Class
+                    // Create a boat object using the Boat Class
                     Event event = new Event();
-                    //JON: Add data to the boat object from the ResultSet
+                    //Add data to the boat object from the ResultSet
                     event.setEventId(rs.getString("event_id"));
                     event.setEventName(rs.getString("event_name"));
                     event.setEventDate(rs.getString("event_date"));
                     event.setEventStartTime(rs.getString("event_start_time"));                        
-                    //JON: Add the data from the boat object to the next row of the list object
+                    //Add the data from the boat object to the next row of the list object
                     list.add(event);
                 } 
 
-                //JON: Add data from array of Boat objects to eventsTbl
+                //Add data from array of Boat objects to eventsTbl
                 DefaultTableModel model = (DefaultTableModel)eventsTbl.getModel();   
                 model.setRowCount(0);    
-                //JON: Create a 2 dimensional array with 3 elements
+                //Create a 2 dimensional array with 3 elements
                 Object rowData[] = new Object[4];  
-                //JON: Fill up the array with the the next row of data from the list
+                //Fill up the array with the the next row of data from the list
                 for(int i = 0; i <list.size(); i++){                        
                         rowData[0] = list.get(i).event_id;
                         rowData[1] = list.get(i).event_name;
@@ -145,14 +147,15 @@ public class Events extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         dutySignIn = new javax.swing.JLabel();
         creatEventPnl = new javax.swing.JPanel();
-        eventStartTimeTxt = new javax.swing.JTextField();
         eventNameLbl = new javax.swing.JLabel();
         eventDateLbl = new javax.swing.JLabel();
         eventStartTimeLbl = new javax.swing.JLabel();
         eventNameTxt = new javax.swing.JTextField();
-        eventDateTxt = new javax.swing.JTextField();
         eventIdTxt = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        eventIDGeneratorBtn = new javax.swing.JButton();
+        eventDateTxt = new javax.swing.JTextField();
+        eventStartTimeTxt = new javax.swing.JTextField();
         addBtn = new javax.swing.JButton();
         updateBtn = new javax.swing.JButton();
         deleteBtn = new javax.swing.JButton();
@@ -197,12 +200,7 @@ public class Events extends javax.swing.JFrame {
             }
         });
 
-        eventDateTxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eventDateTxtActionPerformed(evt);
-            }
-        });
-
+        eventIdTxt.setEditable(false);
         eventIdTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 eventIdTxtActionPerformed(evt);
@@ -210,6 +208,17 @@ public class Events extends javax.swing.JFrame {
         });
 
         jLabel1.setText("Event ID");
+
+        eventIDGeneratorBtn.setText("New");
+        eventIDGeneratorBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eventIDGeneratorBtnActionPerformed(evt);
+            }
+        });
+
+        eventDateTxt.setToolTipText("YYYY-MM-DD");
+
+        eventStartTimeTxt.setToolTipText("HH:MM:SS");
 
         javax.swing.GroupLayout creatEventPnlLayout = new javax.swing.GroupLayout(creatEventPnl);
         creatEventPnl.setLayout(creatEventPnlLayout);
@@ -224,31 +233,37 @@ public class Events extends javax.swing.JFrame {
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(creatEventPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(eventIdTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
-                    .addGroup(creatEventPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(eventNameTxt)
-                        .addComponent(eventStartTimeTxt)
-                        .addComponent(eventDateTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)))
-                .addContainerGap())
+                    .addGroup(creatEventPnlLayout.createSequentialGroup()
+                        .addComponent(eventIdTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(7, 7, 7)
+                        .addComponent(eventIDGeneratorBtn)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(creatEventPnlLayout.createSequentialGroup()
+                        .addGroup(creatEventPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(eventNameTxt)
+                            .addComponent(eventDateTxt)
+                            .addComponent(eventStartTimeTxt))
+                        .addContainerGap())))
         );
         creatEventPnlLayout.setVerticalGroup(
             creatEventPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(creatEventPnlLayout.createSequentialGroup()
                 .addGroup(creatEventPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(eventIdTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(jLabel1)
+                    .addComponent(eventIDGeneratorBtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(creatEventPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(eventNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(eventNameLbl))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(creatEventPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(eventDateTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(eventDateLbl))
+                    .addComponent(eventDateLbl)
+                    .addComponent(eventDateTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(creatEventPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(eventStartTimeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(eventStartTimeLbl))
+                    .addComponent(eventStartTimeLbl)
+                    .addComponent(eventStartTimeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -304,6 +319,7 @@ public class Events extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        eventsTbl.getTableHeader().setReorderingAllowed(false);
         eventsTbl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 eventsTblMouseClicked(evt);
@@ -324,37 +340,28 @@ public class Events extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(homeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(creatEventPnl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(creatEventPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(122, 122, 122))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(homeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(updateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(deleteBtn)))
-                                .addGap(130, 130, 130)))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)))
-                .addGap(47, 47, 47))
+                                .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(35, 35, 35)
+                                .addComponent(updateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(34, 34, 34)
+                                .addComponent(deleteBtn)))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(49, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(creatEventPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -362,9 +369,10 @@ public class Events extends javax.swing.JFrame {
                             .addComponent(deleteBtn)
                             .addComponent(updateBtn)
                             .addComponent(addBtn))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(homeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(59, 59, 59))))
+                        .addGap(63, 63, 63)
+                        .addComponent(homeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         pack();
@@ -373,10 +381,6 @@ public class Events extends javax.swing.JFrame {
     private void eventNameTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eventNameTxtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_eventNameTxtActionPerformed
-
-    private void eventDateTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eventDateTxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_eventDateTxtActionPerformed
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         // Add record to events table: 
@@ -468,6 +472,22 @@ public class Events extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_eventIdTxtActionPerformed
 
+    private void eventIDGeneratorBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eventIDGeneratorBtnActionPerformed
+        // TODO add your handling code here:
+        String event_id = "E-";
+        
+        // Format Current date as YYMMddhhmmss
+        LocalDateTime myDateObj = LocalDateTime.now();
+        DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("YYMMddhhmmss");
+        String formattedDate = myDateObj.format(myFormatObj);
+        
+        // concatonate E-and date in format E-YYMMddhhmmss
+        event_id = event_id + formattedDate;
+        
+        //write new event ID to the event ID textfield
+        eventIdTxt.setText(event_id);
+    }//GEN-LAST:event_eventIDGeneratorBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -510,6 +530,7 @@ public class Events extends javax.swing.JFrame {
     private javax.swing.JLabel dutySignIn;
     private javax.swing.JLabel eventDateLbl;
     private javax.swing.JTextField eventDateTxt;
+    private javax.swing.JButton eventIDGeneratorBtn;
     private javax.swing.JTextField eventIdTxt;
     private javax.swing.JLabel eventNameLbl;
     private javax.swing.JTextField eventNameTxt;
