@@ -8,19 +8,72 @@ import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.ResultSet;
 
 /**
  *
  * @author danka
  */
 public class DataManipulation {
-    public static void updateEvents(String eventName, String eventDate, String eventStartTime, int eventID){
+    public static void updateEvents(String eventId, String eventName, String eventDate, String eventStartTime){
         try( Connection conn = DriverManager.getConnection("jdbc:mysql://computing.gfmat.org:3306/DDalton_SailingClub?user=DDalton&useSSL=true", "DDalton", "7r66JBe3A8")){
             Statement statement = conn.createStatement();
-            statement.execute("UPDATE Events\n SET Event_Name = '"+ eventName + "',\n Event_Date = '" + eventDate+ "',\n Event_Start_Time = '"+ eventStartTime+"' \nWHERE Event_ID = " + eventID  );
+            statement.execute("UPDATE Events\n SET Event_Name = '"+ eventName + "',\n Event_Date = '" + eventDate+ "',\n Event_Start_Time = '"+ eventStartTime+"' \nWHERE Event_ID = '" + eventId +"'");
         } catch (SQLException ex) {
             System.out.println("errorMessage"+ ex);
         }
+    }
+    public static void addEvents(String eventId, String eventName, String eventDate, String eventStartTime){
+        try( Connection conn = DriverManager.getConnection("jdbc:mysql://computing.gfmat.org:3306/DDalton_SailingClub?user=DDalton&useSSL=true", "DDalton", "7r66JBe3A8")){
+            Statement statement = conn.createStatement();
+            statement.execute("INSERT INTO Events Values('"+ eventId +"','"+eventName+"','"+eventDate+"','"+eventStartTime+"')");
+        } catch (SQLException ex) {
+            System.out.println("errorMessage"+ ex);
+        }
+        
+    }    
+    public static void deleteEvents(String eventId, String eventName, String eventDate, String eventStartTime){
+        try( Connection conn = DriverManager.getConnection("jdbc:mysql://computing.gfmat.org:3306/DDalton_SailingClub?user=DDalton&useSSL=true", "DDalton", "7r66JBe3A8")){
+            Statement statement = conn.createStatement();
+            statement.execute("DELETE FROM Events WHERE Event_ID = '" + eventId +"'");
+        } catch (SQLException ex) {
+            System.out.println("errorMessage"+ ex);
+    }
+    }
 
+    
+    public static void addMember(String memberId, String memberName, String memberDOB, String memberAddress1, String memberAddress2, String memberTown, String memberPostcode, String memberEmail, String memberPhone, String memberOccupation, String membershipType, String memberFamily_ID){
+        
+        
+        try( Connection conn = DriverManager.getConnection("jdbc:mysql://computing.gfmat.org:3306/DDalton_SailingClub?user=DDalton&useSSL=true", "DDalton", "7r66JBe3A8")){
+        Statement statement = conn.createStatement();
+        statement.execute("INSERT INTO Address Values('"+ memberFamily_ID +"','"+memberAddress1+"','"+memberAddress2+"','"+memberTown+"','"+memberPostcode+"')");
+        statement.execute("INSERT INTO Members Values('"+ memberId +"','"+memberName+"','"+memberDOB+"','"+memberEmail+"','"+memberOccupation+"','"+membershipType+"','"+memberPhone+"','"+memberFamily_ID+"')");
+
+
+    } catch (SQLException ex) {
+        System.out.println("errorMessage"+ ex);
+    }
+        
+    } 
+    public static void deleteMember(String memberId){
+        try( Connection conn = DriverManager.getConnection("jdbc:mysql://computing.gfmat.org:3306/DDalton_SailingClub?user=DDalton&useSSL=true", "DDalton", "7r66JBe3A8")){
+            Statement statement = conn.createStatement();
+            statement.execute("DELETE FROM Members WHERE Membership_ID = '" + memberId +"'");
+        } catch (SQLException ex) {
+            System.out.println("errorMessage"+ ex);
+    }
+    }
+    public static void updateMember(String memberId, String memberName, String memberDOB, String memberAddress1, String memberAddress2, String memberTown, String memberPostcode, String memberEmail, String memberPhone, String memberOccupation, String membershipType, String memberFamily_ID){
+        try( Connection conn = DriverManager.getConnection("jdbc:mysql://computing.gfmat.org:3306/DDalton_SailingClub?user=DDalton&useSSL=true", "DDalton", "7r66JBe3A8")){
+            Statement statement = conn.createStatement();
+//            statement.execute("UPDATE Members SET Membership_ID = '" + memberId +"', Full_Name = '"+memberName+"', DOB = '"+memberDOB+"', Email = '"+memberEmail+"', Occupation = '"+memberOccupation+"', Membership_Type = '"+membershipType+"',Phone_Number = '"+memberPhone+"', Family_ID = '"+memberFamily_ID+"'");
+//            statement.execute("UPDATE Address SET Family_ID = '"+ memberFamily_ID +"', Address_Line_1  = '"+memberAddress1+"', Address_Line_2 = '"+memberAddress2+"', Town = '"+memberTown+"', Postcode = '"+memberPostcode+"'");
+            statement.execute("UPDATE Members SET Full_Name = '"+memberName+"', DOB = '"+memberDOB+"', Email = '"+memberEmail+"', Occupation = '"+memberOccupation+"', Membership_Type = '"+membershipType+"',Phone_Number = '"+memberPhone+"' WHERE Membership_ID = '" + memberId +"'");
+            statement.execute("UPDATE Address SET Address_Line_1  = '"+memberAddress1+"', Address_Line_2 = '"+memberAddress2+"', Town = '"+memberTown+"', Postcode = '"+memberPostcode+"' WHERE Family_ID = '"+ memberFamily_ID +"'");
+
+        } catch (SQLException ex) {
+            System.out.println("errorMessage"+ ex);
+        }
     }
 }

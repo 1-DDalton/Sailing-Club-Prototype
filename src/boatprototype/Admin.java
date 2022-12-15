@@ -67,6 +67,11 @@ public class Admin extends javax.swing.JFrame {
         jButton6.setText("Boat Space Admin");
 
         boatDetailsReportBtn.setText("Boat Details Report");
+        boatDetailsReportBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boatDetailsReportBtnActionPerformed(evt);
+            }
+        });
 
         lockerAdminBtn.setText("Locker Admin");
 
@@ -128,7 +133,7 @@ public class Admin extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(29, 29, 29)
                         .addComponent(memberAdminBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(memberReport)
                         .addGap(18, 18, 18)
                         .addComponent(boatAdminBtn)
@@ -144,6 +149,8 @@ public class Admin extends javax.swing.JFrame {
 
     private void memberAdminBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_memberAdminBtnActionPerformed
         // TODO add your handling code here:
+        new MemberAdmin().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_memberAdminBtnActionPerformed
 
     private void boatAdminBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boatAdminBtnActionPerformed
@@ -159,6 +166,10 @@ public class Admin extends javax.swing.JFrame {
         new HomePage().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_HomeBtnActionPerformed
+
+    private void boatDetailsReportBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boatDetailsReportBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_boatDetailsReportBtnActionPerformed
 
     /**
      * @param args the command line arguments

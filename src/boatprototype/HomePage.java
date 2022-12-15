@@ -32,11 +32,11 @@ public class HomePage extends javax.swing.JFrame {
 
         jLayeredPane1 = new javax.swing.JLayeredPane();
         dutiesBtn = new javax.swing.JButton();
-        calendarBtn = new javax.swing.JButton();
         racingBtn = new javax.swing.JButton();
         lockerLbl = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         adminLbl = new javax.swing.JButton();
+        dutiesBtn1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -49,13 +49,6 @@ public class HomePage extends javax.swing.JFrame {
         dutiesBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 dutiesBtnActionPerformed(evt);
-            }
-        });
-
-        calendarBtn.setText("Calendar");
-        calendarBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                calendarBtnActionPerformed(evt);
             }
         });
 
@@ -84,12 +77,22 @@ public class HomePage extends javax.swing.JFrame {
             }
         });
 
+        dutiesBtn1.setText("Calendar");
+        dutiesBtn1.setAlignmentY(0.0F);
+        dutiesBtn1.setIconTextGap(0);
+        dutiesBtn1.setMargin(new java.awt.Insets(0, 14, 0, 14));
+        dutiesBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dutiesBtn1ActionPerformed(evt);
+            }
+        });
+
         jLayeredPane1.setLayer(dutiesBtn, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(calendarBtn, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(racingBtn, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(lockerLbl, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(adminLbl, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(dutiesBtn1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
         jLayeredPane1.setLayout(jLayeredPane1Layout);
@@ -99,16 +102,16 @@ public class HomePage extends javax.swing.JFrame {
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lockerLbl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(racingBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(racingBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
                     .addComponent(dutiesBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(calendarBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
-                    .addComponent(adminLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(870, Short.MAX_VALUE))
+                    .addComponent(adminLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(dutiesBtn1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(339, Short.MAX_VALUE))
         );
         jLayeredPane1Layout.setVerticalGroup(
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                .addComponent(calendarBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(dutiesBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(dutiesBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -119,7 +122,7 @@ public class HomePage extends javax.swing.JFrame {
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(adminLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(220, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Test/PSCLogo.PNG"))); // NOI18N
@@ -133,25 +136,18 @@ public class HomePage extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(266, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(378, 378, 378))
+                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void calendarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calendarBtnActionPerformed
-        // TODO add your handling code here:
-        new Calendar().setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_calendarBtnActionPerformed
 
     private void dutiesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dutiesBtnActionPerformed
         // TODO add your handling code here:
@@ -176,6 +172,12 @@ public class HomePage extends javax.swing.JFrame {
         new SignIn().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_adminLblActionPerformed
+
+    private void dutiesBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dutiesBtn1ActionPerformed
+        // TODO add your handling code here:
+        new EventsCalendar().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_dutiesBtn1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -215,8 +217,8 @@ public class HomePage extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton adminLbl;
-    private javax.swing.JButton calendarBtn;
     private javax.swing.JButton dutiesBtn;
+    private javax.swing.JButton dutiesBtn1;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLayeredPane jLayeredPane1;
