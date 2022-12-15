@@ -329,6 +329,9 @@
           <Properties>
             <Property name="toolTipText" type="java.lang.String" value="YYYY-MM-DD"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="memberDOBTxtActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="eventStartTimeLbl1">
           <Properties>

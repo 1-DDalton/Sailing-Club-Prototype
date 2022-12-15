@@ -294,7 +294,7 @@ public class MemberAdmin extends javax.swing.JFrame {
             .addComponent(dutySignIn, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
-        creatEventPnl.setBorder(javax.swing.BorderFactory.createTitledBorder("Create Event Here:"));
+        creatEventPnl.setBorder(javax.swing.BorderFactory.createTitledBorder(null));
 
         eventNameLbl.setText("Name");
 
@@ -325,6 +325,11 @@ public class MemberAdmin extends javax.swing.JFrame {
         });
 
         memberDOBTxt.setToolTipText("YYYY-MM-DD");
+        memberDOBTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                memberDOBTxtActionPerformed(evt);
+            }
+        });
 
         eventStartTimeLbl1.setText("Postcode");
 
@@ -790,6 +795,10 @@ public class MemberAdmin extends javax.swing.JFrame {
         //write new event ID to the event ID textfield
         memberFamilyIDTxt.setText(family_id);
     }//GEN-LAST:event_familyIDGeneratorBtnActionPerformed
+
+    private void memberDOBTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_memberDOBTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_memberDOBTxtActionPerformed
 
     /**
      * @param args the command line arguments
