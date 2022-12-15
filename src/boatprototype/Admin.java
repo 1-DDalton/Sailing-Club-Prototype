@@ -47,6 +47,11 @@ public class Admin extends javax.swing.JFrame {
         });
 
         memberReport.setText("Membership Report ");
+        memberReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                memberReportActionPerformed(evt);
+            }
+        });
 
         boatAdminBtn.setText("Boat Admin");
         boatAdminBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -170,6 +175,12 @@ public class Admin extends javax.swing.JFrame {
     private void boatDetailsReportBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boatDetailsReportBtnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_boatDetailsReportBtnActionPerformed
+
+    private void memberReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_memberReportActionPerformed
+        // TODO add your handling code here:
+        new Membership_Report().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_memberReportActionPerformed
 
     /**
      * @param args the command line arguments
