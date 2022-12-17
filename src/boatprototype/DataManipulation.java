@@ -76,4 +76,35 @@ public class DataManipulation {
             System.out.println("errorMessage"+ ex);
         }
     }
+    
+    
+    public static void addBoat(String boatID,String boatName,String boatClass,String boatSailNumber,String boatType,String memberID){
+        try( Connection conn = DriverManager.getConnection("jdbc:mysql://computing.gfmat.org:3306/DDalton_SailingClub?user=DDalton&useSSL=true", "DDalton", "7r66JBe3A8")){
+            Statement statement = conn.createStatement();
+            statement.execute("INSERT INTO Boat Values('"+ boatID +"','"+boatType+"','"+boatName+"','"+boatClass+"','"+boatSailNumber+"','"+memberID+"')");
+        } catch (SQLException ex) {
+            System.out.println("errorMessage"+ ex);
+        }
+        
+    } 
+    
+    
+    
+    public static void updateBoat(String boatID,String boatName,String boatClass,String boatSailNumber,String boatType,String memberID){
+        try( Connection conn = DriverManager.getConnection("jdbc:mysql://computing.gfmat.org:3306/DDalton_SailingClub?user=DDalton&useSSL=true", "DDalton", "7r66JBe3A8")){
+            Statement statement = conn.createStatement();
+            statement.execute("UPDATE Boat SET Boat_Type = '"+boatType+"', Boat_Name = '"+ boatName + "', Class = '" + boatClass+ "', Sail_Number = '"+ boatSailNumber+"', Membership_ID = '"+memberID+"' WHERE Boat_ID = '" + boatID +"'");
+        } catch (SQLException ex) {
+            System.out.println("errorMessage"+ ex);
+        }   
+    }
+    
+    public static void deleteBoat(String boatID, String boatName,String boatClass,String boatSailNumber,String boatType,String memberID){
+        try( Connection conn = DriverManager.getConnection("jdbc:mysql://computing.gfmat.org:3306/DDalton_SailingClub?user=DDalton&useSSL=true", "DDalton", "7r66JBe3A8")){
+            Statement statement = conn.createStatement();
+            statement.execute("DELETE FROM Boat WHERE Boat_ID = '" + boatID +"'");
+        } catch (SQLException ex) {
+            System.out.println("errorMessage"+ ex);
+    }
+    }
 }

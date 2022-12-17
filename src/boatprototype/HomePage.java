@@ -163,8 +163,7 @@ public class HomePage extends javax.swing.JFrame {
 
     private void racingBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_racingBtnActionPerformed
         // TODO add your handling code here:
-        new Racing().setVisible(true);
-        this.dispose();
+
     }//GEN-LAST:event_racingBtnActionPerformed
 
     private void adminLblActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminLblActionPerformed
