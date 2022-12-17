@@ -32,7 +32,7 @@ public class Admin extends javax.swing.JFrame {
         boatAdminBtn = new javax.swing.JButton();
         boatParkReportBtn = new javax.swing.JButton();
         eventManagementBtn = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        BoatAdminBtn = new javax.swing.JButton();
         boatDetailsReportBtn = new javax.swing.JButton();
         lockerAdminBtn = new javax.swing.JButton();
         HomeBtn = new javax.swing.JButton();
@@ -69,7 +69,12 @@ public class Admin extends javax.swing.JFrame {
 
         eventManagementBtn.setText("Event Management");
 
-        jButton6.setText("Boat Space Admin");
+        BoatAdminBtn.setText("Boat Space Admin");
+        BoatAdminBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BoatAdminBtnActionPerformed(evt);
+            }
+        });
 
         boatDetailsReportBtn.setText("Boat Details Report");
         boatDetailsReportBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -111,7 +116,7 @@ public class Admin extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(eventManagementBtn)
-                            .addComponent(jButton6)
+                            .addComponent(BoatAdminBtn)
                             .addComponent(boatDetailsReportBtn))
                         .addGap(57, 57, 57))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -128,7 +133,7 @@ public class Admin extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(28, 28, 28)
-                        .addComponent(jButton6)
+                        .addComponent(BoatAdminBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(boatDetailsReportBtn)
                         .addGap(18, 18, 18)
@@ -174,6 +179,8 @@ public class Admin extends javax.swing.JFrame {
 
     private void boatDetailsReportBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boatDetailsReportBtnActionPerformed
         // TODO add your handling code here:
+        new Boat_Details_Report().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_boatDetailsReportBtnActionPerformed
 
     private void memberReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_memberReportActionPerformed
@@ -181,6 +188,12 @@ public class Admin extends javax.swing.JFrame {
         new Membership_Report().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_memberReportActionPerformed
+
+    private void BoatAdminBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BoatAdminBtnActionPerformed
+        // TODO add your handling code here:
+        new BoatAdmin().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_BoatAdminBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -218,12 +231,12 @@ public class Admin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BoatAdminBtn;
     private javax.swing.JButton HomeBtn;
     private javax.swing.JButton boatAdminBtn;
     private javax.swing.JButton boatDetailsReportBtn;
     private javax.swing.JButton boatParkReportBtn;
     private javax.swing.JButton eventManagementBtn;
-    private javax.swing.JButton jButton6;
     private javax.swing.JButton lockerAdminBtn;
     private javax.swing.JButton memberAdminBtn;
     private javax.swing.JButton memberReport;
