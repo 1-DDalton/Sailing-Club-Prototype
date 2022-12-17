@@ -11,6 +11,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -24,6 +26,13 @@ public class Membership_Report extends javax.swing.JFrame {
      */
     public Membership_Report() {
         initComponents();
+        try {
+            table_update();
+        } catch (SQLException ex) {
+            Logger.getLogger(Membership_Report.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Membership_Report.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
