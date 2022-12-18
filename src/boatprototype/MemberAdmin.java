@@ -382,6 +382,11 @@ public class MemberAdmin extends javax.swing.JFrame {
         });
 
         membershipCbo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Individual", "Family", "Student" }));
+        membershipCbo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                membershipCboActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout creatEventPnlLayout = new javax.swing.GroupLayout(creatEventPnl);
         creatEventPnl.setLayout(creatEventPnlLayout);
@@ -815,6 +820,10 @@ public class MemberAdmin extends javax.swing.JFrame {
         new Admin().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_backBtnActionPerformed
+
+    private void membershipCboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_membershipCboActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_membershipCboActionPerformed
 
     /**
      * @param args the command line arguments

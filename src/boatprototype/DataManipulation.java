@@ -105,6 +105,17 @@ public class DataManipulation {
             statement.execute("DELETE FROM Boat WHERE Boat_ID = '" + boatID +"'");
         } catch (SQLException ex) {
             System.out.println("errorMessage"+ ex);
+        }
     }
+
+    
+    public static void addDuty(String dutyName, String eventId, String membershipId){
+        try( Connection conn = DriverManager.getConnection("jdbc:mysql://computing.gfmat.org:3306/DDalton_SailingClub?user=DDalton&useSSL=true", "DDalton", "7r66JBe3A8")){
+            Statement statement = conn.createStatement();
+            statement.execute("INSERT INTO Duty_Sign_In Values('"+dutyName+"','"+eventId+"','"+membershipId+"')");
+        } catch (SQLException ex) {
+            System.out.println("errorMessage"+ ex);
+        }
     }
+        
 }
