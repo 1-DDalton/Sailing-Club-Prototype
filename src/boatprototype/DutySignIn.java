@@ -100,18 +100,21 @@ public class DutySignIn extends javax.swing.JFrame {
     
     private void table_update() throws SQLException, ClassNotFoundException{
    
-        String eventId = eventIDCbo.getSelectedItem().toString();
-
+        String eventId = eventIDCbo.getModel().toString();
+        //String eventId = "E-221212-002";
+        System.out.println("String init");
        
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:mysql://computing.gfmat.org:3306/DDalton_SailingClub?user=DDalton&useSSL=true", "DDalton", "7r66JBe3A8");
             statement = conn.prepareStatement("SELECT * FROM Duty_Sign_In WHERE Event_ID = '"+eventId+"'");
             ResultSet rs = statement.executeQuery();
-                
+            System.out.println("executed query");
+            
                 ArrayList<Duty> list = new ArrayList();
                 while(rs.next()){         
                     // Create a boat object using the Boat Class
+                    System.out.println("writing to Duty object");
                     Duty duty = new Duty();
                     //Add data to the boat object from the ResultSet
                     duty.setDutyId(rs.getInt("Duty_ID"));
@@ -128,7 +131,8 @@ public class DutySignIn extends javax.swing.JFrame {
                 //Create a 2 dimensional array with 3 elements
                 Object rowData[] = new Object[4];  
                 //Fill up the array with the the next row of data from the list
-                for(int i = 0; i <list.size(); i++){                        
+                for(int i = 0; i <list.size(); i++){ 
+                        System.out.println("Writing to jttable");
                         rowData[0] = list.get(i).duty_id;
                         rowData[1] = list.get(i).duty_name;
                         rowData[2] = list.get(i).event_id;
@@ -220,22 +224,22 @@ public class DutySignIn extends javax.swing.JFrame {
 
         dutyTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Event Name", "Duty Name", "Member Name"
+                "Member Name", "Duty Name"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                true, false, false
+                true, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -276,7 +280,12 @@ public class DutySignIn extends javax.swing.JFrame {
 
         memberNameCbo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "" }));
 
-        memberIDTxt.setText("jTextField1");
+        memberIDTxt.setEditable(false);
+        memberIDTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                memberIDTxtActionPerformed(evt);
+            }
+        });
 
         memberIDLbl.setText("Member ID");
 
@@ -391,13 +400,10 @@ public class DutySignIn extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(homeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(homeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -536,10 +542,9 @@ public class DutySignIn extends javax.swing.JFrame {
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
         // TODO add your handling code here:
-        //String eventId = eventIdTxt.getText();
-        String eventName = eventNameTxt.getText();
-        String eventDate = eventDateTxt.getText();
-        String eventStartTime = eventStartTimeTxt.getText();
+        String memberId = memberIDTxt.getText();
+        //String eventId = eventIDCbo.getItemAt(WIDTH);
+
         //DataManipulation.deleteEvents(eventId, eventName, eventDate, eventStartTime);   
         
         JOptionPane.showMessageDialog(this, "Record Deleted"); 
@@ -579,13 +584,33 @@ public class DutySignIn extends javax.swing.JFrame {
     }//GEN-LAST:event_eventNameTxtActionPerformed
 
     private void eventIDCboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eventIDCboActionPerformed
+    
+        /*String eventId = eventIdTxt.getText();
+        String eventName = eventNameTxt.getText();
+        String eventDate = eventDateTxt.getText();
+        String eventStartTime = eventStartTimeTxt.getText();
+        //DataManipulation.updateEvents(eventId, eventName, eventDate, eventStartTime);
 
 
-                    
+
+
+
+
+
+
+        //eventIdTxt.setText(Df.getValueAt(selectedIndex, 0).toString());
+        eventNameTxt.setText(Df.getValueAt(selectedIndex, 1).toString());
+        eventDateTxt.setText(Df.getValueAt(selectedIndex, 2).toString());
+        eventStartTimeTxt.setText(Df.getValueAt(selectedIndex, 3).toString());
+*/                    
 
 
     
     }//GEN-LAST:event_eventIDCboActionPerformed
+
+    private void memberIDTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_memberIDTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_memberIDTxtActionPerformed
 
     /**
      * @param args the command line arguments
