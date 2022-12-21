@@ -111,7 +111,7 @@ public class DutySignIn extends javax.swing.JFrame {
     private void table_update() throws SQLException, ClassNotFoundException{
         Object eventId = eventIDCbo.getSelectedItem();
         //String eventId = eventIDCbo.getModel().toString();
-        System.out.println("String init");
+        //System.out.println("String init");
        
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -120,12 +120,12 @@ public class DutySignIn extends javax.swing.JFrame {
             statement = conn.prepareStatement("SELECT Duty_Sign_In.*, Members.Full_Name FROM Duty_Sign_In, Members WHERE Duty_Sign_In.Membership_ID = Duty_Sign_In.Membership_ID AND Event_ID = '"+eventId.toString()+"'");
             //statement = conn.prepareStatement("SELECT * FROM Duty_Sign_In WHERE Event_ID = '"+eventId.toString()+"'");
             ResultSet rs = statement.executeQuery();
-            System.out.println("executed query");
+            //System.out.println("executed query");
             
                 ArrayList<Duty> list = new ArrayList();
                 while(rs.next()){         
                     // Create a boat object using the Boat Class
-                    System.out.println("writing to Duty object");
+                    //System.out.println("writing to Duty object");
                     Duty duty = new Duty();
                     //Add data to the boat object from the ResultSet
                     duty.setDutyID(rs.getInt("Duty_ID"));
@@ -145,7 +145,7 @@ public class DutySignIn extends javax.swing.JFrame {
                 Object rowData[] = new Object[3];  
                 //Fill up the array with the the next row of data from the list
                 for(int i = 0; i <list.size(); i++){ 
-                        System.out.println("Writing to jttable");
+                        //System.out.println("Writing to jttable");
                         rowData[0] = list.get(i).full_name;
                         rowData[1] = list.get(i).duty_name;
                         rowData[2] = list.get(i).member_id;                        
