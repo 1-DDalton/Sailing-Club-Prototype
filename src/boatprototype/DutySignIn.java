@@ -37,7 +37,7 @@ public class DutySignIn extends javax.swing.JFrame {
     public DutySignIn() {
         initComponents();
         try {
-            table_update();
+            //table_update();
             EventIDCbo_update();
             memberNameCbo_update();
         } catch (SQLException | ClassNotFoundException ex) {
@@ -53,12 +53,13 @@ public class DutySignIn extends javax.swing.JFrame {
         private String duty_name;
         private String event_id;
         private String member_id;
-
+        private String full_name;
+        
         public int getDutyID() {
             return duty_id;
         }
 
-        public void setDutyId(int dutyId) {
+        public void setDutyID(int dutyId) {
             this.duty_id = dutyId;
         }
 
@@ -85,6 +86,15 @@ public class DutySignIn extends javax.swing.JFrame {
         public void setMemberId(String memberId) {
             this.member_id = memberId;
         }
+        
+        public String getFullName() {
+            return full_name;
+        }
+
+        public void setFullName(String fullName) {
+            this.full_name = fullName;
+        }
+        
     }
     
     
@@ -99,15 +109,16 @@ public class DutySignIn extends javax.swing.JFrame {
     PreparedStatement statement;    
     
     private void table_update() throws SQLException, ClassNotFoundException{
-   
-        String eventId = eventIDCbo.getModel().toString();
-        //String eventId = "E-221212-002";
+        Object eventId = eventIDCbo.getSelectedItem();
+        //String eventId = eventIDCbo.getModel().toString();
         System.out.println("String init");
        
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:mysql://computing.gfmat.org:3306/DDalton_SailingClub?user=DDalton&useSSL=true", "DDalton", "7r66JBe3A8");
-            statement = conn.prepareStatement("SELECT * FROM Duty_Sign_In WHERE Event_ID = '"+eventId+"'");
+            //SELECT Duty_Sign_In.*, Members.Full_Name FROM Duty_Sign_In, Members WHERE Duty_Sign_In.Membership_ID = Duty_Sign_In.Membership_ID
+            statement = conn.prepareStatement("SELECT Duty_Sign_In.*, Members.Full_Name FROM Duty_Sign_In, Members WHERE Duty_Sign_In.Membership_ID = Duty_Sign_In.Membership_ID AND Event_ID = '"+eventId.toString()+"'");
+            //statement = conn.prepareStatement("SELECT * FROM Duty_Sign_In WHERE Event_ID = '"+eventId.toString()+"'");
             ResultSet rs = statement.executeQuery();
             System.out.println("executed query");
             
@@ -117,26 +128,27 @@ public class DutySignIn extends javax.swing.JFrame {
                     System.out.println("writing to Duty object");
                     Duty duty = new Duty();
                     //Add data to the boat object from the ResultSet
-                    duty.setDutyId(rs.getInt("Duty_ID"));
+                    duty.setDutyID(rs.getInt("Duty_ID"));
                     duty.setDutyName(rs.getString("Duty_Name"));
                     duty.setEventId(rs.getString("Event_ID"));
-                    duty.setMemberId(rs.getString("Membership_ID"));                        
+                    duty.setMemberId(rs.getString("Membership_ID"));
+                    duty.setFullName(rs.getString("Full_Name"));
                     //Add the data from the boat object to the next row of the list object
                     list.add(duty);
                 } 
 
+                
                 //Add data from array of Boat objects to eventsTbl
                 DefaultTableModel model = (DefaultTableModel)dutyTbl.getModel();   
                 model.setRowCount(0);    
                 //Create a 2 dimensional array with 3 elements
-                Object rowData[] = new Object[4];  
+                Object rowData[] = new Object[3];  
                 //Fill up the array with the the next row of data from the list
                 for(int i = 0; i <list.size(); i++){ 
                         System.out.println("Writing to jttable");
-                        rowData[0] = list.get(i).duty_id;
+                        rowData[0] = list.get(i).full_name;
                         rowData[1] = list.get(i).duty_name;
-                        rowData[2] = list.get(i).event_id;
-                        rowData[3] = list.get(i).member_id;                        
+                        rowData[2] = list.get(i).member_id;                        
                         //Add the data from thew array into the next row in eventsTbl via the model
                         model.addRow(rowData);
                     }
@@ -224,22 +236,22 @@ public class DutySignIn extends javax.swing.JFrame {
 
         dutyTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Member Name", "Duty Name"
+                "Duty Name", "Member Name", "Member ID"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                true, false
+                false, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -279,6 +291,11 @@ public class DutySignIn extends javax.swing.JFrame {
         jLabel2.setText("Name");
 
         memberNameCbo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "" }));
+        memberNameCbo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                memberNameCboActionPerformed(evt);
+            }
+        });
 
         memberIDTxt.setEditable(false);
         memberIDTxt.addActionListener(new java.awt.event.ActionListener() {
@@ -315,10 +332,10 @@ public class DutySignIn extends javax.swing.JFrame {
                     .addComponent(dutyCbo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(eventStartTimeLbl))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(memberNameCbo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(9, 9, 9)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(memberIDTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(memberIDLbl))
@@ -348,7 +365,6 @@ public class DutySignIn extends javax.swing.JFrame {
         eventStartTimeTxt.setEditable(false);
         eventStartTimeTxt.setToolTipText("HH:MM:SS");
 
-        eventIDCbo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "" }));
         eventIDCbo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 eventIDCboActionPerformed(evt);
@@ -487,14 +503,15 @@ public class DutySignIn extends javax.swing.JFrame {
     
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         // Add record to Duty Sign in table: 
-        String dutyName = dutyCbo.getSelectedItem().toString();
-        String eventId = eventIDCbo.getSelectedItem().toString();
+        Object selectedDuty = dutyCbo.getSelectedItem();
+        Object selectedEvent = eventIDCbo.getSelectedItem();
         String membershipId = memberIDTxt.getText();
-        DataManipulation.addDuty(dutyName, eventId, membershipId);
+        DataManipulation.addDuty(selectedDuty.toString(), selectedEvent.toString(), membershipId);
         
-        JOptionPane.showMessageDialog(this, "Record Added"); 
+        
         try {
             table_update();
+            JOptionPane.showMessageDialog(this, "Record Added"); 
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(DutySignIn.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -577,6 +594,8 @@ public class DutySignIn extends javax.swing.JFrame {
 
     private void dutyCboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dutyCboActionPerformed
         // TODO add your handling code here:
+        
+        
     }//GEN-LAST:event_dutyCboActionPerformed
 
     private void eventNameTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eventNameTxtActionPerformed
@@ -585,32 +604,60 @@ public class DutySignIn extends javax.swing.JFrame {
 
     private void eventIDCboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eventIDCboActionPerformed
     
-        /*String eventId = eventIdTxt.getText();
-        String eventName = eventNameTxt.getText();
-        String eventDate = eventDateTxt.getText();
-        String eventStartTime = eventStartTimeTxt.getText();
-        //DataManipulation.updateEvents(eventId, eventName, eventDate, eventStartTime);
-
-
-
-
-
-
-
-
-        //eventIdTxt.setText(Df.getValueAt(selectedIndex, 0).toString());
-        eventNameTxt.setText(Df.getValueAt(selectedIndex, 1).toString());
-        eventDateTxt.setText(Df.getValueAt(selectedIndex, 2).toString());
-        eventStartTimeTxt.setText(Df.getValueAt(selectedIndex, 3).toString());
-*/                    
-
-
-    
+        Object selectedItem = eventIDCbo.getSelectedItem();
+      
+        
+        try {
+                 
+            conn = DriverManager.getConnection("jdbc:mysql://computing.gfmat.org:3306/DDalton_SailingClub?user=DDalton&useSSL=true", "DDalton", "7r66JBe3A8");
+            statement = conn.prepareStatement("SELECT Event_Name, Event_Date, Event_Start_Time FROM Events WHERE Event_ID = '"+selectedItem.toString()+"'");
+            ResultSet rs = statement.executeQuery();
+            while(rs.next()) 
+            {
+                eventNameTxt.setText(rs.getString("Event_Name"));
+                eventDateTxt.setText(rs.getString("Event_Date"));
+                eventStartTimeTxt.setText(rs.getString("Event_Start_Time"));     
+            }
+                   
+            table_update();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DutySignIn.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DutySignIn.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+       
     }//GEN-LAST:event_eventIDCboActionPerformed
 
     private void memberIDTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_memberIDTxtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_memberIDTxtActionPerformed
+
+    private void memberNameCboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_memberNameCboActionPerformed
+        // TODO add your handling code here:
+        
+        Object selectedItem = memberNameCbo.getSelectedItem();
+      
+        
+        try {
+                 
+            conn = DriverManager.getConnection("jdbc:mysql://computing.gfmat.org:3306/DDalton_SailingClub?user=DDalton&useSSL=true", "DDalton", "7r66JBe3A8");
+            statement = conn.prepareStatement("SELECT Membership_ID FROM Members WHERE Full_Name = '"+selectedItem.toString()+"'");
+            ResultSet rs = statement.executeQuery();
+            while(rs.next()) 
+            {
+                memberIDTxt.setText(rs.getString("Membership_ID"));
+
+     
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DutySignIn.class.getName()).log(Level.SEVERE, null, ex);
+        }   
+        
+        
+    }//GEN-LAST:event_memberNameCboActionPerformed
 
     /**
      * @param args the command line arguments
