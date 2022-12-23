@@ -244,7 +244,7 @@ public class DutySignIn extends javax.swing.JFrame {
                 {null, null, null}
             },
             new String [] {
-                "Duty Name", "Member Name", "Member ID"
+                "Member Name", "Duty Name", "Member ID"
             }
         ) {
             Class[] types = new Class [] {
@@ -559,10 +559,11 @@ public class DutySignIn extends javax.swing.JFrame {
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
         // TODO add your handling code here:
-        String memberId = memberIDTxt.getText();
-        //String eventId = eventIDCbo.getItemAt(WIDTH);
+        Object selectedDuty = dutyCbo.getSelectedItem();
+        Object selectedEvent = eventIDCbo.getSelectedItem();
+        String membershipId = memberIDTxt.getText();
 
-        //DataManipulation.deleteEvents(eventId, eventName, eventDate, eventStartTime);   
+        DataManipulation.deleteDuty(selectedDuty.toString(), selectedEvent.toString(), membershipId);   
         
         JOptionPane.showMessageDialog(this, "Record Deleted"); 
         try {
@@ -585,11 +586,13 @@ public class DutySignIn extends javax.swing.JFrame {
         // TODO add your handling code here:
         DefaultTableModel Df = (DefaultTableModel)dutyTbl.getModel();
         int selectedIndex = dutyTbl.getSelectedRow();
-        
-        //eventIdTxt.setText(Df.getValueAt(selectedIndex, 0).toString());
-        eventNameTxt.setText(Df.getValueAt(selectedIndex, 1).toString());
-        eventDateTxt.setText(Df.getValueAt(selectedIndex, 2).toString());
-        eventStartTimeTxt.setText(Df.getValueAt(selectedIndex, 3).toString());
+
+        String duty = Df.getValueAt(selectedIndex, 1).toString();
+        dutyCbo.setSelectedItem(duty);        
+        String memberName = Df.getValueAt(selectedIndex, 0).toString();      
+        memberNameCbo.setSelectedItem(memberName);
+        memberIDTxt.setText(Df.getValueAt(selectedIndex, 2).toString());
+
     }//GEN-LAST:event_dutyTblMouseClicked
 
     private void dutyCboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dutyCboActionPerformed
