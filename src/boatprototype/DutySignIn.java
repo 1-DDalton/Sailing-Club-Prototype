@@ -168,7 +168,6 @@ public class DutySignIn extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         dutySignIn = new javax.swing.JLabel();
         addBtn = new javax.swing.JButton();
-        updateBtn = new javax.swing.JButton();
         deleteBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         dutyTbl = new javax.swing.JTable();
@@ -220,13 +219,6 @@ public class DutySignIn extends javax.swing.JFrame {
             }
         });
 
-        updateBtn.setText("Update");
-        updateBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updateBtnActionPerformed(evt);
-            }
-        });
-
         deleteBtn.setText("Delete");
         deleteBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -251,7 +243,7 @@ public class DutySignIn extends javax.swing.JFrame {
                 java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, true, true
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -269,6 +261,11 @@ public class DutySignIn extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(dutyTbl);
+        if (dutyTbl.getColumnModel().getColumnCount() > 0) {
+            dutyTbl.getColumnModel().getColumn(0).setResizable(false);
+            dutyTbl.getColumnModel().getColumn(1).setResizable(false);
+            dutyTbl.getColumnModel().getColumn(2).setResizable(false);
+        }
 
         homeBtn.setText("Back To Home");
         homeBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -279,7 +276,7 @@ public class DutySignIn extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Sign In Here"));
 
-        dutyCbo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Officer of the Day", "Race Officer", "Race Officer Assistant", "Patrol Boat Driver", "Patrol Boat Assistant", "Bar" }));
+        dutyCbo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Officer of the Day", "Race Officer", "Race Officer Assistant", "Patrol Boat Driver", "Patrol Boat Assistant", "Bar" }));
         dutyCbo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 dutyCboActionPerformed(evt);
@@ -433,11 +430,9 @@ public class DutySignIn extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(updateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(49, 49, 49)
                 .addComponent(deleteBtn)
-                .addGap(43, 43, 43))
+                .addGap(76, 76, 76))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -452,7 +447,6 @@ public class DutySignIn extends javax.swing.JFrame {
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addBtn)
-                    .addComponent(updateBtn)
                     .addComponent(deleteBtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(homeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -516,40 +510,14 @@ public class DutySignIn extends javax.swing.JFrame {
             Logger.getLogger(DutySignIn.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        /*
+        
         //Empty fields for next action
-        eventIdTxt.setText("");
-        eventNameTxt.setText("");
-        eventDateTxt.setText("");
-        eventStartTimeTxt.setText("");
-        eventIdTxt.requestFocus();
-        */
+        dutyCbo.setSelectedItem(" ");
+        memberNameCbo.setSelectedItem("");
+        memberIDTxt.setText("");
+        memberNameCbo.requestFocus();
+        
     }//GEN-LAST:event_addBtnActionPerformed
-
-    private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
-        // TODO add your handling code here:
-        //String eventId = eventIdTxt.getText();
-        String eventName = eventNameTxt.getText();
-        String eventDate = eventDateTxt.getText();
-        String eventStartTime = eventStartTimeTxt.getText();
-        //DataManipulation.updateEvents(eventId, eventName, eventDate, eventStartTime);
-        
-        JOptionPane.showMessageDialog(this, "Record Updated"); 
-        try {
-            table_update();
-        } catch (SQLException | ClassNotFoundException ex) {
-            Logger.getLogger(DutySignIn.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        /*
-        //Empty fields for next action
-        eventIdTxt.setText("");
-        eventNameTxt.setText("");
-        eventDateTxt.setText("");
-        eventStartTimeTxt.setText("");
-        eventIdTxt.requestFocus();
-        */
-    }//GEN-LAST:event_updateBtnActionPerformed
 
     private void homeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBtnActionPerformed
         // TODO add your handling code here:
@@ -572,14 +540,11 @@ public class DutySignIn extends javax.swing.JFrame {
             Logger.getLogger(DutySignIn.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        /*
         //Empty fields for next action
-        eventIdTxt.setText("");
-        eventNameTxt.setText("");
-        eventDateTxt.setText("");
-        eventStartTimeTxt.setText("");
-        eventIdTxt.requestFocus();
-        */
+        dutyCbo.setSelectedItem(" ");
+        memberNameCbo.setSelectedItem("");
+        memberIDTxt.setText("");
+        memberNameCbo.requestFocus();
     }//GEN-LAST:event_deleteBtnActionPerformed
 
     private void dutyTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dutyTblMouseClicked
@@ -722,6 +687,5 @@ public class DutySignIn extends javax.swing.JFrame {
     private javax.swing.JLabel memberIDLbl;
     private javax.swing.JTextField memberIDTxt;
     private javax.swing.JComboBox<String> memberNameCbo;
-    private javax.swing.JButton updateBtn;
     // End of variables declaration//GEN-END:variables
 }
