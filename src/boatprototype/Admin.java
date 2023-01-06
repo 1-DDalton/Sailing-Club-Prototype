@@ -36,6 +36,7 @@ public class Admin extends javax.swing.JFrame {
         boatDetailsReportBtn = new javax.swing.JButton();
         lockerAdminBtn = new javax.swing.JButton();
         HomeBtn = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -92,6 +93,13 @@ public class Admin extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Events");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -123,7 +131,9 @@ public class Admin extends javax.swing.JFrame {
                         .addComponent(lockerAdminBtn)
                         .addGap(69, 69, 69))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(55, 55, 55)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(HomeBtn)
                 .addGap(69, 69, 69))
         );
@@ -150,7 +160,9 @@ public class Admin extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(boatParkReportBtn)))
                 .addGap(18, 18, 18)
-                .addComponent(HomeBtn)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(HomeBtn)
+                    .addComponent(jButton1))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
@@ -195,6 +207,12 @@ public class Admin extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_BoatAdminBtnActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        new Events().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -237,6 +255,7 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JButton boatDetailsReportBtn;
     private javax.swing.JButton boatParkReportBtn;
     private javax.swing.JButton eventManagementBtn;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton lockerAdminBtn;
     private javax.swing.JButton memberAdminBtn;
     private javax.swing.JButton memberReport;
