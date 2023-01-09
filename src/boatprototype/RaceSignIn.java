@@ -172,15 +172,6 @@ public class RaceSignIn extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         raceTbl = new javax.swing.JTable();
         homeBtn = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        sailNumberCbo = new javax.swing.JComboBox<>();
-        eventStartTimeLbl = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        memberNameCbo = new javax.swing.JComboBox<>();
-        memberIDTxt = new javax.swing.JTextField();
-        memberIDLbl = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        classCbo = new javax.swing.JComboBox<>();
         creatEventPnl1 = new javax.swing.JPanel();
         eventNameLbl1 = new javax.swing.JLabel();
         eventDateLbl1 = new javax.swing.JLabel();
@@ -190,6 +181,16 @@ public class RaceSignIn extends javax.swing.JFrame {
         eventDateTxt = new javax.swing.JTextField();
         eventStartTimeTxt = new javax.swing.JTextField();
         eventIDCbo = new javax.swing.JComboBox<>();
+        jDesktopPane1 = new javax.swing.JDesktopPane();
+        jPanel1 = new javax.swing.JPanel();
+        sailNumberCbo = new javax.swing.JComboBox<>();
+        eventStartTimeLbl = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        memberNameCbo = new javax.swing.JComboBox<>();
+        memberIDTxt = new javax.swing.JTextField();
+        memberIDLbl = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        classCbo = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -290,7 +291,76 @@ public class RaceSignIn extends javax.swing.JFrame {
             }
         });
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null));
+        creatEventPnl1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Event Details:"));
+
+        eventNameLbl1.setText("Name");
+
+        eventDateLbl1.setText("Date");
+
+        eventStartTimeLbl1.setText("Start Time");
+
+        eventNameTxt.setEditable(false);
+        eventNameTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eventNameTxtActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Event ID");
+
+        eventDateTxt.setEditable(false);
+        eventDateTxt.setToolTipText("YYYY-MM-DD");
+
+        eventStartTimeTxt.setEditable(false);
+        eventStartTimeTxt.setToolTipText("HH:MM:SS");
+
+        eventIDCbo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eventIDCboActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout creatEventPnl1Layout = new javax.swing.GroupLayout(creatEventPnl1);
+        creatEventPnl1.setLayout(creatEventPnl1Layout);
+        creatEventPnl1Layout.setHorizontalGroup(
+            creatEventPnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(creatEventPnl1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(creatEventPnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(eventStartTimeLbl1)
+                    .addComponent(eventDateLbl1)
+                    .addComponent(eventNameLbl1)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(creatEventPnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(eventNameTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
+                    .addComponent(eventDateTxt)
+                    .addComponent(eventStartTimeTxt)
+                    .addComponent(eventIDCbo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        creatEventPnl1Layout.setVerticalGroup(
+            creatEventPnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(creatEventPnl1Layout.createSequentialGroup()
+                .addGroup(creatEventPnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(eventIDCbo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addGroup(creatEventPnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(eventNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(eventNameLbl1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(creatEventPnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(eventDateLbl1)
+                    .addComponent(eventDateTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(creatEventPnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(eventStartTimeLbl1)
+                    .addComponent(eventStartTimeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Sign In Here:"));
 
         sailNumberCbo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Officer of the Day", "Race Officer", "Race Officer Assistant", "Patrol Boat Driver", "Patrol Boat Assistant", "Bar" }));
         sailNumberCbo.addActionListener(new java.awt.event.ActionListener() {
@@ -364,72 +434,22 @@ public class RaceSignIn extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        creatEventPnl1.setBorder(javax.swing.BorderFactory.createTitledBorder(null));
+        jDesktopPane1.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        eventNameLbl1.setText("Name");
-
-        eventDateLbl1.setText("Date");
-
-        eventStartTimeLbl1.setText("Start Time");
-
-        eventNameTxt.setEditable(false);
-        eventNameTxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eventNameTxtActionPerformed(evt);
-            }
-        });
-
-        jLabel3.setText("Event ID");
-
-        eventDateTxt.setEditable(false);
-        eventDateTxt.setToolTipText("YYYY-MM-DD");
-
-        eventStartTimeTxt.setEditable(false);
-        eventStartTimeTxt.setToolTipText("HH:MM:SS");
-
-        eventIDCbo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eventIDCboActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout creatEventPnl1Layout = new javax.swing.GroupLayout(creatEventPnl1);
-        creatEventPnl1.setLayout(creatEventPnl1Layout);
-        creatEventPnl1Layout.setHorizontalGroup(
-            creatEventPnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(creatEventPnl1Layout.createSequentialGroup()
+        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
+        jDesktopPane1.setLayout(jDesktopPane1Layout);
+        jDesktopPane1Layout.setHorizontalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDesktopPane1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(creatEventPnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(eventStartTimeLbl1)
-                    .addComponent(eventDateLbl1)
-                    .addComponent(eventNameLbl1)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(creatEventPnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(eventNameTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
-                    .addComponent(eventDateTxt)
-                    .addComponent(eventStartTimeTxt)
-                    .addComponent(eventIDCbo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
-        creatEventPnl1Layout.setVerticalGroup(
-            creatEventPnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(creatEventPnl1Layout.createSequentialGroup()
-                .addGroup(creatEventPnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(eventIDCbo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
-                .addGroup(creatEventPnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(eventNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(eventNameLbl1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(creatEventPnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(eventDateLbl1)
-                    .addComponent(eventDateTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(creatEventPnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(eventStartTimeLbl1)
-                    .addComponent(eventStartTimeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        jDesktopPane1Layout.setVerticalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -444,21 +464,22 @@ public class RaceSignIn extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(creatEventPnl1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(25, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(homeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(49, 49, 49)
-                        .addComponent(deleteBtn)
-                        .addGap(76, 76, 76))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(homeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(4, 4, 4))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(49, 49, 49)
+                                        .addComponent(deleteBtn)
+                                        .addGap(51, 51, 51)))))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -467,7 +488,7 @@ public class RaceSignIn extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addComponent(creatEventPnl1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jDesktopPane1)
                 .addGap(59, 59, 59))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(60, Short.MAX_VALUE)
@@ -480,6 +501,8 @@ public class RaceSignIn extends javax.swing.JFrame {
                 .addComponent(homeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25))
         );
+
+        creatEventPnl1.getAccessibleContext().setAccessibleName("Event Details");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -707,6 +730,7 @@ public class RaceSignIn extends javax.swing.JFrame {
     private javax.swing.JLabel eventStartTimeLbl1;
     private javax.swing.JTextField eventStartTimeTxt;
     private javax.swing.JButton homeBtn;
+    private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
