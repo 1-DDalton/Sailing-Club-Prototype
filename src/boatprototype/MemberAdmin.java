@@ -736,7 +736,6 @@ public class MemberAdmin extends javax.swing.JFrame {
         memberOccupationTxt.setText("");
         membershipCbo.toString();
         memberFamilyIDTxt.setText("");
-        
         //eventStartTimeTxt.setText("");
         memberIdTxt.requestFocus();
     }//GEN-LAST:event_deleteBtnActionPerformed
