@@ -52,7 +52,6 @@ public class RaceSignIn extends javax.swing.JFrame {
         private String class_name;
         private String sail_number;
         private String event_id;
-        private String member_id;
         private String full_name;
         
         public String getClassName() {
@@ -79,13 +78,6 @@ public class RaceSignIn extends javax.swing.JFrame {
             this.event_id = eventId;
         }
 
-        public String getMemberId() {
-            return member_id;
-        }
-
-        public void setMemberId(String memberId) {
-            this.member_id = memberId;
-        }
         
         public String getFullName() {
             return full_name;
@@ -131,7 +123,6 @@ public class RaceSignIn extends javax.swing.JFrame {
                     race.setClassName(rs.getString("Class_Name"));
                     race.setSailNumber(rs.getString("Duty_Name"));
                     race.setEventId(rs.getString("Event_ID"));
-                    race.setMemberId(rs.getString("Membership_ID"));
                     race.setFullName(rs.getString("Full_Name"));
                     //Add the data from the boat object to the next row of the list object
                     list.add(race);
@@ -147,8 +138,8 @@ public class RaceSignIn extends javax.swing.JFrame {
                 for(int i = 0; i <list.size(); i++){ 
                         //System.out.println("Writing to jttable");
                         rowData[0] = list.get(i).full_name;
-                        rowData[1] = list.get(i).sail_number;
-                        rowData[2] = list.get(i).member_id;                        
+                        rowData[1] = list.get(i).class_name; 
+                        rowData[2] = list.get(i).sail_number;
                         //Add the data from thew array into the next row in eventsTbl via the model
                         model.addRow(rowData);
                     }
@@ -187,8 +178,6 @@ public class RaceSignIn extends javax.swing.JFrame {
         eventStartTimeLbl = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         memberNameCbo = new javax.swing.JComboBox<>();
-        memberIDTxt = new javax.swing.JTextField();
-        memberIDLbl = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         classCbo = new javax.swing.JComboBox<>();
 
@@ -231,36 +220,36 @@ public class RaceSignIn extends javax.swing.JFrame {
 
         raceTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Member Name", "Class", "Member ID", "Sail No."
+                "Member Name", "Class", "Sail No."
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, true
+                false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -281,7 +270,6 @@ public class RaceSignIn extends javax.swing.JFrame {
         if (raceTbl.getColumnModel().getColumnCount() > 0) {
             raceTbl.getColumnModel().getColumn(0).setResizable(false);
             raceTbl.getColumnModel().getColumn(1).setResizable(false);
-            raceTbl.getColumnModel().getColumn(2).setResizable(false);
         }
 
         homeBtn.setText("Back To Home");
@@ -362,7 +350,6 @@ public class RaceSignIn extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Sign In Here:"));
 
-        sailNumberCbo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Officer of the Day", "Race Officer", "Race Officer Assistant", "Patrol Boat Driver", "Patrol Boat Assistant", "Bar" }));
         sailNumberCbo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sailNumberCboActionPerformed(evt);
@@ -380,15 +367,6 @@ public class RaceSignIn extends javax.swing.JFrame {
             }
         });
 
-        memberIDTxt.setEditable(false);
-        memberIDTxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                memberIDTxtActionPerformed(evt);
-            }
-        });
-
-        memberIDLbl.setText("Member ID");
-
         jLabel1.setText("Class");
 
         classCbo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "  ", "Monohull", "Large Monohull", "Multihull" }));
@@ -401,12 +379,10 @@ public class RaceSignIn extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(eventStartTimeLbl)
-                    .addComponent(memberIDLbl)
                     .addComponent(jLabel2)
                     .addComponent(jLabel1))
-                .addGap(26, 26, 26)
+                .addGap(42, 42, 42)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(memberIDTxt)
                     .addComponent(sailNumberCbo, 0, 161, Short.MAX_VALUE)
                     .addComponent(memberNameCbo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(classCbo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -423,15 +399,11 @@ public class RaceSignIn extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(memberNameCbo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(9, 9, 9)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(memberIDTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(memberIDLbl))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(classCbo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         jDesktopPane1.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -449,8 +421,8 @@ public class RaceSignIn extends javax.swing.JFrame {
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -486,8 +458,8 @@ public class RaceSignIn extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addComponent(creatEventPnl1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jDesktopPane1)
-                .addGap(59, 59, 59))
+                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(60, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -546,10 +518,10 @@ public class RaceSignIn extends javax.swing.JFrame {
     
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         // Add record to Duty Sign in table: 
-        Object selectedDuty = sailNumberCbo.getSelectedItem();
+        Object sailNumber = sailNumberCbo.getSelectedItem();
         Object selectedEvent = eventIDCbo.getSelectedItem();
-        String membershipId = memberIDTxt.getText();
-        DataManipulation.addDuty(selectedDuty.toString(), selectedEvent.toString(), membershipId);
+        Object Class = classCbo.getSelectedItem();
+        DataManipulation.addDuty(sailNumber.toString(), selectedEvent.toString(), Class.toString() );
         
         
         try {
@@ -561,9 +533,9 @@ public class RaceSignIn extends javax.swing.JFrame {
         
         
         //Empty fields for next action
-        sailNumberCbo.setSelectedItem(" ");
+        sailNumberCbo.setSelectedItem("");
         memberNameCbo.setSelectedItem("");
-        memberIDTxt.setText("");
+        classCbo.setSelectedItem("");
         memberNameCbo.requestFocus();
         
     }//GEN-LAST:event_addBtnActionPerformed
@@ -576,11 +548,11 @@ public class RaceSignIn extends javax.swing.JFrame {
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
         // TODO add your handling code here:
-        Object selectedDuty = sailNumberCbo.getSelectedItem();
+        Object sailNumber = sailNumberCbo.getSelectedItem();
         Object selectedEvent = eventIDCbo.getSelectedItem();
-        String membershipId = memberIDTxt.getText();
+        Object Class = classCbo.getSelectedItem();
 
-        DataManipulation.deleteDuty(selectedDuty.toString(), selectedEvent.toString(), membershipId);   
+        DataManipulation.deleteDuty(sailNumber.toString(), selectedEvent.toString(), Class.toString() );   
         
         JOptionPane.showMessageDialog(this, "Record Deleted"); 
         try {
@@ -590,9 +562,9 @@ public class RaceSignIn extends javax.swing.JFrame {
         }
         
         //Empty fields for next action
-        sailNumberCbo.setSelectedItem(" ");
+        sailNumberCbo.setSelectedItem("");
         memberNameCbo.setSelectedItem("");
-        memberIDTxt.setText("");
+        classCbo.setSelectedItem("");
         memberNameCbo.requestFocus();
     }//GEN-LAST:event_deleteBtnActionPerformed
 
@@ -605,22 +577,12 @@ public class RaceSignIn extends javax.swing.JFrame {
         sailNumberCbo.setSelectedItem(duty);        
         String memberName = Df.getValueAt(selectedIndex, 0).toString();      
         memberNameCbo.setSelectedItem(memberName);
-        memberIDTxt.setText(Df.getValueAt(selectedIndex, 2).toString());
+        classCbo.setSelectedItem(Df.getValueAt(selectedIndex, 2).toString());
 
     }//GEN-LAST:event_raceTblMouseClicked
 
     private void sailNumberCboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sailNumberCboActionPerformed
         // TODO add your handling code here:
-        
-        
-    }//GEN-LAST:event_sailNumberCboActionPerformed
-
-    private void eventNameTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eventNameTxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_eventNameTxtActionPerformed
-
-    private void eventIDCboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eventIDCboActionPerformed
-    
         Object selectedItem = eventIDCbo.getSelectedItem();
       
         
@@ -643,13 +605,41 @@ public class RaceSignIn extends javax.swing.JFrame {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(RaceSignIn.class.getName()).log(Level.SEVERE, null, ex);
         }
+           
+        
+    }//GEN-LAST:event_sailNumberCboActionPerformed
+
+    private void eventNameTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eventNameTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_eventNameTxtActionPerformed
+
+    private void eventIDCboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eventIDCboActionPerformed
+    
+        Object sailNumber = sailNumberCbo.getSelectedItem();
+      
+        
+        try {
+                 
+            conn = DriverManager.getConnection("jdbc:mysql://computing.gfmat.org:3306/DDalton_SailingClub?user=DDalton&useSSL=true", "DDalton", "7r66JBe3A8");
+            statement = conn.prepareStatement("SELECT Event_Name, Event_Date, Event_Start_Time FROM Events WHERE Event_ID = '"+sailNumber.toString()+"'");
+            ResultSet rs = statement.executeQuery();
+            while(rs.next()) 
+            {
+                eventNameTxt.setText(rs.getString("Event_Name"));
+                eventDateTxt.setText(rs.getString("Event_Date"));
+                eventStartTimeTxt.setText(rs.getString("Event_Start_Time"));     
+            }
+                   
+            table_update();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(RaceSignIn.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(RaceSignIn.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
        
     }//GEN-LAST:event_eventIDCboActionPerformed
-
-    private void memberIDTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_memberIDTxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_memberIDTxtActionPerformed
 
     private void memberNameCboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_memberNameCboActionPerformed
         // TODO add your handling code here:
@@ -664,7 +654,6 @@ public class RaceSignIn extends javax.swing.JFrame {
             ResultSet rs = statement.executeQuery();
             while(rs.next()) 
             {
-                memberIDTxt.setText(rs.getString("Membership_ID"));
 
      
             }
@@ -735,8 +724,6 @@ public class RaceSignIn extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel memberIDLbl;
-    private javax.swing.JTextField memberIDTxt;
     private javax.swing.JComboBox<String> memberNameCbo;
     private javax.swing.JLabel raceSignIn;
     private javax.swing.JTable raceTbl;

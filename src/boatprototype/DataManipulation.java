@@ -136,4 +136,13 @@ public class DataManipulation {
             System.out.println("errorMessage"+ ex);
         }
     }
+    public static void addRacer(String fullName, String selectedEvent, String Class, String sailNumber){
+        try( Connection conn = DriverManager.getConnection("jdbc:mysql://computing.gfmat.org:3306/DDalton_SailingClub?user=DDalton&useSSL=true", "DDalton", "7r66JBe3A8")){
+            Statement statement = conn.createStatement();
+            statement.execute("INSERT INTO Race_Sign_In (Full_Name, Event_ID, Class, Sail_Number) Values('"+fullName+"','"+selectedEvent+"','"+Class+"','"+sailNumber+"')");
+        } catch (SQLException ex) {
+            System.out.println("errorMessage"+ ex);
+        }
+    }
+    
 }
