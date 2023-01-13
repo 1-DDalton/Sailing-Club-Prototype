@@ -120,8 +120,8 @@ public class RaceSignIn extends javax.swing.JFrame {
                     //System.out.println("writing to Duty object");
                     Race race = new Race();
                     //Add data to the boat object from the ResultSet
-                    race.setClassName(rs.getString("Class_Name"));
-                    race.setSailNumber(rs.getString("Duty_Name"));
+                    race.setClassName(rs.getString("Class"));
+                    race.setSailNumber(rs.getString("Sail_Number"));
                     race.setEventId(rs.getString("Event_ID"));
                     race.setFullName(rs.getString("Full_Name"));
                     //Add the data from the boat object to the next row of the list object
@@ -573,11 +573,11 @@ public class RaceSignIn extends javax.swing.JFrame {
         DefaultTableModel Df = (DefaultTableModel)raceTbl.getModel();
         int selectedIndex = raceTbl.getSelectedRow();
 
-        String duty = Df.getValueAt(selectedIndex, 1).toString();
-        sailNumberCbo.setSelectedItem(duty);        
+        String race = Df.getValueAt(selectedIndex, 2).toString();
+        sailNumberCbo.setSelectedItem(race);        
         String memberName = Df.getValueAt(selectedIndex, 0).toString();      
         memberNameCbo.setSelectedItem(memberName);
-        classCbo.setSelectedItem(Df.getValueAt(selectedIndex, 2).toString());
+        classCbo.setSelectedItem(Df.getValueAt(selectedIndex, 1).toString());
 
     }//GEN-LAST:event_raceTblMouseClicked
 
