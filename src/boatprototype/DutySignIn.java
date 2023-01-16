@@ -567,7 +567,8 @@ public class DutySignIn extends javax.swing.JFrame {
 
     private void dutyCboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dutyCboActionPerformed
         // TODO add your handling code here:
-        
+        if selectedDuty == (" ")
+                
         
     }//GEN-LAST:event_dutyCboActionPerformed
 
