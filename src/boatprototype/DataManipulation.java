@@ -128,7 +128,7 @@ public class DataManipulation {
         }
     }
 
-    public static void updateDuty(String selectedDuty , String selectedEvent, String membershipId, String dutyId){
+    /*public static void updateDuty(String selectedDuty , String selectedEvent, String membershipId, String dutyId){
         try( Connection conn = DriverManager.getConnection("jdbc:mysql://computing.gfmat.org:3306/DDalton_SailingClub?user=DDalton&useSSL=true", "DDalton", "7r66JBe3A8")){
             Statement statement = conn.createStatement();
             statement.execute("UPDATE Events SET Membership_ID = '"+ membershipId + "', Event_ID = '" + selectedEvent+ "', Duty_Name = '"+ selectedDuty+"' WHERE Duty_ID = '" + dutyId +"'");
@@ -136,6 +136,7 @@ public class DataManipulation {
             System.out.println("errorMessage"+ ex);
         }
     }
+*/
     public static void addRacer(String fullName, String selectedEvent, String Class, String sailNumber){
         try( Connection conn = DriverManager.getConnection("jdbc:mysql://computing.gfmat.org:3306/DDalton_SailingClub?user=DDalton&useSSL=true", "DDalton", "7r66JBe3A8")){
             Statement statement = conn.createStatement();

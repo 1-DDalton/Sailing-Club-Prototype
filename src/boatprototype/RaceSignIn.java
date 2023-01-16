@@ -174,12 +174,12 @@ public class RaceSignIn extends javax.swing.JFrame {
         eventIDCbo = new javax.swing.JComboBox<>();
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jPanel1 = new javax.swing.JPanel();
-        sailNumberCbo = new javax.swing.JComboBox<>();
         eventStartTimeLbl = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        memberNameCbo = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
-        classCbo = new javax.swing.JComboBox<>();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
+        jTextField3 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -350,27 +350,17 @@ public class RaceSignIn extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Sign In Here:"));
 
-        sailNumberCbo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
-        sailNumberCbo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sailNumberCboActionPerformed(evt);
-            }
-        });
-
         eventStartTimeLbl.setText("Sail No.");
 
         jLabel2.setText("Name");
 
-        memberNameCbo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "" }));
-        memberNameCbo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                memberNameCboActionPerformed(evt);
-            }
-        });
-
         jLabel1.setText("Class");
 
-        classCbo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Monohull", "Large Monohull", "Multihull" }));
+        jTextField1.setText("jTextField1");
+
+        jTextField2.setText("jTextField2");
+
+        jTextField3.setText("jTextField3");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -384,27 +374,27 @@ public class RaceSignIn extends javax.swing.JFrame {
                     .addComponent(jLabel1))
                 .addGap(42, 42, 42)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(sailNumberCbo, 0, 161, Short.MAX_VALUE)
-                    .addComponent(memberNameCbo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(classCbo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
+                    .addComponent(jTextField2)
+                    .addComponent(jTextField3))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(sailNumberCbo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(eventStartTimeLbl))
+                    .addComponent(eventStartTimeLbl)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(memberNameCbo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(classCbo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(23, Short.MAX_VALUE))
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         jDesktopPane1.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -582,34 +572,6 @@ public class RaceSignIn extends javax.swing.JFrame {
 
     }//GEN-LAST:event_raceTblMouseClicked
 
-    private void sailNumberCboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sailNumberCboActionPerformed
-        // TODO add your handling code here:
-        String selectedItem = eventIDCbo.getSelectedItem().toString();
-      
-        
-        try {
-                 
-            conn = DriverManager.getConnection("jdbc:mysql://computing.gfmat.org:3306/DDalton_SailingClub?user=DDalton&useSSL=true", "DDalton", "7r66JBe3A8");
-            statement = conn.prepareStatement("SELECT Event_Name, Event_Date, Event_Start_Time FROM Events WHERE Event_ID = '"+selectedItem+"'");
-            ResultSet rs = statement.executeQuery();
-            while(rs.next()) 
-            {
-                eventNameTxt.setText(rs.getString("Event_Name"));
-                eventDateTxt.setText(rs.getString("Event_Date"));
-                eventStartTimeTxt.setText(rs.getString("Event_Start_Time"));     
-            }
-                   
-            table_update();
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(RaceSignIn.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(RaceSignIn.class.getName()).log(Level.SEVERE, null, ex);
-        }
-           
-        
-    }//GEN-LAST:event_sailNumberCboActionPerformed
-
     private void eventNameTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eventNameTxtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_eventNameTxtActionPerformed
@@ -641,30 +603,6 @@ public class RaceSignIn extends javax.swing.JFrame {
         
        
     }//GEN-LAST:event_eventIDCboActionPerformed
-
-    private void memberNameCboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_memberNameCboActionPerformed
-        // TODO add your handling code here:
-        
-        Object selectedItem = memberNameCbo.getSelectedItem();
-      
-        
-        try {
-                 
-            conn = DriverManager.getConnection("jdbc:mysql://computing.gfmat.org:3306/DDalton_SailingClub?user=DDalton&useSSL=true", "DDalton", "7r66JBe3A8");
-            statement = conn.prepareStatement("SELECT Membership_ID FROM Members WHERE Full_Name = '"+selectedItem.toString()+"'");
-            ResultSet rs = statement.executeQuery();
-            while(rs.next()) 
-            {
-
-     
-            }
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(RaceSignIn.class.getName()).log(Level.SEVERE, null, ex);
-        }   
-        
-        
-    }//GEN-LAST:event_memberNameCboActionPerformed
 
     /**
      * @param args the command line arguments
@@ -706,7 +644,6 @@ public class RaceSignIn extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addBtn;
-    private javax.swing.JComboBox<String> classCbo;
     private javax.swing.JPanel creatEventPnl1;
     private javax.swing.JButton deleteBtn;
     private javax.swing.JLabel eventDateLbl1;
@@ -725,9 +662,10 @@ public class RaceSignIn extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JComboBox<String> memberNameCbo;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
     private javax.swing.JLabel raceSignIn;
     private javax.swing.JTable raceTbl;
-    private javax.swing.JComboBox<String> sailNumberCbo;
     // End of variables declaration//GEN-END:variables
 }
