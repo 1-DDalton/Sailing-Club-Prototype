@@ -350,6 +350,7 @@ public class RaceSignIn extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Sign In Here:"));
 
+        sailNumberCbo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
         sailNumberCbo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sailNumberCboActionPerformed(evt);
@@ -369,7 +370,7 @@ public class RaceSignIn extends javax.swing.JFrame {
 
         jLabel1.setText("Class");
 
-        classCbo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "  ", "Monohull", "Large Monohull", "Multihull" }));
+        classCbo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Monohull", "Large Monohull", "Multihull" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -535,7 +536,7 @@ public class RaceSignIn extends javax.swing.JFrame {
         //Empty fields for next action
         sailNumberCbo.setSelectedItem("");
         memberNameCbo.setSelectedItem("");
-        classCbo.setSelectedItem("");
+        classCbo.setSelectedItem(" ");
         memberNameCbo.requestFocus();
         
     }//GEN-LAST:event_addBtnActionPerformed
@@ -583,13 +584,13 @@ public class RaceSignIn extends javax.swing.JFrame {
 
     private void sailNumberCboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sailNumberCboActionPerformed
         // TODO add your handling code here:
-        Object selectedItem = eventIDCbo.getSelectedItem();
+        String selectedItem = eventIDCbo.getSelectedItem().toString();
       
         
         try {
                  
             conn = DriverManager.getConnection("jdbc:mysql://computing.gfmat.org:3306/DDalton_SailingClub?user=DDalton&useSSL=true", "DDalton", "7r66JBe3A8");
-            statement = conn.prepareStatement("SELECT Event_Name, Event_Date, Event_Start_Time FROM Events WHERE Event_ID = '"+selectedItem.toString()+"'");
+            statement = conn.prepareStatement("SELECT Event_Name, Event_Date, Event_Start_Time FROM Events WHERE Event_ID = '"+selectedItem+"'");
             ResultSet rs = statement.executeQuery();
             while(rs.next()) 
             {
@@ -615,13 +616,13 @@ public class RaceSignIn extends javax.swing.JFrame {
 
     private void eventIDCboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eventIDCboActionPerformed
     
-        Object sailNumber = sailNumberCbo.getSelectedItem();
+        String selectedItem = eventIDCbo.getSelectedItem().toString();
       
         
         try {
                  
             conn = DriverManager.getConnection("jdbc:mysql://computing.gfmat.org:3306/DDalton_SailingClub?user=DDalton&useSSL=true", "DDalton", "7r66JBe3A8");
-            statement = conn.prepareStatement("SELECT Event_Name, Event_Date, Event_Start_Time FROM Events WHERE Event_ID = '"+sailNumber.toString()+"'");
+            statement = conn.prepareStatement("SELECT Event_Name, Event_Date, Event_Start_Time FROM Events WHERE Event_ID = '"+selectedItem+"'");
             ResultSet rs = statement.executeQuery();
             while(rs.next()) 
             {

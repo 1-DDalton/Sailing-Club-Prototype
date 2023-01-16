@@ -361,6 +361,11 @@ public class DutySignIn extends javax.swing.JFrame {
 
         eventStartTimeTxt.setEditable(false);
         eventStartTimeTxt.setToolTipText("HH:MM:SS");
+        eventStartTimeTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eventStartTimeTxtActionPerformed(evt);
+            }
+        });
 
         eventIDCbo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -626,6 +631,10 @@ public class DutySignIn extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_memberNameCboActionPerformed
+
+    private void eventStartTimeTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eventStartTimeTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_eventStartTimeTxtActionPerformed
 
     /**
      * @param args the command line arguments
