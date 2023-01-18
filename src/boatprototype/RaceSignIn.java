@@ -39,7 +39,7 @@ public class RaceSignIn extends javax.swing.JFrame {
         try {
             //table_update();
             EventIDCbo_update();
-            memberNameCbo_update();
+//            memberNameCbo_update();
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(RaceSignIn.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -109,7 +109,7 @@ public class RaceSignIn extends javax.swing.JFrame {
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:mysql://computing.gfmat.org:3306/DDalton_SailingClub?user=DDalton&useSSL=true", "DDalton", "7r66JBe3A8");
             //SELECT Duty_Sign_In.*, Members.Full_Name FROM Duty_Sign_In, Members WHERE Duty_Sign_In.Membership_ID = Duty_Sign_In.Membership_ID
-            statement = conn.prepareStatement("SELECT Duty_Sign_In.*, Members.Full_Name FROM Duty_Sign_In, Members WHERE Duty_Sign_In.Membership_ID = Duty_Sign_In.Membership_ID AND Event_ID = '"+eventId.toString()+"'");
+            statement = conn.prepareStatement("SELECT Race_Sign_In.*, Members.Full_Name FROM Race_Sign_In, Members WHERE Race_Sign_In.Membership_ID = Members.Membership_ID AND Event_ID = '"+eventId.toString()+"'");
             //statement = conn.prepareStatement("SELECT * FROM Duty_Sign_In WHERE Event_ID = '"+eventId.toString()+"'");
             ResultSet rs = statement.executeQuery();
             //System.out.println("executed query");
@@ -172,14 +172,13 @@ public class RaceSignIn extends javax.swing.JFrame {
         eventDateTxt = new javax.swing.JTextField();
         eventStartTimeTxt = new javax.swing.JTextField();
         eventIDCbo = new javax.swing.JComboBox<>();
-        jDesktopPane1 = new javax.swing.JDesktopPane();
-        jPanel1 = new javax.swing.JPanel();
+        signUpPanel = new javax.swing.JPanel();
         eventStartTimeLbl = new javax.swing.JLabel();
+        sailNumberTxt = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        NameTxt = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        classTxt = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -348,7 +347,7 @@ public class RaceSignIn extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Sign In Here:"));
+        signUpPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Sign Up Here:"));
 
         eventStartTimeLbl.setText("Sail No.");
 
@@ -356,64 +355,49 @@ public class RaceSignIn extends javax.swing.JFrame {
 
         jLabel1.setText("Class");
 
-        jTextField1.setText("jTextField1");
+        classTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                classTxtActionPerformed(evt);
+            }
+        });
 
-        jTextField2.setText("jTextField2");
-
-        jTextField3.setText("jTextField3");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout signUpPanelLayout = new javax.swing.GroupLayout(signUpPanel);
+        signUpPanel.setLayout(signUpPanelLayout);
+        signUpPanelLayout.setHorizontalGroup(
+            signUpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(signUpPanelLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(signUpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(signUpPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                        .addComponent(classTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(signUpPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(40, 40, 40)
+                        .addComponent(NameTxt))
+                    .addGroup(signUpPanelLayout.createSequentialGroup()
+                        .addComponent(eventStartTimeLbl)
+                        .addGap(31, 31, 31)
+                        .addComponent(sailNumberTxt)))
+                .addGap(32, 32, 32))
+        );
+        signUpPanelLayout.setVerticalGroup(
+            signUpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(signUpPanelLayout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addGroup(signUpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(eventStartTimeLbl)
-                    .addComponent(jLabel2)
+                    .addComponent(sailNumberTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(15, 15, 15)
+                .addGroup(signUpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(NameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(signUpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(classTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addGap(42, 42, 42)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
-                    .addComponent(jTextField2)
-                    .addComponent(jTextField3))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(eventStartTimeLbl)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(29, Short.MAX_VALUE))
-        );
-
-        jDesktopPane1.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -427,7 +411,7 @@ public class RaceSignIn extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(creatEventPnl1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(signUpPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -444,23 +428,23 @@ public class RaceSignIn extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(creatEventPnl1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(60, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(46, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addBtn)
                     .addComponent(deleteBtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(homeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(creatEventPnl1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(signUpPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         creatEventPnl1.getAccessibleContext().setAccessibleName("Event Details");
@@ -487,7 +471,7 @@ public class RaceSignIn extends javax.swing.JFrame {
         
     }    
 
-    private void memberNameCbo_update() throws SQLException, ClassNotFoundException{
+   /* private void memberNameCbo_update() throws SQLException, ClassNotFoundException{
         try {
                  
             conn = DriverManager.getConnection("jdbc:mysql://computing.gfmat.org:3306/DDalton_SailingClub?user=DDalton&useSSL=true", "DDalton", "7r66JBe3A8");
@@ -505,14 +489,14 @@ public class RaceSignIn extends javax.swing.JFrame {
 
         
     } 
-    
+    */
     
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         // Add record to Duty Sign in table: 
-        Object sailNumber = sailNumberCbo.getSelectedItem();
+        Object sailNumber = sailNumberTxt.getText();
         Object selectedEvent = eventIDCbo.getSelectedItem();
-        Object Class = classCbo.getSelectedItem();
-        DataManipulation.addDuty(sailNumber.toString(), selectedEvent.toString(), Class.toString() );
+        Object Class = classTxt.getText(); 
+        DataManipulation.addRacer( sailNumber.toString(), selectedEvent.toString(), Class.toString() );
         
         
         try {
@@ -524,10 +508,10 @@ public class RaceSignIn extends javax.swing.JFrame {
         
         
         //Empty fields for next action
-        sailNumberCbo.setSelectedItem("");
-        memberNameCbo.setSelectedItem("");
-        classCbo.setSelectedItem(" ");
-        memberNameCbo.requestFocus();
+        sailNumberTxt.setText("");
+        NameTxt.setText("");
+        classTxt.setText(" ");
+        NameTxt.requestFocus();
         
     }//GEN-LAST:event_addBtnActionPerformed
 
@@ -539,9 +523,9 @@ public class RaceSignIn extends javax.swing.JFrame {
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
         // TODO add your handling code here:
-        Object sailNumber = sailNumberCbo.getSelectedItem();
+        Object sailNumber = sailNumberTxt.getText();
         Object selectedEvent = eventIDCbo.getSelectedItem();
-        Object Class = classCbo.getSelectedItem();
+        Object Class = classTxt.getText();
 
         DataManipulation.deleteDuty(sailNumber.toString(), selectedEvent.toString(), Class.toString() );   
         
@@ -553,10 +537,10 @@ public class RaceSignIn extends javax.swing.JFrame {
         }
         
         //Empty fields for next action
-        sailNumberCbo.setSelectedItem("");
-        memberNameCbo.setSelectedItem("");
-        classCbo.setSelectedItem("");
-        memberNameCbo.requestFocus();
+        sailNumberTxt.setText("");
+        NameTxt.setText("");
+        classTxt.setText("");
+        NameTxt.requestFocus();
     }//GEN-LAST:event_deleteBtnActionPerformed
 
     private void raceTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_raceTblMouseClicked
@@ -565,10 +549,10 @@ public class RaceSignIn extends javax.swing.JFrame {
         int selectedIndex = raceTbl.getSelectedRow();
 
         String race = Df.getValueAt(selectedIndex, 2).toString();
-        sailNumberCbo.setSelectedItem(race);        
+        sailNumberTxt.setText(race);        
         String memberName = Df.getValueAt(selectedIndex, 0).toString();      
-        memberNameCbo.setSelectedItem(memberName);
-        classCbo.setSelectedItem(Df.getValueAt(selectedIndex, 1).toString());
+        NameTxt.setText(memberName);
+        classTxt.setText(Df.getValueAt(selectedIndex, 1).toString());
 
     }//GEN-LAST:event_raceTblMouseClicked
 
@@ -603,6 +587,10 @@ public class RaceSignIn extends javax.swing.JFrame {
         
        
     }//GEN-LAST:event_eventIDCboActionPerformed
+
+    private void classTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_classTxtActionPerformed
 
     /**
      * @param args the command line arguments
@@ -643,7 +631,9 @@ public class RaceSignIn extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField NameTxt;
     private javax.swing.JButton addBtn;
+    private javax.swing.JTextField classTxt;
     private javax.swing.JPanel creatEventPnl1;
     private javax.swing.JButton deleteBtn;
     private javax.swing.JLabel eventDateLbl1;
@@ -655,17 +645,14 @@ public class RaceSignIn extends javax.swing.JFrame {
     private javax.swing.JLabel eventStartTimeLbl1;
     private javax.swing.JTextField eventStartTimeTxt;
     private javax.swing.JButton homeBtn;
-    private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JLabel raceSignIn;
     private javax.swing.JTable raceTbl;
+    private javax.swing.JTextField sailNumberTxt;
+    private javax.swing.JPanel signUpPanel;
     // End of variables declaration//GEN-END:variables
 }
