@@ -109,7 +109,7 @@ public class RaceSignIn extends javax.swing.JFrame {
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:mysql://computing.gfmat.org:3306/DDalton_SailingClub?user=DDalton&useSSL=true", "DDalton", "7r66JBe3A8");
             //SELECT Duty_Sign_In.*, Members.Full_Name FROM Duty_Sign_In, Members WHERE Duty_Sign_In.Membership_ID = Duty_Sign_In.Membership_ID
-            statement = conn.prepareStatement("SELECT Race_Sign_In.*, Members.Full_Name FROM Race_Sign_In, Members WHERE Race_Sign_In.Membership_ID = Members.Membership_ID AND Event_ID = '"+eventId.toString()+"'");
+            statement = conn.prepareStatement("SELECT Race_Sign_In.*, Members.Full_Name FROM Race_Sign_In, Members WHERE Race_Sign_In.Full_Name = Members.Full_Name AND Event_ID = '"+eventId.toString()+"'");
             //statement = conn.prepareStatement("SELECT * FROM Duty_Sign_In WHERE Event_ID = '"+eventId.toString()+"'");
             ResultSet rs = statement.executeQuery();
             //System.out.println("executed query");
@@ -496,6 +496,7 @@ public class RaceSignIn extends javax.swing.JFrame {
         Object sailNumber = sailNumberTxt.getText();
         Object selectedEvent = eventIDCbo.getSelectedItem();
         Object Class = classTxt.getText(); 
+        System.out.println("WORKING HERE");
         DataManipulation.addRacer( sailNumber.toString(), selectedEvent.toString(), Class.toString() );
         
         
