@@ -422,8 +422,6 @@ public class BoatAdmin extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        boatPnl.getAccessibleContext().setAccessibleName("Add Boat Here:");
-
         getAccessibleContext().setAccessibleDescription("");
 
         pack();
