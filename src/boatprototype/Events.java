@@ -128,7 +128,7 @@ public class Events extends javax.swing.JFrame {
                         rowData[1] = list.get(i).event_name;
                         rowData[2] = list.get(i).event_date;
                         rowData[3] = list.get(i).event_start_time;                        
-                        //Add the data from thew array into the next row in eventsTbl via the model
+                        //Add the data from the array into the next row in eventsTbl via the model
                         model.addRow(rowData);
                     }
             
