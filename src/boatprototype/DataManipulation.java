@@ -137,13 +137,21 @@ public class DataManipulation {
         }
     }
 */
-    public static void addRacer( String selectedEvent, String Class, String sailNumber){
+    public static void addRacer(String fullName, String sailNumber, String selectedEvent, String Class){
         try( Connection conn = DriverManager.getConnection("jdbc:mysql://computing.gfmat.org:3306/DDalton_SailingClub?user=DDalton&useSSL=true", "DDalton", "7r66JBe3A8")){
             Statement statement = conn.createStatement();
-            statement.execute("INSERT INTO Race_Sign_In ( Event_ID, Class, Sail_Number) Values('"+selectedEvent+"','"+Class+"','"+sailNumber+"')");
+            statement.execute("INSERT INTO Race_Sign_In (Full_Name, Sail_Number, Class, Event_ID) Values('"+fullName+"','"+sailNumber+"','"+Class+"','"+selectedEvent+"')");
         } catch (SQLException ex) {
             System.out.println("errorMessage"+ ex);
         }
+    }
+    public static void deleteRacer(String fullName, String sailNumber, String selectedEvent, String Class){
+        try( Connection conn = DriverManager.getConnection("jdbc:mysql://computing.gfmat.org:3306/DDalton_SailingClub?user=DDalton&useSSL=true", "DDalton", "7r66JBe3A8")){
+            Statement statement = conn.createStatement();
+            statement.execute("DELETE FROM Race_Sign_In WHERE Full_Name = '" + fullName +"' AND sail_Number = '" + sailNumber +"' AND Event_Id = '" + selectedEvent +"' AND Class = '" + Class +"'");
+        } catch (SQLException ex) {
+            System.out.println("errorMessage"+ ex);
+    }
     }
     
 }
