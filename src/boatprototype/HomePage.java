@@ -169,7 +169,7 @@ public class HomePage extends javax.swing.JFrame {
 
     private void lockerLblActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lockerLblActionPerformed
         // TODO add your handling code here:
-        new Locker().setVisible(true);
+        new Lockers().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_lockerLblActionPerformed
 
@@ -193,6 +193,8 @@ public class HomePage extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        new OOD_Report().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

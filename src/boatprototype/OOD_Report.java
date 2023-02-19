@@ -27,21 +27,21 @@ import javax.swing.table.DefaultTableModel;
 
 
 
-public class RaceSignIn extends javax.swing.JFrame {
+public class OOD_Report extends javax.swing.JFrame {
 
 
     
     /**
      * Creates new form Events
      */
-    public RaceSignIn() {
+    public OOD_Report() {
         initComponents();
         try {
             //table_update();
             EventIDCbo_update();
 //            memberNameCbo_update();
         } catch (SQLException | ClassNotFoundException ex) {
-            Logger.getLogger(RaceSignIn.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(OOD_Report.class.getName()).log(Level.SEVERE, null, ex);
         }
  
     }
@@ -89,6 +89,55 @@ public class RaceSignIn extends javax.swing.JFrame {
         
     }
     
+    public class Duty {
+        //Create a Boat class to help with transferring data database to jTable
+        private int duty_id;
+        private String duty_name;
+        private String event_id;
+        private String member_id;
+        private String full_name;
+        
+        public int getDutyID() {
+            return duty_id;
+        }
+
+        public void setDutyID(int dutyId) {
+            this.duty_id = dutyId;
+        }
+
+        public String getDutyName() {
+            return duty_name;
+        }
+
+        public void setDutyName(String dutyName) {
+            this.duty_name = dutyName;
+        }
+
+        public String getEventId() {
+            return event_id;
+        }
+
+        public void setEventId(String eventId) {
+            this.event_id = eventId;
+        }
+
+        public String getMemberId() {
+            return member_id;
+        }
+
+        public void setMemberId(String memberId) {
+            this.member_id = memberId;
+        }
+        
+        public String getFullName() {
+            return full_name;
+        }
+
+        public void setFullName(String fullName) {
+            this.full_name = fullName;
+        }
+        
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -102,8 +151,8 @@ public class RaceSignIn extends javax.swing.JFrame {
     
     private void table_update() throws SQLException, ClassNotFoundException{
         Object eventId = eventIDCbo.getSelectedItem();
-        //String eventId = eventIDCbo.getModel().toString();
-        //System.out.println("String init");
+        //Object eventId = eventIDCbo.getSelectedItem();
+
        
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -143,7 +192,54 @@ public class RaceSignIn extends javax.swing.JFrame {
                         //Add the data from thew array into the next row in eventsTbl via the model
                         model.addRow(rowData);
                     }
+
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://computing.gfmat.org:3306/DDalton_SailingClub?user=DDalton&useSSL=true", "DDalton", "7r66JBe3A8");
+            //SELECT Duty_Sign_In.*, Members.Full_Name FROM Duty_Sign_In, Members WHERE Duty_Sign_In.Membership_ID = Duty_Sign_In.Membership_ID
+            statement = conn.prepareStatement("SELECT Duty_Sign_In.*, Members.Full_Name FROM Duty_Sign_In, Members WHERE Duty_Sign_In.Membership_ID = Members.Membership_ID AND Event_ID = '"+eventId.toString()+"'");
+            //statement = conn.prepareStatement("SELECT * FROM Duty_Sign_In WHERE Event_ID = '"+eventId.toString()+"'");
+            ResultSet rsd = statement.executeQuery();
+            //System.out.println("executed query");
             
+                ArrayList<Duty> list_Duty = new ArrayList();
+                while(rsd.next()){         
+                    // Create a boat object using the Boat Class
+                    //System.out.println("writing to Duty object");
+                    Duty duty = new Duty();
+                    //Add data to the boat object from the ResultSet
+                    duty.setDutyID(rsd.getInt("Duty_ID"));
+                    duty.setDutyName(rsd.getString("Duty_Name"));
+                    duty.setEventId(rsd.getString("Event_ID"));
+                    duty.setMemberId(rsd.getString("Membership_ID"));
+                    duty.setFullName(rsd.getString("Full_Name"));
+                    //Add the data from the boat object to the next row of the list object
+                    list_Duty.add(duty);
+                } 
+
+                
+                //Add data from array of Boat objects to eventsTbl
+                DefaultTableModel model_duty = (DefaultTableModel)dutiesTbl.getModel();   
+                model_duty.setRowCount(0);    
+                //Create a 2 dimensional array with 3 elements
+                Object rowData_Duty[] = new Object[3];  
+                //Fill up the array with the the next row of data from the list
+                for(int i = 0; i <list_Duty.size(); i++){ 
+                        //System.out.println("Writing to jttable");
+                        rowData_Duty[0] = list_Duty.get(i).full_name;
+                        rowData_Duty[1] = list_Duty.get(i).duty_name;
+                        rowData_Duty[2] = list_Duty.get(i).member_id;                        
+                        //Add the data from thew array into the next row in eventsTbl via the model
+                        model_duty.addRow(rowData_Duty);
+                    }
+            
+            
+            
+            
+            
+        } catch (SQLException ex) {
+            System.out.println("errorMessage"+ ex);
+        }    
             
             
             
@@ -156,10 +252,10 @@ public class RaceSignIn extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane2 = new javax.swing.JScrollPane();
+        dutyTbl = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
-        raceSignIn = new javax.swing.JLabel();
-        addBtn = new javax.swing.JButton();
-        deleteBtn = new javax.swing.JButton();
+        ood_Report = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         raceTbl = new javax.swing.JTable();
         homeBtn = new javax.swing.JButton();
@@ -172,53 +268,80 @@ public class RaceSignIn extends javax.swing.JFrame {
         eventDateTxt = new javax.swing.JTextField();
         eventStartTimeTxt = new javax.swing.JTextField();
         eventIDCbo = new javax.swing.JComboBox<>();
-        signUpPanel = new javax.swing.JPanel();
-        eventStartTimeLbl = new javax.swing.JLabel();
-        sailNumberTxt = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        NameTxt = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        classTxt = new javax.swing.JTextField();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        dutiesTbl = new javax.swing.JTable();
+
+        dutyTbl.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Member Name", "Duty Name", "Member ID"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        dutyTbl.getTableHeader().setReorderingAllowed(false);
+        dutyTbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                dutyTblMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(dutyTbl);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel2.setBackground(new java.awt.Color(252, 4, 4));
 
-        raceSignIn.setBackground(new java.awt.Color(252, 4, 4));
-        raceSignIn.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        raceSignIn.setForeground(new java.awt.Color(255, 255, 255));
-        raceSignIn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Test/PSCLogoSmall.PNG"))); // NOI18N
-        raceSignIn.setText("Race Sign In");
+        ood_Report.setBackground(new java.awt.Color(252, 4, 4));
+        ood_Report.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        ood_Report.setForeground(new java.awt.Color(255, 255, 255));
+        ood_Report.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Test/PSCLogoSmall.PNG"))); // NOI18N
+        ood_Report.setText("OOD Report");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(raceSignIn, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ood_Report, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 20, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(raceSignIn, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(ood_Report, javax.swing.GroupLayout.Alignment.TRAILING)
         );
-
-        addBtn.setText("Add");
-        addBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addBtnActionPerformed(evt);
-            }
-        });
-
-        deleteBtn.setText("Delete");
-        deleteBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteBtnActionPerformed(evt);
-            }
-        });
 
         raceTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
                 {null, null, null},
                 {null, null, null},
                 {null, null, null},
@@ -347,113 +470,75 @@ public class RaceSignIn extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        signUpPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Sign Up Here:"));
+        dutiesTbl.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Member Name", "Duty Name", "Member ID"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
 
-        eventStartTimeLbl.setText("Sail No.");
-
-        sailNumberTxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sailNumberTxtActionPerformed(evt);
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
-
-        jLabel2.setText("Helm Name");
-
-        jLabel1.setText("Class");
-
-        classTxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                classTxtActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout signUpPanelLayout = new javax.swing.GroupLayout(signUpPanel);
-        signUpPanel.setLayout(signUpPanelLayout);
-        signUpPanelLayout.setHorizontalGroup(
-            signUpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(signUpPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(signUpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(signUpPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(NameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(signUpPanelLayout.createSequentialGroup()
-                        .addGroup(signUpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(eventStartTimeLbl)
-                            .addComponent(jLabel1))
-                        .addGap(27, 27, 27)
-                        .addGroup(signUpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(sailNumberTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(classTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(22, Short.MAX_VALUE))
-        );
-
-        signUpPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {NameTxt, classTxt, sailNumberTxt});
-
-        signUpPanelLayout.setVerticalGroup(
-            signUpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(signUpPanelLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(signUpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(NameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(15, 15, 15)
-                .addGroup(signUpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(sailNumberTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(eventStartTimeLbl))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(signUpPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(classTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addContainerGap(27, Short.MAX_VALUE))
-        );
+        jScrollPane3.setViewportView(dutiesTbl);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(creatEventPnl1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(signUpPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(homeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(49, 49, 49)
-                                .addComponent(deleteBtn)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
-            .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(creatEventPnl1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(148, 148, 148))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(homeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20)
                         .addComponent(creatEventPnl1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(signUpPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addBtn)
-                    .addComponent(deleteBtn))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 463, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
                 .addComponent(homeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         creatEventPnl1.getAccessibleContext().setAccessibleName("Event Details");
@@ -474,57 +559,11 @@ public class RaceSignIn extends javax.swing.JFrame {
             }
             
         } catch (SQLException ex) {
-            Logger.getLogger(RaceSignIn.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(OOD_Report.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         
     }    
-
-   /* private void memberNameCbo_update() throws SQLException, ClassNotFoundException{
-        try {
-                 
-            conn = DriverManager.getConnection("jdbc:mysql://computing.gfmat.org:3306/DDalton_SailingClub?user=DDalton&useSSL=true", "DDalton", "7r66JBe3A8");
-            statement = conn.prepareStatement("SELECT Full_Name FROM Members ORDER BY Full_Name DESC");
-            ResultSet rs = statement.executeQuery();
-            while(rs.next()) 
-            {
-                memberNameCbo.addItem(rs.getString("Full_Name"));
-     
-            }
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(RaceSignIn.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        
-    } 
-    */
-    
-    private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
-        // Add record to Duty Sign in table: 
-        Object fullName = NameTxt.getText();
-        Object sailNumber = sailNumberTxt.getText();
-        Object selectedEvent = eventIDCbo.getSelectedItem();
-        Object Class = classTxt.getText(); 
-        System.out.println("WORKING HERE");
-        DataManipulation.addRacer(fullName.toString(), sailNumber.toString(), selectedEvent.toString(), Class.toString() );
-        
-        
-        try {
-            table_update();
-            JOptionPane.showMessageDialog(this, "Record Added"); 
-        } catch (SQLException | ClassNotFoundException ex) {
-            Logger.getLogger(RaceSignIn.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        
-        //Empty fields for next action
-        sailNumberTxt.setText("");
-        NameTxt.setText("");
-        classTxt.setText(" ");
-        NameTxt.requestFocus();
-        
-    }//GEN-LAST:event_addBtnActionPerformed
 
     private void homeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBtnActionPerformed
         // TODO add your handling code here:
@@ -532,39 +571,8 @@ public class RaceSignIn extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_homeBtnActionPerformed
 
-    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
-        // TODO add your handling code here:
-        Object fullName = NameTxt.getText();
-        Object sailNumber = sailNumberTxt.getText();
-        Object selectedEvent = eventIDCbo.getSelectedItem();
-        Object Class = classTxt.getText();
-
-        DataManipulation.deleteRacer(fullName.toString(), sailNumber.toString(), selectedEvent.toString(), Class.toString() );   
-        
-        JOptionPane.showMessageDialog(this, "Record Deleted"); 
-        try {
-            table_update();
-        } catch (SQLException | ClassNotFoundException ex) {
-            Logger.getLogger(RaceSignIn.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        //Empty fields for next action
-        sailNumberTxt.setText("");
-        NameTxt.setText("");
-        classTxt.setText("");
-        NameTxt.requestFocus();
-    }//GEN-LAST:event_deleteBtnActionPerformed
-
     private void raceTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_raceTblMouseClicked
-        // TODO add your handling code here:
-        DefaultTableModel Df = (DefaultTableModel)raceTbl.getModel();
-        int selectedIndex = raceTbl.getSelectedRow();
 
-        String race = Df.getValueAt(selectedIndex, 2).toString();
-        sailNumberTxt.setText(race);        
-        String memberName = Df.getValueAt(selectedIndex, 0).toString();      
-        NameTxt.setText(memberName);
-        classTxt.setText(Df.getValueAt(selectedIndex, 1).toString());
 
     }//GEN-LAST:event_raceTblMouseClicked
 
@@ -592,21 +600,17 @@ public class RaceSignIn extends javax.swing.JFrame {
             table_update();
             
         } catch (SQLException ex) {
-            Logger.getLogger(RaceSignIn.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(OOD_Report.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(RaceSignIn.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(OOD_Report.class.getName()).log(Level.SEVERE, null, ex);
         }
         
        
     }//GEN-LAST:event_eventIDCboActionPerformed
 
-    private void classTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classTxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_classTxtActionPerformed
+    private void dutyTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dutyTblMouseClicked
 
-    private void sailNumberTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sailNumberTxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_sailNumberTxtActionPerformed
+    }//GEN-LAST:event_dutyTblMouseClicked
 
     /**
      * @param args the command line arguments
@@ -625,14 +629,18 @@ public class RaceSignIn extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RaceSignIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OOD_Report.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RaceSignIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OOD_Report.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RaceSignIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OOD_Report.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RaceSignIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(OOD_Report.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -641,34 +649,29 @@ public class RaceSignIn extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RaceSignIn().setVisible(true);
+                new OOD_Report().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField NameTxt;
-    private javax.swing.JButton addBtn;
-    private javax.swing.JTextField classTxt;
     private javax.swing.JPanel creatEventPnl1;
-    private javax.swing.JButton deleteBtn;
+    private javax.swing.JTable dutiesTbl;
+    private javax.swing.JTable dutyTbl;
     private javax.swing.JLabel eventDateLbl1;
     private javax.swing.JTextField eventDateTxt;
     private javax.swing.JComboBox<String> eventIDCbo;
     private javax.swing.JLabel eventNameLbl1;
     private javax.swing.JTextField eventNameTxt;
-    private javax.swing.JLabel eventStartTimeLbl;
     private javax.swing.JLabel eventStartTimeLbl1;
     private javax.swing.JTextField eventStartTimeTxt;
     private javax.swing.JButton homeBtn;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel raceSignIn;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JLabel ood_Report;
     private javax.swing.JTable raceTbl;
-    private javax.swing.JTextField sailNumberTxt;
-    private javax.swing.JPanel signUpPanel;
     // End of variables declaration//GEN-END:variables
 }
