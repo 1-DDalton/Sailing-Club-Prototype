@@ -42,7 +42,7 @@ public class Lockers extends javax.swing.JFrame {
         try {
             table_update();
         } catch (SQLException | ClassNotFoundException ex) {
-            Logger.getLogger(Locker.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Lockers.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -77,7 +77,7 @@ public class Lockers extends javax.swing.JFrame {
         public void setPassword(String password) {
             this.password = password;
         }
-    
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -249,7 +249,7 @@ public class Lockers extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        addBtn.setText("Save");
+        addBtn.setText("Add");
         addBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addBtnActionPerformed(evt);
@@ -325,8 +325,7 @@ public class Lockers extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(homeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(8, 8, 8)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 499, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 509, Short.MAX_VALUE)
                 .addGap(18, 18, 18))
         );
         layout.setVerticalGroup(
@@ -361,7 +360,7 @@ public class Lockers extends javax.swing.JFrame {
         try {
             table_update();
         } catch (SQLException | ClassNotFoundException ex) {
-            Logger.getLogger(Locker.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Lockers.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         //Empty fields for next action
@@ -401,7 +400,7 @@ public class Lockers extends javax.swing.JFrame {
         for(int i = 0; i < len ; i ++){
             password[i] = combination.charAt(r.nextInt(combination.length()));
         }
-        }
+        passwordTxt.setText(String.valueOf(password));
     }//GEN-LAST:event_passwordGeneratorBtnActionPerformed
 
     private void lockerNameTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lockerNameTxtActionPerformed
