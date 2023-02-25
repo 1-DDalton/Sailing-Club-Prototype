@@ -154,10 +154,10 @@ public class DataManipulation {
     }
     }
     
-    public static void addLocker(String password, String lockerName, String memberID){
+    public static void addLocker(String password, String lockerName, String memberID, String available){
         try( Connection conn = DriverManager.getConnection("jdbc:mysql://computing.gfmat.org:3306/DDalton_SailingClub?user=DDalton&useSSL=true", "DDalton", "7r66JBe3A8")){
             Statement statement = conn.createStatement();
-            statement.execute("INSERT INTO Locker Values('"+password+"','"+lockerName+"','"+memberID+"')");
+            statement.execute("UPDATE Locker SET Locker_ID = '"+lockerName+"', Locker_Password = '"+password+"', Membership_ID = '"+memberID+"', Available = '"+available+"' WHERE Locker_ID = '"+lockerName+"'");
         } catch (SQLException ex) {
             System.out.println("errorMessage"+ ex);
         }
