@@ -391,8 +391,15 @@ public class Lockers extends javax.swing.JFrame {
         // TODO add your handling code here:
         DefaultTableModel Df = (DefaultTableModel)lockerTbl.getModel();
         int selectedIndex = lockerTbl.getSelectedRow();
+        String available = Df.getValueAt(selectedIndex, 1).toString();
+            if (available == "No") {
+                System.out.println("This Locker is Taken.");
+            }else{
+                lockerNameTxt.setText(Df.getValueAt(selectedIndex, 0).toString());
+            }
         
-        lockerNameTxt.setText(Df.getValueAt(selectedIndex, 0).toString());
+        
+
     }//GEN-LAST:event_lockerTblMouseClicked
 
     private void passwordTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordTxtActionPerformed
