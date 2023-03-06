@@ -154,14 +154,33 @@ public class DataManipulation {
     }
     }
     
-    public static void addLocker(String password, String lockerName, String memberID, String available){
+    public static void addLocker(String password, String lockerName, String userName, String available){
         try( Connection conn = DriverManager.getConnection("jdbc:mysql://computing.gfmat.org:3306/DDalton_SailingClub?user=DDalton&useSSL=true", "DDalton", "7r66JBe3A8")){
             Statement statement = conn.createStatement();
-            statement.execute("UPDATE Locker SET Locker_ID = '"+lockerName+"', Locker_Password = '"+password+"', Membership_ID = '"+memberID+"', Available = '"+available+"' WHERE Locker_ID = '"+lockerName+"'");
+            statement.execute("UPDATE Locker SET Locker_ID = '"+lockerName+"', Locker_Password = '"+password+"', User_Name = '"+userName+"', Available = '"+available+"' WHERE Locker_ID = '"+lockerName+"'");
         } catch (SQLException ex) {
             System.out.println("errorMessage"+ ex);
         }
         
     }  
+    public static void updateLockerTable(){
+        try( Connection conn = DriverManager.getConnection("jdbc:mysql://computing.gfmat.org:3306/DDalton_SailingClub?user=DDalton&useSSL=true", "DDalton", "7r66JBe3A8")){
+            Statement statement = conn.createStatement();
+            statement.execute("UPDATE Locker SET Locker_Password = '', Available = 'Yes', User_Name = '' WHERE Locker_ID != 'Z9'");
+ 
+        } catch (SQLException ex) {
+            System.out.println("errorMessage"+ ex);
+        }
+    }
     
+    
+    public static void updateLocker(String lockerName){
+        try( Connection conn = DriverManager.getConnection("jdbc:mysql://computing.gfmat.org:3306/DDalton_SailingClub?user=DDalton&useSSL=true", "DDalton", "7r66JBe3A8")){
+            Statement statement = conn.createStatement();
+            statement.execute("UPDATE Locker SET Locker_Password = '', Available = 'Yes', User_Name = '' WHERE Locker_ID = '"+lockerName+"'");
+ 
+        } catch (SQLException ex) {
+            System.out.println("errorMessage"+ ex);
+        }
+    }
 }

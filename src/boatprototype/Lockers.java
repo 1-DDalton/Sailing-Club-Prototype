@@ -49,18 +49,18 @@ public class Lockers extends javax.swing.JFrame {
     
     public class Locker {
         //Create a Boat class to help with transferring data database to jTable
-        private String member_id;
+        private String user_name;
         private String locker_name;
         private String password;
         private String available;
 
 
-        public String getMemberId() {
-            return member_id;
+        public String getUserName() {
+            return user_name;
         }
 
-        public void setMemberId(String memberId) {
-            this.member_id = memberId;
+        public void setUserName(String userName) {
+            this.user_name = userName;
         }
         
         public String getLockerName() {
@@ -113,7 +113,7 @@ public class Lockers extends javax.swing.JFrame {
                     //Add data to the boat object from the ResultSet
                     locker.setPassword(rs.getString("Locker_Password"));
                     locker.setLockerName(rs.getString("Locker_ID"));
-                    locker.setMemberId(rs.getString("Membership_ID"));
+                    locker.setUserName(rs.getString("User_Name"));
                     locker.setAvailable(rs.getString("Available"));
                     //Add the data from the boat object to the next row of the list object
                     list.add(locker);
@@ -147,13 +147,13 @@ public class Lockers extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         boatAdmin = new javax.swing.JLabel();
         lockerPnl = new javax.swing.JPanel();
-        memberId = new javax.swing.JLabel();
+        nameLbl = new javax.swing.JLabel();
         passwordGeneratorBtn = new javax.swing.JButton();
         lockerNameLbl = new javax.swing.JLabel();
         lockerNameTxt = new javax.swing.JTextField();
         passwordLbl = new javax.swing.JLabel();
         passwordTxt = new javax.swing.JTextField();
-        memberIDTxt = new javax.swing.JTextField();
+        nameTxt = new javax.swing.JTextField();
         updateBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         lockerTbl = new javax.swing.JTable();
@@ -184,7 +184,7 @@ public class Lockers extends javax.swing.JFrame {
 
         lockerPnl.setBorder(javax.swing.BorderFactory.createTitledBorder("Add Boat Here:"));
 
-        memberId.setText("Member ID");
+        nameLbl.setText("Name");
 
         passwordGeneratorBtn.setText("Generate");
         passwordGeneratorBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -214,6 +214,12 @@ public class Lockers extends javax.swing.JFrame {
             }
         });
 
+        nameTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nameTxtActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout lockerPnlLayout = new javax.swing.GroupLayout(lockerPnl);
         lockerPnl.setLayout(lockerPnlLayout);
         lockerPnlLayout.setHorizontalGroup(
@@ -223,7 +229,7 @@ public class Lockers extends javax.swing.JFrame {
                 .addGroup(lockerPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(lockerPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(lockerPnlLayout.createSequentialGroup()
-                            .addComponent(memberId)
+                            .addComponent(nameLbl)
                             .addGap(14, 14, 14))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, lockerPnlLayout.createSequentialGroup()
                             .addComponent(lockerNameLbl)
@@ -238,15 +244,15 @@ public class Lockers extends javax.swing.JFrame {
                         .addComponent(passwordGeneratorBtn)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(lockerNameTxt)
-                    .addComponent(memberIDTxt))
+                    .addComponent(nameTxt))
                 .addContainerGap())
         );
         lockerPnlLayout.setVerticalGroup(
             lockerPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(lockerPnlLayout.createSequentialGroup()
                 .addGroup(lockerPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(memberId)
-                    .addComponent(memberIDTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nameLbl)
+                    .addComponent(nameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(lockerPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lockerNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -363,9 +369,9 @@ public class Lockers extends javax.swing.JFrame {
         // Add record to locker table: 
         String password = passwordTxt.getText();
         String lockerName = lockerNameTxt.getText();
-        String memberID = memberIDTxt.getText();
+        String userName = nameTxt.getText();
         String available = "No";
-        DataManipulation.addLocker(password, lockerName, memberID, available);
+        DataManipulation.addLocker(password, lockerName, userName, available);
         
         JOptionPane.showMessageDialog(this, "Record ||Updated"); 
         try {
@@ -377,7 +383,7 @@ public class Lockers extends javax.swing.JFrame {
         //Empty fields for next action
         passwordTxt.setText("");
         lockerNameTxt.setText("");
-        memberIDTxt.setText("");
+        nameTxt.setText("");
         passwordTxt.requestFocus();
     }//GEN-LAST:event_updateBtnActionPerformed
 
@@ -429,6 +435,10 @@ public class Lockers extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_passwordTxtPropertyChange
 
+    private void nameTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nameTxtActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -476,8 +486,8 @@ public class Lockers extends javax.swing.JFrame {
     private javax.swing.JTextField lockerNameTxt;
     private javax.swing.JPanel lockerPnl;
     private javax.swing.JTable lockerTbl;
-    private javax.swing.JTextField memberIDTxt;
-    private javax.swing.JLabel memberId;
+    private javax.swing.JLabel nameLbl;
+    private javax.swing.JTextField nameTxt;
     private javax.swing.JButton passwordGeneratorBtn;
     private javax.swing.JLabel passwordLbl;
     private javax.swing.JTextField passwordTxt;
