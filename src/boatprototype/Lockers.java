@@ -398,12 +398,11 @@ public class Lockers extends javax.swing.JFrame {
         DefaultTableModel Df = (DefaultTableModel)lockerTbl.getModel();
         int selectedIndex = lockerTbl.getSelectedRow();
         String available = Df.getValueAt(selectedIndex, 1).toString();
-            if (available == "No") {
-                System.out.println("This Locker is Taken.");
+            if (available.equals("No")) {
+                JOptionPane.showMessageDialog(this, "This Locker is Taken.");
             }else{
                 lockerNameTxt.setText(Df.getValueAt(selectedIndex, 0).toString());
             }
-        
         
 
     }//GEN-LAST:event_lockerTblMouseClicked
