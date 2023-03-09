@@ -257,7 +257,7 @@ public class Locker_Admin extends javax.swing.JFrame {
                 {null, null, null}
             },
             new String [] {
-                "Locker Name", "Available", "Name"
+                "Select a locker", "Available", "Name"
             }
         ) {
             Class[] types = new Class [] {
@@ -370,9 +370,16 @@ public class Locker_Admin extends javax.swing.JFrame {
 
     private void resetBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetBtnActionPerformed
         // TODO add your handling code here:
-        DataManipulation.updateLockerTable();
+        int result = JOptionPane.showConfirmDialog(this,"Are you sure you want to RESET ALL?", "Reset table?",
+               JOptionPane.YES_NO_OPTION,
+               JOptionPane.QUESTION_MESSAGE);
+            if(result == JOptionPane.YES_OPTION){
+               DataManipulation.updateLockerTable();
+               JOptionPane.showMessageDialog(this, "Table Reset");
+            }
         
-        JOptionPane.showMessageDialog(this, "Record Updated"); 
+        
+
         try {
             table_update();
         } catch (SQLException | ClassNotFoundException ex) {
@@ -388,9 +395,17 @@ public class Locker_Admin extends javax.swing.JFrame {
     private void lockerResetBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lockerResetBtnActionPerformed
         // TODO add your handling code here:
         String lockerName = lockerNameTxt.getText();
-        DataManipulation.updateLocker(lockerName);
-        
-        JOptionPane.showMessageDialog(this, "Record Updated"); 
+        if (lockerName.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Please select a locker to reset.");
+        }else{
+            int result = JOptionPane.showConfirmDialog(this,"Are you sure you want to RESET THIS LOCKER?", "Reset locker?",
+               JOptionPane.YES_NO_OPTION,
+               JOptionPane.QUESTION_MESSAGE);
+            if(result == JOptionPane.YES_OPTION){
+               DataManipulation.updateLockerTable();
+               JOptionPane.showMessageDialog(this, "Locker Reset");
+            }
+        }
         try {
             table_update();
         } catch (SQLException | ClassNotFoundException ex) {

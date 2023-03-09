@@ -195,6 +195,7 @@ public class Lockers extends javax.swing.JFrame {
 
         lockerNameLbl.setText("Locker Name");
 
+        lockerNameTxt.setEditable(false);
         lockerNameTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lockerNameTxtActionPerformed(evt);
@@ -203,6 +204,7 @@ public class Lockers extends javax.swing.JFrame {
 
         passwordLbl.setText("Password");
 
+        passwordTxt.setToolTipText("A-Z    a-z    0-9    !?@#*&");
         passwordTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 passwordTxtActionPerformed(evt);
@@ -292,7 +294,7 @@ public class Lockers extends javax.swing.JFrame {
                 {null, null}
             },
             new String [] {
-                "Locker Name", "Available"
+                "Pick available locker", "Available"
             }
         ) {
             Class[] types = new Class [] {
@@ -371,20 +373,31 @@ public class Lockers extends javax.swing.JFrame {
         String lockerName = lockerNameTxt.getText();
         String userName = nameTxt.getText();
         String available = "No";
-        DataManipulation.addLocker(password, lockerName, userName, available);
+        int passwordLength = password.length();
         
-        JOptionPane.showMessageDialog(this, "Record | Updated"); 
-        try {
-            table_update();
-        } catch (SQLException | ClassNotFoundException ex) {
+        if (lockerName.equals("")){
+            JOptionPane.showMessageDialog(this, "Please select an empty locker.");
+        }else if (passwordLength != 6){
+            JOptionPane.showMessageDialog(this, "Please use the correct password length of 6.");
+        }else if (userName.isBlank()){
+            JOptionPane.showMessageDialog(this, "Please enter Name");
+        }else{
+            DataManipulation.addLocker(password, lockerName, userName, available);
+            JOptionPane.showMessageDialog(this, "Record | Updated"); 
+             // empty all text boxes
+            passwordTxt.setText("");
+            lockerNameTxt.setText("");
+            nameTxt.setText("");
+            passwordTxt.requestFocus();           
+            
+            try {
+                table_update();
+            }catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(Lockers.class.getName()).log(Level.SEVERE, null, ex);
+
+            }
         }
         
-        //Empty fields for next action
-        passwordTxt.setText("");
-        lockerNameTxt.setText("");
-        nameTxt.setText("");
-        passwordTxt.requestFocus();
     }//GEN-LAST:event_updateBtnActionPerformed
 
     private void homeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBtnActionPerformed
