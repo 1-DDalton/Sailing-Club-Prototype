@@ -373,7 +373,7 @@ public class Lockers extends javax.swing.JFrame {
         String available = "No";
         DataManipulation.addLocker(password, lockerName, userName, available);
         
-        JOptionPane.showMessageDialog(this, "Record ||Updated"); 
+        JOptionPane.showMessageDialog(this, "Record | Updated"); 
         try {
             table_update();
         } catch (SQLException | ClassNotFoundException ex) {
