@@ -169,11 +169,11 @@ public class Boat_Details_Report extends javax.swing.JFrame {
         backBtn = new javax.swing.JButton();
         backBtn1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        boatAdmin = new javax.swing.JLabel();
+        boatDetailsReportLbl = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         boatTbl = new javax.swing.JTable();
         homeBtn = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        backAdminBtn = new javax.swing.JButton();
 
         backBtn.setText("Back");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -193,23 +193,23 @@ public class Boat_Details_Report extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(252, 4, 4));
 
-        boatAdmin.setBackground(new java.awt.Color(252, 4, 4));
-        boatAdmin.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        boatAdmin.setForeground(new java.awt.Color(255, 255, 255));
-        boatAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Test/PSCLogoSmall.PNG"))); // NOI18N
-        boatAdmin.setText("Boat Details Report");
+        boatDetailsReportLbl.setBackground(new java.awt.Color(252, 4, 4));
+        boatDetailsReportLbl.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        boatDetailsReportLbl.setForeground(new java.awt.Color(255, 255, 255));
+        boatDetailsReportLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Test/PSCLogoSmall.PNG"))); // NOI18N
+        boatDetailsReportLbl.setText("Boat Details Report");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(boatAdmin)
+                .addComponent(boatDetailsReportLbl)
                 .addGap(0, 10, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(boatAdmin, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(boatDetailsReportLbl, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         boatTbl.setModel(new javax.swing.table.DefaultTableModel(
@@ -238,9 +238,16 @@ public class Boat_Details_Report extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         boatTbl.getTableHeader().setReorderingAllowed(false);
@@ -258,10 +265,10 @@ public class Boat_Details_Report extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Back");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        backAdminBtn.setText("Back");
+        backAdminBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                backAdminBtnActionPerformed(evt);
             }
         });
 
@@ -270,17 +277,14 @@ public class Boat_Details_Report extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 785, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 785, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(29, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(backAdminBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(homeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41))
@@ -293,7 +297,7 @@ public class Boat_Details_Report extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(backAdminBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(homeBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -325,11 +329,11 @@ public class Boat_Details_Report extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_backBtn1ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void backAdminBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backAdminBtnActionPerformed
         // TODO add your handling code here:
         new Admin().setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_backAdminBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -370,12 +374,12 @@ public class Boat_Details_Report extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backAdminBtn;
     private javax.swing.JButton backBtn;
     private javax.swing.JButton backBtn1;
-    private javax.swing.JLabel boatAdmin;
+    private javax.swing.JLabel boatDetailsReportLbl;
     private javax.swing.JTable boatTbl;
     private javax.swing.JButton homeBtn;
-    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables

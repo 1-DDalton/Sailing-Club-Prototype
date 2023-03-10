@@ -259,12 +259,12 @@ public class OOD_Report extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         raceTbl = new javax.swing.JTable();
         homeBtn = new javax.swing.JButton();
-        creatEventPnl1 = new javax.swing.JPanel();
+        eventDetailsPnl = new javax.swing.JPanel();
         eventNameLbl1 = new javax.swing.JLabel();
         eventDateLbl1 = new javax.swing.JLabel();
         eventStartTimeLbl1 = new javax.swing.JLabel();
         eventNameTxt = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
+        eventIDLbl = new javax.swing.JLabel();
         eventDateTxt = new javax.swing.JTextField();
         eventStartTimeTxt = new javax.swing.JTextField();
         eventIDCbo = new javax.swing.JComboBox<>();
@@ -401,7 +401,7 @@ public class OOD_Report extends javax.swing.JFrame {
             }
         });
 
-        creatEventPnl1.setBorder(javax.swing.BorderFactory.createTitledBorder("Event Details:"));
+        eventDetailsPnl.setBorder(javax.swing.BorderFactory.createTitledBorder("Event Details:"));
 
         eventNameLbl1.setText("Name");
 
@@ -416,7 +416,7 @@ public class OOD_Report extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("Event ID");
+        eventIDLbl.setText("Event ID");
 
         eventDateTxt.setEditable(false);
         eventDateTxt.setToolTipText("YYYY-MM-DD");
@@ -430,41 +430,41 @@ public class OOD_Report extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout creatEventPnl1Layout = new javax.swing.GroupLayout(creatEventPnl1);
-        creatEventPnl1.setLayout(creatEventPnl1Layout);
-        creatEventPnl1Layout.setHorizontalGroup(
-            creatEventPnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(creatEventPnl1Layout.createSequentialGroup()
+        javax.swing.GroupLayout eventDetailsPnlLayout = new javax.swing.GroupLayout(eventDetailsPnl);
+        eventDetailsPnl.setLayout(eventDetailsPnlLayout);
+        eventDetailsPnlLayout.setHorizontalGroup(
+            eventDetailsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(eventDetailsPnlLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(creatEventPnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(eventDetailsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(eventStartTimeLbl1)
                     .addComponent(eventDateLbl1)
                     .addComponent(eventNameLbl1)
-                    .addComponent(jLabel3))
+                    .addComponent(eventIDLbl))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(creatEventPnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(eventDetailsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(eventNameTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
                     .addComponent(eventDateTxt)
                     .addComponent(eventStartTimeTxt)
                     .addComponent(eventIDCbo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
-        creatEventPnl1Layout.setVerticalGroup(
-            creatEventPnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(creatEventPnl1Layout.createSequentialGroup()
-                .addGroup(creatEventPnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
+        eventDetailsPnlLayout.setVerticalGroup(
+            eventDetailsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(eventDetailsPnlLayout.createSequentialGroup()
+                .addGroup(eventDetailsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(eventIDLbl)
                     .addComponent(eventIDCbo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
-                .addGroup(creatEventPnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(eventDetailsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(eventNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(eventNameLbl1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(creatEventPnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(eventDetailsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(eventDateLbl1)
                     .addComponent(eventDateTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(creatEventPnl1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(eventDetailsPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(eventStartTimeLbl1)
                     .addComponent(eventStartTimeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
@@ -516,7 +516,7 @@ public class OOD_Report extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(creatEventPnl1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(eventDetailsPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(148, 148, 148))
@@ -532,7 +532,7 @@ public class OOD_Report extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(creatEventPnl1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(eventDetailsPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 463, Short.MAX_VALUE))
@@ -541,7 +541,7 @@ public class OOD_Report extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        creatEventPnl1.getAccessibleContext().setAccessibleName("Event Details");
+        eventDetailsPnl.getAccessibleContext().setAccessibleName("Event Details");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -655,18 +655,18 @@ public class OOD_Report extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel creatEventPnl1;
     private javax.swing.JTable dutiesTbl;
     private javax.swing.JTable dutyTbl;
     private javax.swing.JLabel eventDateLbl1;
     private javax.swing.JTextField eventDateTxt;
+    private javax.swing.JPanel eventDetailsPnl;
     private javax.swing.JComboBox<String> eventIDCbo;
+    private javax.swing.JLabel eventIDLbl;
     private javax.swing.JLabel eventNameLbl1;
     private javax.swing.JTextField eventNameTxt;
     private javax.swing.JLabel eventStartTimeLbl1;
     private javax.swing.JTextField eventStartTimeTxt;
     private javax.swing.JButton homeBtn;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

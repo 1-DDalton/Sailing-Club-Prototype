@@ -478,27 +478,7 @@ public class RaceSignIn extends javax.swing.JFrame {
         }
 
         
-    }    
-
-   /* private void memberNameCbo_update() throws SQLException, ClassNotFoundException{
-        try {
-                 
-            conn = DriverManager.getConnection("jdbc:mysql://computing.gfmat.org:3306/DDalton_SailingClub?user=DDalton&useSSL=true", "DDalton", "7r66JBe3A8");
-            statement = conn.prepareStatement("SELECT Full_Name FROM Members ORDER BY Full_Name DESC");
-            ResultSet rs = statement.executeQuery();
-            while(rs.next()) 
-            {
-                memberNameCbo.addItem(rs.getString("Full_Name"));
-     
-            }
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(RaceSignIn.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        
     } 
-    */
     
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         // Add record to Duty Sign in table: 
