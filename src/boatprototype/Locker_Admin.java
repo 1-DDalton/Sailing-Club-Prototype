@@ -107,17 +107,17 @@ public class Locker_Admin extends javax.swing.JFrame {
                 
                 ArrayList<Locker> list = new ArrayList();
                 while(rs.next()){         
-                    // Create a boat object using the Boat Class
+                    // Create a locker object using the locker Class
                     Locker locker = new Locker();
-                    //Add data to the boat object from the ResultSet
+                    //Add data to the locker object from the ResultSet
                     locker.setLockerName(rs.getString("Locker_ID"));
                     locker.setUserName(rs.getString("User_Name"));
                     locker.setAvailable(rs.getString("Available"));
-                    //Add the data from the boat object to the next row of the list object
+                    //Add the data from the locker object to the next row of the list object
                     list.add(locker);
                 } 
 
-                //Add data from array of Boat objects to boatTbl
+                //Add data from array of locker objects to lockerTbl
                 DefaultTableModel model = (DefaultTableModel)lockerTbl.getModel();   
                 model.setRowCount(0);    
                 //Create a 2 dimensional array with 6 elements
@@ -127,7 +127,7 @@ public class Locker_Admin extends javax.swing.JFrame {
                         rowData[0] = list.get(i).locker_name;
                         rowData[1] = list.get(i).available;
                         rowData[2] = list.get(i).user_name;
-                        //Add the data from thew array into the next row in eventsTbl via the model
+                        //Add the data from thew array into the next row in lockerTbl via the model
                         model.addRow(rowData);
                     }
             
@@ -179,7 +179,7 @@ public class Locker_Admin extends javax.swing.JFrame {
             .addComponent(lockerAdmin, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
-        lockerPnl.setBorder(javax.swing.BorderFactory.createTitledBorder("Add Boat Here:"));
+        lockerPnl.setBorder(javax.swing.BorderFactory.createTitledBorder("Selected Locker:"));
 
         nameLbl.setText("Name");
 
@@ -342,6 +342,8 @@ public class Locker_Admin extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE))
                 .addContainerGap())
         );
+
+        lockerPnl.getAccessibleContext().setAccessibleName("Select Locker:");
 
         getAccessibleContext().setAccessibleDescription("");
 

@@ -50,7 +50,7 @@ public class DataManipulation {
         statement.execute("INSERT INTO Address Values('"+ memberFamily_ID +"','"+memberAddress1+"','"+memberAddress2+"','"+memberTown+"','"+memberPostcode+"')");
         statement.execute("INSERT INTO Members Values('"+ memberId +"','"+memberName+"','"+memberDOB+"','"+memberEmail+"','"+memberOccupation+"','"+membershipType+"','"+memberPhone+"','"+memberFamily_ID+"')");
 
-
+        
     } catch (SQLException ex) {
         System.out.println("errorMessage"+ ex);
     }
@@ -128,15 +128,6 @@ public class DataManipulation {
         }
     }
 
-    /*public static void updateDuty(String selectedDuty , String selectedEvent, String membershipId, String dutyId){
-        try( Connection conn = DriverManager.getConnection("jdbc:mysql://computing.gfmat.org:3306/DDalton_SailingClub?user=DDalton&useSSL=true", "DDalton", "7r66JBe3A8")){
-            Statement statement = conn.createStatement();
-            statement.execute("UPDATE Events SET Membership_ID = '"+ membershipId + "', Event_ID = '" + selectedEvent+ "', Duty_Name = '"+ selectedDuty+"' WHERE Duty_ID = '" + dutyId +"'");
-        } catch (SQLException ex) {
-            System.out.println("errorMessage"+ ex);
-        }
-    }
-*/
     public static void addRacer(String fullName, String sailNumber, String selectedEvent, String Class){
         try( Connection conn = DriverManager.getConnection("jdbc:mysql://computing.gfmat.org:3306/DDalton_SailingClub?user=DDalton&useSSL=true", "DDalton", "7r66JBe3A8")){
             Statement statement = conn.createStatement();

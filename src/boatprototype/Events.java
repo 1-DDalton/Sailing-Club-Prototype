@@ -106,18 +106,18 @@ public class Events extends javax.swing.JFrame {
                 
                 ArrayList<Event> list = new ArrayList();
                 while(rs.next()){         
-                    // Create a boat object using the Boat Class
+                    // Create an event object using the Event Class
                     Event event = new Event();
-                    //Add data to the boat object from the ResultSet
+                    //Add data to the event object from the ResultSet
                     event.setEventId(rs.getString("event_id"));
                     event.setEventName(rs.getString("event_name"));
                     event.setEventDate(rs.getString("event_date"));
                     event.setEventStartTime(rs.getString("event_start_time"));                        
-                    //Add the data from the boat object to the next row of the list object
+                    //Add the data from the event object to the next row of the list object
                     list.add(event);
                 } 
 
-                //Add data from array of Boat objects to eventsTbl
+                //Add data from array of Event objects to eventsTbl
                 DefaultTableModel model = (DefaultTableModel)eventsTbl.getModel();   
                 model.setRowCount(0);    
                 //Create a 2 dimensional array with 3 elements
