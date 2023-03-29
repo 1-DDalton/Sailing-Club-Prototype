@@ -43,8 +43,11 @@ public class HomePage extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(0, 0, 0));
+        setForeground(new java.awt.Color(0, 0, 0));
         setResizable(false);
+
+        jLayeredPane1.setBackground(new java.awt.Color(0, 0, 0));
 
         dutiesBtn.setText("Duties");
         dutiesBtn.setAlignmentY(0.0F);
