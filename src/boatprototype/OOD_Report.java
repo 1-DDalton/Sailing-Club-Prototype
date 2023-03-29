@@ -308,6 +308,7 @@ public class OOD_Report extends javax.swing.JFrame {
         jScrollPane2.setViewportView(dutyTbl);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jPanel2.setBackground(new java.awt.Color(252, 4, 4));
 

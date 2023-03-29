@@ -235,6 +235,7 @@ public class Membership_Report extends javax.swing.JFrame {
         homeBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         memberTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

@@ -5,11 +5,14 @@
  */
 package boatprototype;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author 1-DDalton
  */
 public class SignIn extends javax.swing.JFrame {
+    
 
     /**
      * Creates new form SignUp
@@ -17,7 +20,18 @@ public class SignIn extends javax.swing.JFrame {
     public SignIn() {
         initComponents();
     }
+    public class signIn {
+        private String password;
+    
+        public String getPassword() {
+            return password;
+        }
+        
+        public void setPassword(String password) {
+            this.password = password;
 
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,11 +42,11 @@ public class SignIn extends javax.swing.JFrame {
     private void initComponents() {
 
         enterBtn = new javax.swing.JToggleButton();
-        usernameFld = new javax.swing.JTextField();
-        passwordFld = new javax.swing.JTextField();
+        passwordTxt = new javax.swing.JTextField();
         ReturnHomeBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         enterBtn.setText("Sign In");
         enterBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -41,29 +55,15 @@ public class SignIn extends javax.swing.JFrame {
             }
         });
 
-        usernameFld.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        usernameFld.setText("Username");
-        usernameFld.addMouseListener(new java.awt.event.MouseAdapter() {
+        passwordTxt.setText("Password");
+        passwordTxt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                usernameFldMouseClicked(evt);
+                passwordTxtMouseClicked(evt);
             }
         });
-        usernameFld.addActionListener(new java.awt.event.ActionListener() {
+        passwordTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usernameFldActionPerformed(evt);
-            }
-        });
-
-        passwordFld.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        passwordFld.setText("Password");
-        passwordFld.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                passwordFldMouseClicked(evt);
-            }
-        });
-        passwordFld.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordFldActionPerformed(evt);
+                passwordTxtActionPerformed(evt);
             }
         });
 
@@ -82,29 +82,25 @@ public class SignIn extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(115, 115, 115)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(passwordFld, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(usernameFld, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(144, 144, 144)
-                        .addComponent(enterBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(passwordTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(136, 136, 136)
+                        .addComponent(enterBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(127, 127, 127)
                         .addComponent(ReturnHomeBtn)))
                 .addContainerGap(145, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(83, Short.MAX_VALUE)
-                .addComponent(usernameFld, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(71, 71, 71)
+                .addComponent(passwordTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(passwordFld, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(enterBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ReturnHomeBtn)
-                .addGap(25, 25, 25))
+                .addContainerGap(98, Short.MAX_VALUE))
         );
 
         pack();
@@ -116,26 +112,24 @@ public class SignIn extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_enterBtnActionPerformed
 
-    private void usernameFldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameFldActionPerformed
+    private void passwordTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordTxtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_usernameFldActionPerformed
+    }//GEN-LAST:event_passwordTxtActionPerformed
 
-    private void passwordFldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFldActionPerformed
+    private void passwordTxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passwordTxtMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_passwordFldActionPerformed
-
-    private void usernameFldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_usernameFldMouseClicked
-        // TODO add your handling code here:
-        usernameFld.setText("");
-    }//GEN-LAST:event_usernameFldMouseClicked
-
-    private void passwordFldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passwordFldMouseClicked
-        // TODO add your handling code here:
-        passwordFld.setText("");
-    }//GEN-LAST:event_passwordFldMouseClicked
+        passwordTxt.setText("");
+    }//GEN-LAST:event_passwordTxtMouseClicked
 
     private void ReturnHomeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReturnHomeBtnActionPerformed
         // TODO add your handling code here:
+        String password = passwordTxt.getText();
+        if (passwordTxt.equals("PSCAdm1n")){
+        new HomePage().setVisible(true);
+        this.dispose();  
+        }else{
+            JOptionPane.showMessageDialog(this, "Password incorrect.");
+        }
         new HomePage().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_ReturnHomeBtnActionPerformed
@@ -181,7 +175,6 @@ public class SignIn extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ReturnHomeBtn;
     private javax.swing.JToggleButton enterBtn;
-    private javax.swing.JTextField passwordFld;
-    private javax.swing.JTextField usernameFld;
+    private javax.swing.JTextField passwordTxt;
     // End of variables declaration//GEN-END:variables
 }

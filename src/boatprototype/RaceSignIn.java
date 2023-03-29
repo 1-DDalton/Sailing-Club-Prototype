@@ -181,6 +181,7 @@ public class RaceSignIn extends javax.swing.JFrame {
         classTxt = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jPanel2.setBackground(new java.awt.Color(252, 4, 4));
 

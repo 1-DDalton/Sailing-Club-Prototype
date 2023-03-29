@@ -190,6 +190,7 @@ public class DutySignIn extends javax.swing.JFrame {
         eventIDCbo = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jPanel2.setBackground(new java.awt.Color(252, 4, 4));
 

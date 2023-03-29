@@ -275,6 +275,7 @@ public class Event_management extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1050, 725));
+        setResizable(false);
 
         racerTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
