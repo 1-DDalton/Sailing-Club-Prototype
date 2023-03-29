@@ -211,9 +211,9 @@
                   </Group>
                   <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="memberIDTxt" max="32767" attributes="0"/>
                       <Component id="dutyCbo" pref="161" max="32767" attributes="0"/>
                       <Component id="memberNameCbo" max="32767" attributes="0"/>
+                      <Component id="memberIdCbo" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -234,8 +234,8 @@
                   </Group>
                   <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="memberIDTxt" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="memberIDLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="memberIdCbo" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -289,18 +289,23 @@
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JTextField" name="memberIDTxt">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="memberIDTxtActionPerformed"/>
-          </Events>
-        </Component>
         <Component class="javax.swing.JLabel" name="memberIDLbl">
           <Properties>
             <Property name="text" type="java.lang.String" value="Member ID"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="memberIdCbo">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="0"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="memberIdCboActionPerformed"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>

@@ -177,8 +177,8 @@ public class DutySignIn extends javax.swing.JFrame {
         eventStartTimeLbl = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         memberNameCbo = new javax.swing.JComboBox<>();
-        memberIDTxt = new javax.swing.JTextField();
         memberIDLbl = new javax.swing.JLabel();
+        memberIdCbo = new javax.swing.JComboBox<>();
         creatEventPnl1 = new javax.swing.JPanel();
         eventNameLbl1 = new javax.swing.JLabel();
         eventDateLbl1 = new javax.swing.JLabel();
@@ -295,14 +295,13 @@ public class DutySignIn extends javax.swing.JFrame {
             }
         });
 
-        memberIDTxt.setEditable(false);
-        memberIDTxt.addActionListener(new java.awt.event.ActionListener() {
+        memberIDLbl.setText("Member ID");
+
+        memberIdCbo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                memberIDTxtActionPerformed(evt);
+                memberIdCboActionPerformed(evt);
             }
         });
-
-        memberIDLbl.setText("Member ID");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -317,9 +316,9 @@ public class DutySignIn extends javax.swing.JFrame {
                     .addComponent(memberIDLbl))
                 .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(memberIDTxt)
                     .addComponent(dutyCbo, 0, 161, Short.MAX_VALUE)
-                    .addComponent(memberNameCbo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(memberNameCbo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(memberIdCbo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -335,8 +334,8 @@ public class DutySignIn extends javax.swing.JFrame {
                     .addComponent(memberNameCbo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(9, 9, 9)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(memberIDTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(memberIDLbl))
+                    .addComponent(memberIDLbl)
+                    .addComponent(memberIdCbo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -505,8 +504,8 @@ public class DutySignIn extends javax.swing.JFrame {
         // Add record to Duty Sign in table: 
         Object selectedDuty = dutyCbo.getSelectedItem();
         Object selectedEvent = eventIDCbo.getSelectedItem();
-        String membershipId = memberIDTxt.getText();
-        DataManipulation.addDuty(selectedDuty.toString(), selectedEvent.toString(), membershipId);
+        Object membershipId = memberIdCbo.getSelectedItem();
+        DataManipulation.addDuty(selectedDuty.toString(), selectedEvent.toString(), membershipId.toString());
         
         
         try {
@@ -520,7 +519,7 @@ public class DutySignIn extends javax.swing.JFrame {
         //Empty fields for next action
         dutyCbo.setSelectedItem(" ");
         memberNameCbo.setSelectedItem("");
-        memberIDTxt.setText("");
+        memberIdCbo.setSelectedItem("");
         memberNameCbo.requestFocus();
         
     }//GEN-LAST:event_addBtnActionPerformed
@@ -535,9 +534,9 @@ public class DutySignIn extends javax.swing.JFrame {
         // TODO add your handling code here:
         Object selectedDuty = dutyCbo.getSelectedItem();
         Object selectedEvent = eventIDCbo.getSelectedItem();
-        String membershipId = memberIDTxt.getText();
+        Object membershipId = memberIdCbo.getSelectedItem();
 
-        DataManipulation.deleteDuty(selectedDuty.toString(), selectedEvent.toString(), membershipId);   
+        DataManipulation.deleteDuty(selectedDuty.toString(), selectedEvent.toString(), membershipId.toString());   
         
         JOptionPane.showMessageDialog(this, "Record Deleted"); 
         try {
@@ -549,7 +548,7 @@ public class DutySignIn extends javax.swing.JFrame {
         //Empty fields for next action
         dutyCbo.setSelectedItem(" ");
         memberNameCbo.setSelectedItem("");
-        memberIDTxt.setText("");
+        memberIdCbo.setSelectedItem("");
         memberNameCbo.requestFocus();
     }//GEN-LAST:event_deleteBtnActionPerformed
 
@@ -562,7 +561,7 @@ public class DutySignIn extends javax.swing.JFrame {
         dutyCbo.setSelectedItem(duty);        
         String memberName = Df.getValueAt(selectedIndex, 0).toString();      
         memberNameCbo.setSelectedItem(memberName);
-        memberIDTxt.setText(Df.getValueAt(selectedIndex, 2).toString());
+        memberIdCbo.setSelectedItem(Df.getValueAt(selectedIndex, 2).toString());
 
     }//GEN-LAST:event_dutyTblMouseClicked
 
@@ -607,10 +606,6 @@ public class DutySignIn extends javax.swing.JFrame {
        
     }//GEN-LAST:event_eventIDCboActionPerformed
 
-    private void memberIDTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_memberIDTxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_memberIDTxtActionPerformed
-
     private void memberNameCboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_memberNameCboActionPerformed
         // TODO add your handling code here:
         
@@ -624,7 +619,7 @@ public class DutySignIn extends javax.swing.JFrame {
             ResultSet rs = statement.executeQuery();
             while(rs.next()) 
             {
-                memberIDTxt.setText(rs.getString("Membership_ID"));
+                memberIdCbo.setSelectedItem(rs.getString("Membership_ID"));
 
      
             }
@@ -639,6 +634,11 @@ public class DutySignIn extends javax.swing.JFrame {
     private void eventStartTimeTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eventStartTimeTxtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_eventStartTimeTxtActionPerformed
+
+    private void memberIdCboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_memberIdCboActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_memberIdCboActionPerformed
 
     /**
      * @param args the command line arguments
@@ -698,7 +698,7 @@ public class DutySignIn extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel memberIDLbl;
-    private javax.swing.JTextField memberIDTxt;
+    private javax.swing.JComboBox<String> memberIdCbo;
     private javax.swing.JComboBox<String> memberNameCbo;
     // End of variables declaration//GEN-END:variables
 }
