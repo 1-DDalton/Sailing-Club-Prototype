@@ -127,6 +127,8 @@ public class SignIn extends javax.swing.JFrame {
         if (passwordTxt.equals("PSCAdm1n")){
         new HomePage().setVisible(true);
         this.dispose();  
+        }else if (passwordTxt.equals("")){
+            JOptionPane.showMessageDialog(this, "Please enter a password.");
         }else{
             JOptionPane.showMessageDialog(this, "Password incorrect.");
         }
