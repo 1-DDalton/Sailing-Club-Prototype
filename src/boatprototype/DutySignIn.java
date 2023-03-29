@@ -40,6 +40,7 @@ public class DutySignIn extends javax.swing.JFrame {
             //table_update();
             EventIDCbo_update();
             memberNameCbo_update();
+            memberIdCbo_update();
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(DutySignIn.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -297,6 +298,7 @@ public class DutySignIn extends javax.swing.JFrame {
 
         memberIDLbl.setText("Member ID");
 
+        memberIdCbo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
         memberIdCbo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 memberIdCboActionPerformed(evt);
@@ -498,6 +500,24 @@ public class DutySignIn extends javax.swing.JFrame {
 
         
     } 
+    private void memberIdCbo_update() throws SQLException, ClassNotFoundException{
+        try {
+                 
+            conn = DriverManager.getConnection("jdbc:mysql://computing.gfmat.org:3306/DDalton_SailingClub?user=DDalton&useSSL=true", "DDalton", "7r66JBe3A8");
+            statement = conn.prepareStatement("SELECT Membership_ID FROM Members");
+            ResultSet rs = statement.executeQuery();
+            while(rs.next()) 
+            {
+                memberIdCbo.addItem(rs.getString("Membership_ID"));
+     
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DutySignIn.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        
+    } 
     
     
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
@@ -517,7 +537,7 @@ public class DutySignIn extends javax.swing.JFrame {
         
         
         //Empty fields for next action
-        dutyCbo.setSelectedItem(" ");
+        dutyCbo.setSelectedItem("");
         memberNameCbo.setSelectedItem("");
         memberIdCbo.setSelectedItem("");
         memberNameCbo.requestFocus();
@@ -637,7 +657,21 @@ public class DutySignIn extends javax.swing.JFrame {
 
     private void memberIdCboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_memberIdCboActionPerformed
         // TODO add your handling code here:
-        
+        try {
+                 
+            conn = DriverManager.getConnection("jdbc:mysql://computing.gfmat.org:3306/DDalton_SailingClub?user=DDalton&useSSL=true", "DDalton", "7r66JBe3A8");
+            statement = conn.prepareStatement("SELECT Membership_ID FROM Members");
+            ResultSet rs = statement.executeQuery();
+            while(rs.next()) 
+            {
+                memberIdCbo.setSelectedItem(rs.getString("Membership_ID"));
+
+     
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DutySignIn.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_memberIdCboActionPerformed
 
     /**
