@@ -596,10 +596,11 @@ public class BoatAdmin extends javax.swing.JFrame {
 
     private void memberIdCboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_memberIdCboActionPerformed
         // TODO add your handling code here:
+        Object selectedItem = memberIdCbo.getSelectedItem();
         try {
                  
             conn = DriverManager.getConnection("jdbc:mysql://computing.gfmat.org:3306/DDalton_SailingClub?user=DDalton&useSSL=true", "DDalton", "7r66JBe3A8");
-            statement = conn.prepareStatement("SELECT Membership_ID FROM Members");
+            statement = conn.prepareStatement("SELECT Membership_ID FROM Members WHERE Full_Name = '"+selectedItem.toString()+"'");
             ResultSet rs = statement.executeQuery();
             while(rs.next()) 
             {

@@ -67,8 +67,6 @@ public class DataManipulation {
     public static void updateMember(String memberId, String memberName, String memberDOB, String memberAddress1, String memberAddress2, String memberTown, String memberPostcode, String memberEmail, String memberPhone, String memberOccupation, String membershipType, String memberFamily_ID){
         try( Connection conn = DriverManager.getConnection("jdbc:mysql://computing.gfmat.org:3306/DDalton_SailingClub?user=DDalton&useSSL=true", "DDalton", "7r66JBe3A8")){
             Statement statement = conn.createStatement();
-//            statement.execute("UPDATE Members SET Membership_ID = '" + memberId +"', Full_Name = '"+memberName+"', DOB = '"+memberDOB+"', Email = '"+memberEmail+"', Occupation = '"+memberOccupation+"', Membership_Type = '"+membershipType+"',Phone_Number = '"+memberPhone+"', Family_ID = '"+memberFamily_ID+"'");
-//            statement.execute("UPDATE Address SET Family_ID = '"+ memberFamily_ID +"', Address_Line_1  = '"+memberAddress1+"', Address_Line_2 = '"+memberAddress2+"', Town = '"+memberTown+"', Postcode = '"+memberPostcode+"'");
             statement.execute("UPDATE Members SET Full_Name = '"+memberName+"', DOB = '"+memberDOB+"', Email = '"+memberEmail+"', Occupation = '"+memberOccupation+"', Membership_Type = '"+membershipType+"',Phone_Number = '"+memberPhone+"' WHERE Membership_ID = '" + memberId +"'");
             statement.execute("UPDATE Address SET Address_Line_1  = '"+memberAddress1+"', Address_Line_2 = '"+memberAddress2+"', Town = '"+memberTown+"', Postcode = '"+memberPostcode+"' WHERE Family_ID = '"+ memberFamily_ID +"'");
 

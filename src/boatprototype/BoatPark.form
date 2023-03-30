@@ -39,19 +39,24 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel16" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel17" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel18" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="boatIdTxt" min="-2" pref="257" max="-2" attributes="0"/>
+                          <Component id="locationTxt" min="-2" pref="257" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel16" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="memberIdLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="txtLocation" alignment="1" max="32767" attributes="0"/>
-                          <Component id="txtBoatOwner" alignment="1" min="-2" pref="208" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="txtBoatId" min="-2" pref="174" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="btnGenerateId" min="-2" pref="28" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="boatOwnerCbo" pref="257" max="32767" attributes="0"/>
+                          <Component id="membershipIdTxt" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -66,7 +71,10 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane1" alignment="0" pref="463" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jScrollPane1" pref="463" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                  </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jPanel7" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -74,18 +82,22 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtBoatOwner" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="boatOwnerCbo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="memberIdLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="membershipIdTxt" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel17" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtBoatId" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnGenerateId" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="boatIdTxt" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel18" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtLocation" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="locationTxt" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -93,10 +105,9 @@
                           <Component id="btnUpdate" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnDelete" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -117,14 +128,15 @@
         <Property name="text" type="java.lang.String" value="Location"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtBoatOwner">
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtBoatId">
+    <Component class="javax.swing.JTextField" name="boatIdTxt">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtBoatIdActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boatIdTxtActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtLocation">
+    <Component class="javax.swing.JTextField" name="locationTxt">
     </Component>
     <Component class="javax.swing.JButton" name="btnAdd">
       <Properties>
@@ -160,8 +172,8 @@
         <Component class="javax.swing.JTable" name="boatParkTbl">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="3" rowCount="0">
-                <Column editable="true" title="Owner" type="java.lang.Object"/>
+              <Table columnCount="3" rowCount="34">
+                <Column editable="true" title="Membership ID" type="java.lang.Object"/>
                 <Column editable="true" title="Boat ID" type="java.lang.Object"/>
                 <Column editable="true" title="Location" type="java.lang.Object"/>
               </Table>
@@ -2826,14 +2838,6 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="btnGenerateId">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jButton4"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGenerateIdActionPerformed"/>
-      </Events>
-    </Component>
     <Container class="javax.swing.JPanel" name="jPanel7">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -2879,5 +2883,30 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JComboBox" name="boatOwnerCbo">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="1">
+            <StringItem index="0" value=" "/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boatOwnerCboActionPerformed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="memberIdLbl">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Membership ID"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="membershipIdTxt">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
+    </Component>
   </SubComponents>
 </Form>

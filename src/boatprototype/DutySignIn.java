@@ -298,6 +298,11 @@ public class DutySignIn extends javax.swing.JFrame {
         memberIDLbl.setText("Member ID");
 
         memberIDTxt.setEditable(false);
+        memberIDTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                memberIDTxtActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -631,6 +636,10 @@ public class DutySignIn extends javax.swing.JFrame {
     private void eventStartTimeTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eventStartTimeTxtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_eventStartTimeTxtActionPerformed
+
+    private void memberIDTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_memberIDTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_memberIDTxtActionPerformed
 
     /**
      * @param args the command line arguments
