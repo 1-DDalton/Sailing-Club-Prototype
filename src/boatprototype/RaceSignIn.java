@@ -360,6 +360,12 @@ public class RaceSignIn extends javax.swing.JFrame {
 
         jLabel2.setText("Helm Name");
 
+        NameTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NameTxtActionPerformed(evt);
+            }
+        });
+
         jLabel1.setText("Class");
 
         classTxt.addActionListener(new java.awt.event.ActionListener() {
@@ -487,17 +493,23 @@ public class RaceSignIn extends javax.swing.JFrame {
         Object sailNumber = sailNumberTxt.getText();
         Object selectedEvent = eventIDCbo.getSelectedItem();
         Object Class = classTxt.getText(); 
-        System.out.println("WORKING HERE");
-        DataManipulation.addRacer(fullName.toString(), sailNumber.toString(), selectedEvent.toString(), Class.toString() );
         
-        
-        try {
+        if (Validation.lengthCheck(1, fullName.toString(), 60) && Validation.lengthCheck(1, sailNumber.toString(), 10) && Validation.lengthCheck(1, Class.toString(), 30)){
+            DataManipulation.addRacer(fullName.toString(), sailNumber.toString(), selectedEvent.toString(), Class.toString() );
+                    try {
             table_update();
             JOptionPane.showMessageDialog(this, "Record Added"); 
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(RaceSignIn.class.getName()).log(Level.SEVERE, null, ex);
         }
+        }else{
+            JOptionPane.showMessageDialog(this, "Please use the correct length for each text box. Name:60 sailNumber:10 Class:10 ");
+        }
         
+
+        
+        
+
         
         //Empty fields for next action
         sailNumberTxt.setText("");
@@ -588,6 +600,10 @@ public class RaceSignIn extends javax.swing.JFrame {
     private void sailNumberTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sailNumberTxtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_sailNumberTxtActionPerformed
+
+    private void NameTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NameTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NameTxtActionPerformed
 
     /**
      * @param args the command line arguments
