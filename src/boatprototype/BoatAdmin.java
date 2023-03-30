@@ -466,8 +466,9 @@ public class BoatAdmin extends javax.swing.JFrame {
         String boatClass = boatClassTxt.getText();
         String boatSailNumber = sailNumberTxt.getText();
         String boatType = boatTypeTxt.getText();
-        Object memberID = memberIdCbo.getSelectedItem();
-        DataManipulation.addBoat(boatID, boatName, boatClass, boatSailNumber, boatType, memberID.toString());
+        Object memberID = memberIdCbo.getSelectedItem().toString();
+        if (Validation.lengthCheck(1, boatName, 30) &&  Validation.lengthCheck(1, boatClass, 30) &&  Validation.lengthCheck(1, boatSailNumber, 10)&&  Validation.lengthCheck(1, boatType, 30)){
+            DataManipulation.addBoat(boatID, boatName, boatClass, boatSailNumber, boatType, memberID.toString());
         
         JOptionPane.showMessageDialog(this, "Record Added"); 
         try {
@@ -484,6 +485,8 @@ public class BoatAdmin extends javax.swing.JFrame {
         boatTypeTxt.setText("");
         memberIdCbo.setSelectedItem("");
         boatIDTxt.requestFocus();
+    }   
+        
     }//GEN-LAST:event_addBtnActionPerformed
 
     private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
@@ -494,9 +497,9 @@ public class BoatAdmin extends javax.swing.JFrame {
         String boatSailNumber = sailNumberTxt.getText();
         String boatType = boatTypeTxt.getText();
         Object memberID = memberIdCbo.getSelectedItem();
-        DataManipulation.updateBoat(boatID, boatName, boatClass, boatSailNumber, boatType, memberID.toString());
-        
-        JOptionPane.showMessageDialog(this, "Record Updated"); 
+        if (Validation.lengthCheck(1, boatName, 30) &&  Validation.lengthCheck(1, boatClass, 30) &&  Validation.lengthCheck(1, boatSailNumber, 10)&&  Validation.lengthCheck(1, boatType, 30)){
+            DataManipulation.updateBoat(boatID, boatName, boatClass, boatSailNumber, boatType, memberID.toString());
+            JOptionPane.showMessageDialog(this, "Record Updated"); 
         try {
             table_update();
         } catch (SQLException | ClassNotFoundException ex) {
@@ -511,6 +514,12 @@ public class BoatAdmin extends javax.swing.JFrame {
         boatTypeTxt.setText("");
         memberIdCbo.setSelectedItem("");
         boatIDTxt.requestFocus();
+        }else{
+            JOptionPane.showMessageDialog(this, "Please use the correct lengths for each Text field."); 
+        }
+        
+        
+        
     }//GEN-LAST:event_updateBtnActionPerformed
 
     private void homeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBtnActionPerformed
