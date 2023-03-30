@@ -40,6 +40,7 @@ public class BoatAdmin extends javax.swing.JFrame {
         initComponents();
         try {
             table_update();
+            memberIdCbo_update();
         } catch (SQLException | ClassNotFoundException ex) {
             Logger.getLogger(BoatAdmin.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -163,6 +164,24 @@ public class BoatAdmin extends javax.swing.JFrame {
         }
         
     }
+        private void memberIdCbo_update() throws SQLException, ClassNotFoundException{
+        try {
+                 
+            conn = DriverManager.getConnection("jdbc:mysql://computing.gfmat.org:3306/DDalton_SailingClub?user=DDalton&useSSL=true", "DDalton", "7r66JBe3A8");
+            statement = conn.prepareStatement("SELECT Membership_ID FROM Members ");
+            ResultSet rs = statement.executeQuery();
+            while(rs.next()) 
+            {
+                memberIdCbo.addItem(rs.getString("Membership_ID"));
+     
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DutySignIn.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        
+    } 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -181,7 +200,7 @@ public class BoatAdmin extends javax.swing.JFrame {
         boatTypeTxt = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         boatIDTxt = new javax.swing.JTextField();
-        memberIDTxt = new javax.swing.JTextField();
+        memberIdCbo = new javax.swing.JComboBox<>();
         addBtn = new javax.swing.JButton();
         updateBtn = new javax.swing.JButton();
         deleteBtn = new javax.swing.JButton();
@@ -257,6 +276,13 @@ public class BoatAdmin extends javax.swing.JFrame {
             }
         });
 
+        memberIdCbo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+        memberIdCbo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                memberIdCboActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout boatPnlLayout = new javax.swing.GroupLayout(boatPnl);
         boatPnl.setLayout(boatPnlLayout);
         boatPnlLayout.setHorizontalGroup(
@@ -277,20 +303,21 @@ public class BoatAdmin extends javax.swing.JFrame {
                     .addComponent(boatClassTxt)
                     .addComponent(sailNumberTxt)
                     .addGroup(boatPnlLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 4, Short.MAX_VALUE)
                         .addComponent(boatIDTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(BoatIDGeneratorBtn))
-                    .addComponent(memberIDTxt))
+                    .addComponent(memberIdCbo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         boatPnlLayout.setVerticalGroup(
             boatPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(boatPnlLayout.createSequentialGroup()
+                .addGap(0, 11, Short.MAX_VALUE)
                 .addGroup(boatPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(memberIDTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                    .addComponent(memberIdCbo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(boatPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(boatNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(boatNameLbl))
@@ -401,7 +428,7 @@ public class BoatAdmin extends javax.swing.JFrame {
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(homeBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 504, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
                 .addGap(18, 18, 18))
         );
         layout.setVerticalGroup(
@@ -439,8 +466,8 @@ public class BoatAdmin extends javax.swing.JFrame {
         String boatClass = boatClassTxt.getText();
         String boatSailNumber = sailNumberTxt.getText();
         String boatType = boatTypeTxt.getText();
-        String memberID = memberIDTxt.getText();
-        DataManipulation.addBoat(boatID, boatName, boatClass, boatSailNumber, boatType, memberID);
+        Object memberID = memberIdCbo.getSelectedItem();
+        DataManipulation.addBoat(boatID, boatName, boatClass, boatSailNumber, boatType, memberID.toString());
         
         JOptionPane.showMessageDialog(this, "Record Added"); 
         try {
@@ -455,7 +482,7 @@ public class BoatAdmin extends javax.swing.JFrame {
         boatClassTxt.setText("");
         sailNumberTxt.setText("");
         boatTypeTxt.setText("");
-        memberIDTxt.setText("");
+        memberIdCbo.setSelectedItem("");
         boatIDTxt.requestFocus();
     }//GEN-LAST:event_addBtnActionPerformed
 
@@ -466,8 +493,8 @@ public class BoatAdmin extends javax.swing.JFrame {
         String boatClass = boatClassTxt.getText();
         String boatSailNumber = sailNumberTxt.getText();
         String boatType = boatTypeTxt.getText();
-        String memberID = memberIDTxt.getText();
-        DataManipulation.updateBoat(boatID, boatName, boatClass, boatSailNumber, boatType, memberID);
+        Object memberID = memberIdCbo.getSelectedItem();
+        DataManipulation.updateBoat(boatID, boatName, boatClass, boatSailNumber, boatType, memberID.toString());
         
         JOptionPane.showMessageDialog(this, "Record Updated"); 
         try {
@@ -482,7 +509,7 @@ public class BoatAdmin extends javax.swing.JFrame {
         boatClassTxt.setText("");
         sailNumberTxt.setText("");
         boatTypeTxt.setText("");
-        memberIDTxt.setText("");
+        memberIdCbo.setSelectedItem("");
         boatIDTxt.requestFocus();
     }//GEN-LAST:event_updateBtnActionPerformed
 
@@ -499,8 +526,8 @@ public class BoatAdmin extends javax.swing.JFrame {
         String boatClass = boatClassTxt.getText();
         String boatSailNumber = sailNumberTxt.getText();
         String boatType = boatTypeTxt.getText();
-        String memberID = memberIDTxt.getText();
-        DataManipulation.deleteBoat(boatID, boatName, boatClass, boatSailNumber, boatType, memberID);
+        Object memberID = memberIdCbo.getSelectedItem();
+        DataManipulation.deleteBoat(boatID, boatName, boatClass, boatSailNumber, boatType, memberID.toString());
         
         
   
@@ -517,7 +544,7 @@ public class BoatAdmin extends javax.swing.JFrame {
         boatClassTxt.setText("");
         sailNumberTxt.setText("");
         boatTypeTxt.setText("");
-        memberIDTxt.setText("");
+        memberIdCbo.setSelectedItem("");
         boatIDTxt.requestFocus();
     }//GEN-LAST:event_deleteBtnActionPerformed
 
@@ -531,7 +558,7 @@ public class BoatAdmin extends javax.swing.JFrame {
         boatClassTxt.setText(Df.getValueAt(selectedIndex, 2).toString());
         sailNumberTxt.setText(Df.getValueAt(selectedIndex, 3).toString());
         boatTypeTxt.setText(Df.getValueAt(selectedIndex, 4).toString());
-        memberIDTxt.setText(Df.getValueAt(selectedIndex, 5).toString());
+        memberIdCbo.setSelectedItem(Df.getValueAt(selectedIndex, 5).toString());
     }//GEN-LAST:event_boatTblMouseClicked
 
     private void boatIDTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boatIDTxtActionPerformed
@@ -557,6 +584,25 @@ public class BoatAdmin extends javax.swing.JFrame {
     private void boatTypeTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boatTypeTxtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_boatTypeTxtActionPerformed
+
+    private void memberIdCboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_memberIdCboActionPerformed
+        // TODO add your handling code here:
+        try {
+                 
+            conn = DriverManager.getConnection("jdbc:mysql://computing.gfmat.org:3306/DDalton_SailingClub?user=DDalton&useSSL=true", "DDalton", "7r66JBe3A8");
+            statement = conn.prepareStatement("SELECT Membership_ID FROM Members");
+            ResultSet rs = statement.executeQuery();
+            while(rs.next()) 
+            {
+                memberIdCbo.setSelectedItem(rs.getString("Membership_ID"));
+
+     
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DutySignIn.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_memberIdCboActionPerformed
 
     /**
      * @param args the command line arguments
@@ -614,7 +660,7 @@ public class BoatAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField memberIDTxt;
+    private javax.swing.JComboBox<String> memberIdCbo;
     private javax.swing.JTextField sailNumberTxt;
     private javax.swing.JButton updateBtn;
     // End of variables declaration//GEN-END:variables

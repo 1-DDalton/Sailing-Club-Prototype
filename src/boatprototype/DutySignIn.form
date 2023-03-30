@@ -213,7 +213,7 @@
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="dutyCbo" pref="161" max="32767" attributes="0"/>
                       <Component id="memberNameCbo" max="32767" attributes="0"/>
-                      <Component id="memberIdCbo" max="32767" attributes="0"/>
+                      <Component id="memberIDTxt" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -235,7 +235,7 @@
                   <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="memberIDLbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="memberIdCbo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="memberIDTxt" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -294,20 +294,10 @@
             <Property name="text" type="java.lang.String" value="Member ID"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="memberIdCbo">
+        <Component class="javax.swing.JTextField" name="memberIDTxt">
           <Properties>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="1">
-                <StringItem index="0" value=" "/>
-              </StringArray>
-            </Property>
+            <Property name="editable" type="boolean" value="false"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="memberIdCboActionPerformed"/>
-          </Events>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-          </AuxValues>
         </Component>
       </SubComponents>
     </Container>
