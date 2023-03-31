@@ -99,7 +99,6 @@ public class BoatPark extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         boatIdTxt = new javax.swing.JTextField();
         locationTxt = new javax.swing.JTextField();
-        btnAdd = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -305,13 +304,6 @@ public class BoatPark extends javax.swing.JFrame {
         boatIdTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boatIdTxtActionPerformed(evt);
-            }
-        });
-
-        btnAdd.setText("Add");
-        btnAdd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddActionPerformed(evt);
             }
         });
 
@@ -1774,6 +1766,11 @@ public class BoatPark extends javax.swing.JFrame {
         memberIdLbl.setText("Membership ID");
 
         membershipIdTxt.setEditable(false);
+        membershipIdTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                membershipIdTxtActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1785,28 +1782,26 @@ public class BoatPark extends javax.swing.JFrame {
                     .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(boatGridPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(38, 38, 38)
-                        .addComponent(btnUpdate)
-                        .addGap(37, 37, 37)
-                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel17)
-                            .addComponent(jLabel18))
-                        .addGap(63, 63, 63)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(boatIdTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(locationTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel16)
                             .addComponent(memberIdLbl))
                         .addGap(32, 32, 32)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(boatOwnerCbo, 0, 257, Short.MAX_VALUE)
-                            .addComponent(membershipIdTxt))))
+                            .addComponent(membershipIdTxt)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(btnUpdate)
+                            .addGap(77, 77, 77)
+                            .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel17)
+                                .addComponent(jLabel18))
+                            .addGap(63, 63, 63)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(boatIdTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(locationTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -1839,9 +1834,8 @@ public class BoatPark extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel18)
                             .addComponent(locationTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(13, 13, 13)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnAdd)
                             .addComponent(btnUpdate)
                             .addComponent(btnDelete))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
@@ -2265,52 +2259,6 @@ public class BoatPark extends javax.swing.JFrame {
         
         
     
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        // ADD A RECORD TO BOAT AND GRID
-        Object boatOwner = boatOwnerCbo.getSelectedItem();
-        String boatId = boatIdTxt.getText();
-        String memberId = membershipIdTxt.getText();
-        String location = locationTxt.getText();
-        // Need a check to make sure space is not already taken.
-        
-        //if (Validation.lengthCheck(1, boatOwner, ))
-        
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://computing.gfmat.org:3306/DDalton_SailingClub?user=DDalton&useSSL=true", "DDalton", "7r66JBe3A8");
-            //INSERT into boat table
-            statement = conn.prepareStatement("insert into Boat(Membership_ID,Boat_ID,Location) values(?,?,?)");
-            statement.setString(1, memberId);
-            statement.setString(2, boatId);
-            statement.setString(3, location);
-            statement.executeUpdate();
-            
-            // UPDATE grid table
-            //update grid set BOAT_ID='B-004',INDICATOR='X' where LOCATION = 'A2';
-            statement = conn.prepareStatement("UPDATE Grid SET Boat_ID=?, Indicator=? WHERE Location  =?");
-            statement.setString(1, boatId);
-            statement.setString(2, "X");
-            statement.setString(3, location);
-            statement.executeUpdate();
-            
-            
-            JOptionPane.showMessageDialog(this, "Record Added");
-            table_update();
-            grid_update();
-            
-            // Clear text boxes ready for next student
-            boatOwnerCbo.setSelectedItem("");
-            boatIdTxt.setText("");
-            locationTxt.setText("");
-            boatOwnerCbo.requestFocus();
-            
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(BoatPark.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(this, ex);
-        }            
-        
-    }//GEN-LAST:event_btnAddActionPerformed
-
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // UPDATE a record in boat table
         DefaultTableModel Df = (DefaultTableModel)boatParkTbl.getModel();
@@ -2323,7 +2271,8 @@ public class BoatPark extends javax.swing.JFrame {
             String boatId = boatIdTxt.getText();
             String location = locationTxt.getText();
                
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            if (Validation.locationCheck(location)){
+                Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:mysql://computing.gfmat.org:3306/DDalton_SailingClub?user=DDalton&useSSL=true", "DDalton", "7r66JBe3A8");
             statement = conn.prepareStatement("UPDATE Boat SET Membership_ID=?, Boat_ID=?, Location=? WHERE Boat_ID=?");
             statement.setString(1, memberId);
@@ -2358,8 +2307,14 @@ public class BoatPark extends javax.swing.JFrame {
             // Clear text boxes ready for next student
             boatOwnerCbo.setSelectedItem("");
             boatIdTxt.setText("");
+            membershipIdTxt.setText("");
             locationTxt.setText("");
             boatOwnerCbo.requestFocus();
+            }else{
+                JOptionPane.showMessageDialog(this, "A boat park space is 2 characters long. The first character cmust be A-Y and the second character must be 1-6");
+            }
+            
+            
             
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(BoatPark.class.getName()).log(Level.SEVERE, null, ex);
@@ -2408,6 +2363,7 @@ public class BoatPark extends javax.swing.JFrame {
             boatOwnerCbo.setSelectedItem("");
             boatIdTxt.setText("");
             locationTxt.setText("");
+            membershipIdTxt.setText("");
             boatOwnerCbo.requestFocus();            
             
                
@@ -2452,6 +2408,7 @@ public class BoatPark extends javax.swing.JFrame {
         // TODO add your handling code here:
         boatIdTxt.setText("");
         locationTxt.setText("");
+        membershipIdTxt.setText("");
         boatOwnerCbo.requestFocus(); 
         Object selectedItem = boatOwnerCbo.getSelectedItem();
 
@@ -2473,6 +2430,10 @@ public class BoatPark extends javax.swing.JFrame {
             Logger.getLogger(DutySignIn.class.getName()).log(Level.SEVERE, null, ex);
         } 
     }//GEN-LAST:event_boatOwnerCboActionPerformed
+
+    private void membershipIdTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_membershipIdTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_membershipIdTxtActionPerformed
 
     /**
      * @param args the command line arguments
@@ -2515,7 +2476,6 @@ public class BoatPark extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> boatOwnerCbo;
     private javax.swing.JLabel boatParkAdminLbl;
     private javax.swing.JTable boatParkTbl;
-    private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JLabel jLabel10;

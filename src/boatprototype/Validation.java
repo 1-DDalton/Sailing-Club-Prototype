@@ -22,5 +22,14 @@ public class Validation {
     public static boolean locationCheck(String check){
         return check.matches("^[A-Y]{1}[1-6]{1}$");
     }
+    public static boolean postcodeCheck(String check){
+        return check.matches("^([A-PR-UWYZ](([0-9](([0-9]|[A-HJKSTUW])?)?)|([A-HK-Y][0-9]([0-9]|[ABEHMNPRVWXY])?)) ?[0-9][ABD-HJLNP-UW-Z]{2})$");
+    }
+    public static boolean emailCheck(String check){
+        return check.matches("");
+    }
+    public static boolean phoneCheck(String check){
+        return check.matches("(?:(?:(?:\\+|00)44[\\s\\-\\.]?)?(?:(?:\\(?0\\)?)[\\s\\-\\.]?)?(?:\\d[\\s\\-\\.]?){10})|(?=\\(?\\d*\\)?[\\x20\\-\\d]*)(\\(?\\)?\\x20*\\-*\\d){11}");
     
+    }
 }

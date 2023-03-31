@@ -649,16 +649,20 @@ public class MemberAdmin extends javax.swing.JFrame {
         String memberOccupation = memberOccupationTxt.getText();
         String membershipType = membershipCbo.getSelectedItem().toString();
         String memberFamily_ID = memberFamilyIDTxt.getText();
+        if (Validation.lengthCheck(1, memberName, 60) && Validation.postcodeCheck(memberPostcode) && Validation.dateCheck(memberDOB) && Validation.lengthCheck(1, memberAddress1, 50) && Validation.lengthCheck(0, memberAddress2, 50) && Validation.lengthCheck(1, memberTown, 30) && Validation.lengthCheck(1, memberOccupation, 50) && Validation.phoneCheck(memberPhone) && Validation.lengthCheck(1, memberEmail, 60)){
+          DataManipulation.addMember(memberId, memberName, memberDOB, memberAddress1, memberAddress2, memberTown, memberPostcode, memberEmail, memberPhone, memberOccupation, membershipType, memberFamily_ID);
         
-
-        DataManipulation.addMember(memberId, memberName, memberDOB, memberAddress1, memberAddress2, memberTown, memberPostcode, memberEmail, memberPhone, memberOccupation, membershipType, memberFamily_ID);
-        
-        JOptionPane.showMessageDialog(this, "Record Added"); 
-        try {
-            table_update();
-        } catch (SQLException | ClassNotFoundException ex) {
-            Logger.getLogger(MemberAdmin.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "Record Added"); 
+            try {
+                table_update();
+            } catch (SQLException | ClassNotFoundException ex) {
+                Logger.getLogger(MemberAdmin.class.getName()).log(Level.SEVERE, null, ex);
+            }  
+        }else{
+            JOptionPane.showMessageDialog(this, "Record not Added"); 
         }
+
+
         
         //Empty fields for next action
         memberIdTxt.setText("");
