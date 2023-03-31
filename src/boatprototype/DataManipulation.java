@@ -79,7 +79,7 @@ public class DataManipulation {
     public static void addBoat(String boatID,String boatName,String boatClass,String boatSailNumber,String boatType,String memberId){
         try( Connection conn = DriverManager.getConnection("jdbc:mysql://computing.gfmat.org:3306/DDalton_SailingClub?user=DDalton&useSSL=true", "DDalton", "7r66JBe3A8")){
             Statement statement = conn.createStatement();
-            statement.execute("INSERT INTO Boat Values('"+ boatID +"','"+boatType+"','"+boatName+"','"+boatClass+"','"+boatSailNumber+"','"+memberId+"','','')");
+            statement.execute("INSERT INTO Boat Values('"+ boatID +"','"+boatType+"','"+boatName+"','"+boatClass+"','"+boatSailNumber+"','"+memberId+"','','??')");
         } catch (SQLException ex) {
             System.out.println("errorMessage"+ ex);
         }

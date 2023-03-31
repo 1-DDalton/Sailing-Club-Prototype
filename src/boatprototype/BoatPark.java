@@ -1877,11 +1877,9 @@ public class BoatPark extends javax.swing.JFrame {
                         String test = rs.getString("Location");
                         
                         // Add the data from the boat object to the next row of the list object
-                        if (test.equals("")) {
-                           //Do Nothing
-                        }else{
-                           list.add(boat);
-                        }
+
+                        list.add(boat);
+                        
                     }  
           
 
