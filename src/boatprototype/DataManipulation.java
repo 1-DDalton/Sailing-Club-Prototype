@@ -47,13 +47,21 @@ public class DataManipulation {
         
         try( Connection conn = DriverManager.getConnection("jdbc:mysql://computing.gfmat.org:3306/DDalton_SailingClub?user=DDalton&useSSL=true", "DDalton", "7r66JBe3A8")){
         Statement statement = conn.createStatement();
-        statement.execute("INSERT INTO Address Values('"+ memberFamily_ID +"','"+memberAddress1+"','"+memberAddress2+"','"+memberTown+"','"+memberPostcode+"')");
+        //statement.execute("INSERT INTO Address Values('"+ memberFamily_ID +"','"+memberAddress1+"','"+memberAddress2+"','"+memberTown+"','"+memberPostcode+"')");
         statement.execute("INSERT INTO Members Values('"+ memberId +"','"+memberName+"','"+memberDOB+"','"+memberEmail+"','"+memberOccupation+"','"+membershipType+"','"+memberPhone+"','"+memberFamily_ID+"')");
 
+     
+        } catch (SQLException ex) {
+            System.out.println("errorMessage"+ ex);
+        }
         
-    } catch (SQLException ex) {
-        System.out.println("errorMessage"+ ex);
-    }
+        
+        try( Connection conn = DriverManager.getConnection("jdbc:mysql://computing.gfmat.org:3306/DDalton_SailingClub?user=DDalton&useSSL=true", "DDalton", "7r66JBe3A8")){
+                Statement statement = conn.createStatement();
+                statement.execute("INSERT INTO Address Values('"+ memberFamily_ID +"','"+memberAddress1+"','"+memberAddress2+"','"+memberTown+"','"+memberPostcode+"')");        
+         } catch (SQLException ex) {
+            System.out.println("errorMessage"+ ex);
+        }
         
     } 
     public static void deleteMember(String memberId){

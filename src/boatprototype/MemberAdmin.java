@@ -649,34 +649,41 @@ public class MemberAdmin extends javax.swing.JFrame {
         String memberOccupation = memberOccupationTxt.getText();
         String membershipType = membershipCbo.getSelectedItem().toString();
         String memberFamily_ID = memberFamilyIDTxt.getText();
-        if (Validation.lengthCheck(1, memberName, 60) && Validation.postcodeCheck(memberPostcode) && Validation.dateCheck(memberDOB) && Validation.lengthCheck(1, memberAddress1, 50) && Validation.lengthCheck(0, memberAddress2, 50) && Validation.lengthCheck(1, memberTown, 30) && Validation.lengthCheck(1, memberOccupation, 50) && Validation.phoneCheck(memberPhone) && Validation.lengthCheck(1, memberEmail, 60)){
-          DataManipulation.addMember(memberId, memberName, memberDOB, memberAddress1, memberAddress2, memberTown, memberPostcode, memberEmail, memberPhone, memberOccupation, membershipType, memberFamily_ID);
+        //if (Validation.lengthCheck(1, memberName, 60) && Validation.postcodeCheck(memberPostcode) && Validation.dateCheck(memberDOB) && Validation.lengthCheck(1, memberAddress1, 50) && Validation.lengthCheck(0, memberAddress2, 50) && Validation.lengthCheck(1, memberTown, 30) && Validation.lengthCheck(1, memberOccupation, 50) && Validation.phoneCheck(memberPhone) && Validation.lengthCheck(1, memberEmail, 60)){
+        if (Validation.lengthCheck(1, memberName, 60) && Validation.dateCheck(memberDOB) && Validation.lengthCheck(1, memberAddress1, 50) && Validation.lengthCheck(0, memberAddress2, 50) && Validation.lengthCheck(1, memberTown, 30) && Validation.lengthCheck(1, memberOccupation, 50) && Validation.phoneCheck(memberPhone) && Validation.lengthCheck(1, memberEmail, 60)){
+          
         
-            JOptionPane.showMessageDialog(this, "Record Added"); 
+          DataManipulation.addMember(memberId, memberName, memberDOB, memberAddress1, memberAddress2, memberTown, memberPostcode, memberEmail, memberPhone, memberOccupation, membershipType, memberFamily_ID);
+            
+            JOptionPane.showMessageDialog(this, "Record Added");          
             try {
                 table_update();
             } catch (SQLException | ClassNotFoundException ex) {
                 Logger.getLogger(MemberAdmin.class.getName()).log(Level.SEVERE, null, ex);
-            }  
+            } 
+            
+            //Empty fields for next action
+            memberIdTxt.setText("");
+            memberNameTxt.setText("");
+            memberDOBTxt.setText("");
+            memberPhoneNumberTxt.setText("");
+            memberEmailTxt.setText("");
+            memberAddress1Txt.setText("");
+            memberAddress2Txt.setText("");
+            memberTownTxt.setText("");
+            memberPostcodeTxt.setText("");
+            memberOccupationTxt.setText("");
+            membershipCbo.toString();
+            memberFamilyIDTxt.setText(""); 
+                  
+            
         }else{
-            JOptionPane.showMessageDialog(this, "Record not Added"); 
+            JOptionPane.showMessageDialog(this, "Please check your data for length and formatting"); 
         }
 
 
         
-        //Empty fields for next action
-        memberIdTxt.setText("");
-        memberNameTxt.setText("");
-        memberDOBTxt.setText("");
-        memberPhoneNumberTxt.setText("");
-        memberEmailTxt.setText("");
-        memberAddress1Txt.setText("");
-        memberAddress2Txt.setText("");
-        memberTownTxt.setText("");
-        memberPostcodeTxt.setText("");
-        memberOccupationTxt.setText("");
-        membershipCbo.toString();
-        memberFamilyIDTxt.setText("");
+
         
         memberIdTxt.requestFocus();
     }//GEN-LAST:event_addBtnActionPerformed
@@ -695,29 +702,39 @@ public class MemberAdmin extends javax.swing.JFrame {
         String memberOccupation = memberOccupationTxt.getText();
         String membershipType = membershipCbo.getSelectedItem().toString();
         String memberFamily_ID = memberFamilyIDTxt.getText();
-
-        DataManipulation.updateMember(memberId, memberName, memberDOB, memberAddress1, memberAddress2, memberTown, memberPostcode, memberEmail, memberPhone, memberOccupation, membershipType, memberFamily_ID);
         
-        JOptionPane.showMessageDialog(this, "Record Updated"); 
-        try {
-            table_update();
-        } catch (SQLException | ClassNotFoundException ex) {
-            Logger.getLogger(MemberAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        
+        //if (Validation.lengthCheck(1, memberName, 60) && Validation.postcodeCheck(memberPostcode) && Validation.dateCheck(memberDOB) && Validation.lengthCheck(1, memberAddress1, 50) && Validation.lengthCheck(0, memberAddress2, 50) && Validation.lengthCheck(1, memberTown, 30) && Validation.lengthCheck(1, memberOccupation, 50) && Validation.phoneCheck(memberPhone) && Validation.lengthCheck(1, memberEmail, 60)){
+        if (Validation.lengthCheck(1, memberName, 60) && Validation.dateCheck(memberDOB) && Validation.lengthCheck(1, memberAddress1, 50) && Validation.lengthCheck(0, memberAddress2, 50) && Validation.lengthCheck(1, memberTown, 30) && Validation.lengthCheck(1, memberOccupation, 50) && Validation.phoneCheck(memberPhone) && Validation.lengthCheck(1, memberEmail, 60)){
+          
+            DataManipulation.updateMember(memberId, memberName, memberDOB, memberAddress1, memberAddress2, memberTown, memberPostcode, memberEmail, memberPhone, memberOccupation, membershipType, memberFamily_ID);
+
+            JOptionPane.showMessageDialog(this, "Record Updated"); 
+            try {
+                table_update();
+            } catch (SQLException | ClassNotFoundException ex) {
+                Logger.getLogger(MemberAdmin.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            //Empty fields for next action
+            memberIdTxt.setText("");
+            memberNameTxt.setText("");
+            memberDOBTxt.setText("");
+            memberPhoneNumberTxt.setText("");
+            memberEmailTxt.setText("");
+            memberAddress1Txt.setText("");
+            memberAddress2Txt.setText("");
+            memberTownTxt.setText("");
+            memberPostcodeTxt.setText("");
+            memberOccupationTxt.setText("");
+            //membershipCbo.getSelectedItem().toString();
+            memberFamilyIDTxt.setText("");
+            
+        }else{
+            JOptionPane.showMessageDialog(this, "Please check your data for length and formatting"); 
         }
         
-        //Empty fields for next action
-        memberIdTxt.setText("");
-        memberNameTxt.setText("");
-        memberDOBTxt.setText("");
-        memberPhoneNumberTxt.setText("");
-        memberEmailTxt.setText("");
-        memberAddress1Txt.setText("");
-        memberAddress2Txt.setText("");
-        memberTownTxt.setText("");
-        memberPostcodeTxt.setText("");
-        memberOccupationTxt.setText("");
-        //membershipCbo.getSelectedItem().toString();
-        memberFamilyIDTxt.setText("");
+
         
         //eventStartTimeTxt.setText("");
         memberIdTxt.requestFocus();
