@@ -382,9 +382,12 @@ public class Lockers extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Please use the correct password length of 6.");
         }else if (userName.isBlank()){
             JOptionPane.showMessageDialog(this, "Please enter Name");
+        }else if (Validation.lengthCheck(1, userName, 60)){
+            JOptionPane.showMessageDialog(this, "Please use a maximum of 60 characters");
+        
         }else{
             DataManipulation.addLocker(password, lockerName, userName, available);
-            JOptionPane.showMessageDialog(this, "Record | Updated"); 
+            JOptionPane.showMessageDialog(this, "Record Updated"); 
              // empty all text boxes
             passwordTxt.setText("");
             lockerNameTxt.setText("");

@@ -28,14 +28,14 @@ public class Admin extends javax.swing.JFrame {
     private void initComponents() {
 
         memberAdminBtn = new javax.swing.JButton();
-        memberReport = new javax.swing.JButton();
+        memberReportBtn = new javax.swing.JButton();
         boatAdminBtn = new javax.swing.JButton();
         boatParkReportBtn = new javax.swing.JButton();
-        BoatAdminBtn = new javax.swing.JButton();
+        boatParkBtn = new javax.swing.JButton();
         boatDetailsReportBtn = new javax.swing.JButton();
         lockerAdminBtn = new javax.swing.JButton();
         HomeBtn = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        eventsBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -47,11 +47,11 @@ public class Admin extends javax.swing.JFrame {
             }
         });
 
-        memberReport.setText("Membership Report ");
-        memberReport.setPreferredSize(new java.awt.Dimension(129, 35));
-        memberReport.addActionListener(new java.awt.event.ActionListener() {
+        memberReportBtn.setText("Membership Report ");
+        memberReportBtn.setPreferredSize(new java.awt.Dimension(129, 35));
+        memberReportBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                memberReportActionPerformed(evt);
+                memberReportBtnActionPerformed(evt);
             }
         });
 
@@ -70,11 +70,11 @@ public class Admin extends javax.swing.JFrame {
             }
         });
 
-        BoatAdminBtn.setText("Boat Park Admin");
-        BoatAdminBtn.setPreferredSize(new java.awt.Dimension(129, 35));
-        BoatAdminBtn.addActionListener(new java.awt.event.ActionListener() {
+        boatParkBtn.setText("Boat Park Admin");
+        boatParkBtn.setPreferredSize(new java.awt.Dimension(129, 35));
+        boatParkBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BoatAdminBtnActionPerformed(evt);
+                boatParkBtnActionPerformed(evt);
             }
         });
 
@@ -101,11 +101,11 @@ public class Admin extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Events");
-        jButton1.setPreferredSize(new java.awt.Dimension(129, 35));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        eventsBtn.setText("Events");
+        eventsBtn.setPreferredSize(new java.awt.Dimension(129, 35));
+        eventsBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                eventsBtnActionPerformed(evt);
             }
         });
 
@@ -119,14 +119,14 @@ public class Admin extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(memberReport, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(memberReportBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(boatAdminBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(memberAdminBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(eventsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(boatParkReportBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(BoatAdminBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(boatParkBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lockerAdminBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(HomeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(57, 57, 57))
@@ -146,18 +146,17 @@ public class Admin extends javax.swing.JFrame {
                         .addGap(86, 86, 86))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(memberReport, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(BoatAdminBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(memberReportBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(boatParkBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(boatAdminBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(boatParkReportBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(boatDetailsReportBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(HomeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(eventsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -194,23 +193,23 @@ public class Admin extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_boatDetailsReportBtnActionPerformed
 
-    private void memberReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_memberReportActionPerformed
+    private void memberReportBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_memberReportBtnActionPerformed
         // TODO add your handling code here:
         new Membership_Report().setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_memberReportActionPerformed
+    }//GEN-LAST:event_memberReportBtnActionPerformed
 
-    private void BoatAdminBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BoatAdminBtnActionPerformed
+    private void boatParkBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boatParkBtnActionPerformed
         // TODO add your handling code here:
         new BoatPark().setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_BoatAdminBtnActionPerformed
+    }//GEN-LAST:event_boatParkBtnActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void eventsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eventsBtnActionPerformed
         // TODO add your handling code here:
         new Events().setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_eventsBtnActionPerformed
 
     private void lockerAdminBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lockerAdminBtnActionPerformed
         // TODO add your handling code here:
@@ -254,14 +253,14 @@ public class Admin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BoatAdminBtn;
     private javax.swing.JButton HomeBtn;
     private javax.swing.JButton boatAdminBtn;
     private javax.swing.JButton boatDetailsReportBtn;
+    private javax.swing.JButton boatParkBtn;
     private javax.swing.JButton boatParkReportBtn;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton eventsBtn;
     private javax.swing.JButton lockerAdminBtn;
     private javax.swing.JButton memberAdminBtn;
-    private javax.swing.JButton memberReport;
+    private javax.swing.JButton memberReportBtn;
     // End of variables declaration//GEN-END:variables
 }

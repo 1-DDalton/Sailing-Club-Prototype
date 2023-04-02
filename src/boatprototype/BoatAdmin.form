@@ -32,7 +32,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="boatPnl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="addBoatHerePnl" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="addBtn" min="-2" pref="63" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
@@ -58,7 +58,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="boatPnl" min="-2" max="-2" attributes="0"/>
+                      <Component id="addBoatHerePnl" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="deleteBtn" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -118,7 +118,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="boatPnl">
+    <Container class="javax.swing.JPanel" name="addBoatHerePnl">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -133,12 +133,12 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="eventStartTimeLbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="eventDateLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="boatSailNumberLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="boatClassLbl" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="boatNameLbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="memberIdLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="boatTypeLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="boatIdLbl" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -164,7 +164,7 @@
                   <EmptySpace min="0" pref="11" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="memberIdCbo" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="memberIdLbl" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -173,12 +173,12 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="eventDateLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="boatClassLbl" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="boatClassTxt" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="eventStartTimeLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="boatSailNumberLbl" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="sailNumberTxt" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -186,12 +186,12 @@
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="boatTypeTxt" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="boatTypeLbl" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace pref="29" max="32767" attributes="0"/>
                       </Group>
                       <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                          <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="boatIdLbl" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="BoatIDGeneratorBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="boatIDTxt" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -206,12 +206,12 @@
             <Property name="text" type="java.lang.String" value="Boat Name"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="eventDateLbl">
+        <Component class="javax.swing.JLabel" name="boatClassLbl">
           <Properties>
             <Property name="text" type="java.lang.String" value="Class"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="eventStartTimeLbl">
+        <Component class="javax.swing.JLabel" name="boatSailNumberLbl">
           <Properties>
             <Property name="text" type="java.lang.String" value="Sail Number"/>
           </Properties>
@@ -221,7 +221,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boatNameTxtActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel1">
+        <Component class="javax.swing.JLabel" name="memberIdLbl">
           <Properties>
             <Property name="text" type="java.lang.String" value="Member ID"/>
           </Properties>
@@ -244,7 +244,7 @@
             <Property name="toolTipText" type="java.lang.String" value="HH:MM:SS"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel2">
+        <Component class="javax.swing.JLabel" name="boatTypeLbl">
           <Properties>
             <Property name="text" type="java.lang.String" value="Boat Type"/>
           </Properties>
@@ -254,7 +254,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boatTypeTxtActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel3">
+        <Component class="javax.swing.JLabel" name="boatIdLbl">
           <Properties>
             <Property name="text" type="java.lang.String" value="Boat ID"/>
           </Properties>
@@ -319,12 +319,12 @@
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="6" rowCount="16">
-                <Column editable="true" title="Membership ID" type="java.lang.String"/>
-                <Column editable="true" title="Boat Name" type="java.lang.String"/>
-                <Column editable="true" title="Class" type="java.lang.String"/>
-                <Column editable="true" title="Sail Number" type="java.lang.String"/>
-                <Column editable="true" title="Boat Type" type="java.lang.String"/>
-                <Column editable="true" title="Boat ID" type="java.lang.String"/>
+                <Column editable="false" title="Membership ID" type="java.lang.String"/>
+                <Column editable="false" title="Boat Name" type="java.lang.String"/>
+                <Column editable="false" title="Class" type="java.lang.String"/>
+                <Column editable="false" title="Sail Number" type="java.lang.String"/>
+                <Column editable="false" title="Boat Type" type="java.lang.String"/>
+                <Column editable="false" title="Boat ID" type="java.lang.String"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">

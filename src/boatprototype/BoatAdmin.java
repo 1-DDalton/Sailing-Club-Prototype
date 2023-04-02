@@ -187,18 +187,18 @@ public class BoatAdmin extends javax.swing.JFrame {
 
         jPanel2 = new javax.swing.JPanel();
         boatAdmin = new javax.swing.JLabel();
-        boatPnl = new javax.swing.JPanel();
+        addBoatHerePnl = new javax.swing.JPanel();
         boatNameLbl = new javax.swing.JLabel();
-        eventDateLbl = new javax.swing.JLabel();
-        eventStartTimeLbl = new javax.swing.JLabel();
+        boatClassLbl = new javax.swing.JLabel();
+        boatSailNumberLbl = new javax.swing.JLabel();
         boatNameTxt = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        memberIdLbl = new javax.swing.JLabel();
         BoatIDGeneratorBtn = new javax.swing.JButton();
         boatClassTxt = new javax.swing.JTextField();
         sailNumberTxt = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
+        boatTypeLbl = new javax.swing.JLabel();
         boatTypeTxt = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
+        boatIdLbl = new javax.swing.JLabel();
         boatIDTxt = new javax.swing.JTextField();
         memberIdCbo = new javax.swing.JComboBox<>();
         addBtn = new javax.swing.JButton();
@@ -232,13 +232,13 @@ public class BoatAdmin extends javax.swing.JFrame {
             .addComponent(boatAdmin, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
-        boatPnl.setBorder(javax.swing.BorderFactory.createTitledBorder("Add Boat Here:"));
+        addBoatHerePnl.setBorder(javax.swing.BorderFactory.createTitledBorder("Add Boat Here:"));
 
         boatNameLbl.setText("Boat Name");
 
-        eventDateLbl.setText("Class");
+        boatClassLbl.setText("Class");
 
-        eventStartTimeLbl.setText("Sail Number");
+        boatSailNumberLbl.setText("Sail Number");
 
         boatNameTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -246,7 +246,7 @@ public class BoatAdmin extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Member ID");
+        memberIdLbl.setText("Member ID");
 
         BoatIDGeneratorBtn.setText("New");
         BoatIDGeneratorBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -259,7 +259,7 @@ public class BoatAdmin extends javax.swing.JFrame {
 
         sailNumberTxt.setToolTipText("HH:MM:SS");
 
-        jLabel2.setText("Boat Type");
+        boatTypeLbl.setText("Boat Type");
 
         boatTypeTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -267,7 +267,7 @@ public class BoatAdmin extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("Boat ID");
+        boatIdLbl.setText("Boat ID");
 
         boatIDTxt.setEditable(false);
         boatIDTxt.addActionListener(new java.awt.event.ActionListener() {
@@ -283,26 +283,26 @@ public class BoatAdmin extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout boatPnlLayout = new javax.swing.GroupLayout(boatPnl);
-        boatPnl.setLayout(boatPnlLayout);
-        boatPnlLayout.setHorizontalGroup(
-            boatPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(boatPnlLayout.createSequentialGroup()
+        javax.swing.GroupLayout addBoatHerePnlLayout = new javax.swing.GroupLayout(addBoatHerePnl);
+        addBoatHerePnl.setLayout(addBoatHerePnlLayout);
+        addBoatHerePnlLayout.setHorizontalGroup(
+            addBoatHerePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addBoatHerePnlLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(boatPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(eventStartTimeLbl)
-                    .addComponent(eventDateLbl)
+                .addGroup(addBoatHerePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(boatSailNumberLbl)
+                    .addComponent(boatClassLbl)
                     .addComponent(boatNameLbl)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
+                    .addComponent(memberIdLbl)
+                    .addComponent(boatTypeLbl)
+                    .addComponent(boatIdLbl))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(boatPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(addBoatHerePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(boatTypeTxt)
                     .addComponent(boatNameTxt)
                     .addComponent(boatClassTxt)
                     .addComponent(sailNumberTxt)
-                    .addGroup(boatPnlLayout.createSequentialGroup()
+                    .addGroup(addBoatHerePnlLayout.createSequentialGroup()
                         .addGap(0, 4, Short.MAX_VALUE)
                         .addComponent(boatIDTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -310,34 +310,34 @@ public class BoatAdmin extends javax.swing.JFrame {
                     .addComponent(memberIdCbo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
-        boatPnlLayout.setVerticalGroup(
-            boatPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(boatPnlLayout.createSequentialGroup()
+        addBoatHerePnlLayout.setVerticalGroup(
+            addBoatHerePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addBoatHerePnlLayout.createSequentialGroup()
                 .addGap(0, 11, Short.MAX_VALUE)
-                .addGroup(boatPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(addBoatHerePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(memberIdCbo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(memberIdLbl))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(boatPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(addBoatHerePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(boatNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(boatNameLbl))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(boatPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(eventDateLbl)
+                .addGroup(addBoatHerePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(boatClassLbl)
                     .addComponent(boatClassTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(boatPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(eventStartTimeLbl)
+                .addGroup(addBoatHerePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(boatSailNumberLbl)
                     .addComponent(sailNumberTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(boatPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(boatPnlLayout.createSequentialGroup()
-                        .addGroup(boatPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(addBoatHerePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(addBoatHerePnlLayout.createSequentialGroup()
+                        .addGroup(addBoatHerePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(boatTypeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
+                            .addComponent(boatTypeLbl))
                         .addContainerGap(29, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, boatPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel3)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addBoatHerePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(boatIdLbl)
                         .addComponent(BoatIDGeneratorBtn)
                         .addComponent(boatIDTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
@@ -389,9 +389,16 @@ public class BoatAdmin extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         boatTbl.getTableHeader().setReorderingAllowed(false);
@@ -418,7 +425,7 @@ public class BoatAdmin extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(boatPnl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(addBoatHerePnl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(42, 42, 42)
@@ -438,7 +445,7 @@ public class BoatAdmin extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(boatPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(addBoatHerePnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(75, 75, 75)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(deleteBtn)
@@ -652,25 +659,25 @@ public class BoatAdmin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BoatIDGeneratorBtn;
+    private javax.swing.JPanel addBoatHerePnl;
     private javax.swing.JButton addBtn;
     private javax.swing.JLabel boatAdmin;
+    private javax.swing.JLabel boatClassLbl;
     private javax.swing.JTextField boatClassTxt;
     private javax.swing.JTextField boatIDTxt;
+    private javax.swing.JLabel boatIdLbl;
     private javax.swing.JLabel boatNameLbl;
     private javax.swing.JTextField boatNameTxt;
-    private javax.swing.JPanel boatPnl;
+    private javax.swing.JLabel boatSailNumberLbl;
     private javax.swing.JTable boatTbl;
+    private javax.swing.JLabel boatTypeLbl;
     private javax.swing.JTextField boatTypeTxt;
     private javax.swing.JButton deleteBtn;
-    private javax.swing.JLabel eventDateLbl;
-    private javax.swing.JLabel eventStartTimeLbl;
     private javax.swing.JButton homeBtn;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox<String> memberIdCbo;
+    private javax.swing.JLabel memberIdLbl;
     private javax.swing.JTextField sailNumberTxt;
     private javax.swing.JButton updateBtn;
     // End of variables declaration//GEN-END:variables
