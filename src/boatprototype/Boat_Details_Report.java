@@ -144,12 +144,12 @@ public class Boat_Details_Report extends javax.swing.JFrame {
                 Object rowData[] = new Object[6];  
                 //Fill up the array with the the next row of data from the list
                 for(int i = 0; i <list.size(); i++){                        
-                        rowData[0] = list.get(i).boat_id;
+                        rowData[0] = list.get(i).member_id;
                         rowData[1] = list.get(i).boat_name;
                         rowData[2] = list.get(i).boat_class;
                         rowData[3] = list.get(i).boat_sail_number; 
                         rowData[4] = list.get(i).boat_type;
-                        rowData[5] = list.get(i).member_id;
+                        rowData[5] = list.get(i).boat_id;
                         //Add the data from thew array into the next row in eventsTbl via the model
                         model.addRow(rowData);
                     }

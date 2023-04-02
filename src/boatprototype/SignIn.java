@@ -46,6 +46,7 @@ public class SignIn extends javax.swing.JFrame {
         ReturnHomeBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Enter Password");
         setResizable(false);
 
         enterBtn.setText("Sign In");
@@ -55,7 +56,6 @@ public class SignIn extends javax.swing.JFrame {
             }
         });
 
-        passwordTxt.setText("Password");
         passwordTxt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 passwordTxtMouseClicked(evt);
@@ -108,8 +108,16 @@ public class SignIn extends javax.swing.JFrame {
 
     private void enterBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterBtnActionPerformed
         // TODO add your handling code here:
-        new Admin().setVisible(true);
-        this.dispose();
+        String password = passwordTxt.getText();
+        if (password.equals("PSCAdm1n")){
+            new Admin().setVisible(true);
+            this.dispose();  
+        }else if (password.equals("")){
+            JOptionPane.showMessageDialog(this, "Please enter a password.");
+        }else{
+            JOptionPane.showMessageDialog(this, "Password incorrect.");
+        }
+        
     }//GEN-LAST:event_enterBtnActionPerformed
 
     private void passwordTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordTxtActionPerformed
@@ -123,15 +131,7 @@ public class SignIn extends javax.swing.JFrame {
 
     private void ReturnHomeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReturnHomeBtnActionPerformed
         // TODO add your handling code here:
-        String password = passwordTxt.getText();
-        if (passwordTxt.equals("PSCAdm1n")){
-        new HomePage().setVisible(true);
-        this.dispose();  
-        }else if (passwordTxt.equals("")){
-            JOptionPane.showMessageDialog(this, "Please enter a password.");
-        }else{
-            JOptionPane.showMessageDialog(this, "Password incorrect.");
-        }
+        
         new HomePage().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_ReturnHomeBtnActionPerformed
